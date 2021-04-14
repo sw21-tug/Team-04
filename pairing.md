@@ -1,14 +1,14 @@
 
 ### Pairing Matrix
 
-Dev 1: Armin Bodingbauer
-Dev 2: Frederik Wagner
-Dev 3: Laila El Shafie
-Dev 4: Manar Abdelhalim 
-Dev 5: Manar Allam
-Dev 6: Markus Schleifer
-Dev 7: Martina Kos
-Dev 8: Stella Lukasser
+* Dev 1: Armin Bodingbauer
+* Dev 2: Frederik Wagner
+* Dev 3: Laila El Shafie
+* Dev 4: Manar Abdelhalim 
+* Dev 5: Manar Allam
+* Dev 6: Markus Schleifer
+* Dev 7: Martina Kos
+* Dev 8: Stella Lukasser
 
 | Syntax      | Dev 1   	  | Dev 2   	  | Dev 3   	  | Dev 4   	  | Dev 5   	  | Dev 6   	  | Dev 7   	  | Dev 8   	  |
 | :---        |    :----:   |    :----:   |    :----:   |    :----:   |    :----:   |    :----:   |    :----:   |    :----:   |
