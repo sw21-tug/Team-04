@@ -1,4 +1,4 @@
-Team_*04*
+# Team_*04*
 
 TravelTogether - is an application that connects people who want to travel or do activities together.
 To find somebody or a group users can either post about their idea of a trip or search through the posts
@@ -6,7 +6,7 @@ and join others on their journeys.
 
 
 
-### Team members
+## Team members
 
 | Role             | Name                  | 
 | :---             |    :----:             |
@@ -24,18 +24,18 @@ and join others on their journeys.
 
 ## Schedule
 
-24 March 2021 - Team bonding period
-14 April 2021 - Sprint 1
-21 April 2021 - Sprint 1
+* 24 March 2021 - Team bonding period
+* 14 April 2021 - Sprint 1
+* 21 April 2021 - Sprint 1
 
-28 April 2021 - Sprint 2
-05 May 2021 - Sprint 2 (1 Release, 23:59)
+* 28 April 2021 - Sprint 2
+* 05 May 2021 - Sprint 2 (1 Release, 23:59)
 
-12 May 2021 - Sprint 3
-19 May 2021 - Sprint 3
+* 12 May 2021 - Sprint 3
+* 19 May 2021 - Sprint 3
 
-26 May 2021 - Sprint 4
-02 May 2021 - Sprint 4
-09 May 2021 - Sprint 4 (2 Release, 23:59)
+* 26 May 2021 - Sprint 4
+* 02 May 2021 - Sprint 4
+* 09 May 2021 - Sprint 4 (2 Release, 23:59)
 
 ## Implemented Features
