@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TravelTogether</string>
+    <string name="profile_name">Profile</string>
+    <string name="profile_edit_picture">Edit Picture</string>
+    <string name="profile_username">Username</string>
+    <string name="profile_Description">Description</string>
+    <string name="profile_edit_Description">Edit Description</string>
+    <string name="profile_background">Profile Background</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="profile_edit_pic">Profile Edit Pic Picture</string>
 </resources>
