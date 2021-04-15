@@ -25,7 +25,7 @@ class ExampleUnitTest {
        onView(withText("Hello Steve!")).check(matches(isDisplayed()))
    }*/
 
-    private val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+    /*private val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     @Test
     fun firebase() {
         //val database = FirebaseDatabase.getInstance()
@@ -45,5 +45,5 @@ class ExampleUnitTest {
                 Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
             }
         })
-    }
+    }*/
 }

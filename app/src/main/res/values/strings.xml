@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TravelTogether</string>
+    <string name="sign_in_text">Sign In</string>
+    <string name="sign_out_text">Sign Out</string>
 </resources>
