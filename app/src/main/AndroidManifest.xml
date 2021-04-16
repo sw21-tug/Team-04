@@ -21,14 +21,12 @@
         <activity
             android:name=".MainActivity"
             android:label="TravelTogether">
-
         </activity>
 
-    <activity
+        <activity
             android:name=".SignIn"
             android:label="Signing in">
-
-    </activity>
+        </activity>
 
     </application>
 

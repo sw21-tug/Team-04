@@ -15,4 +15,13 @@
     <color name="blue_2">#64B5F6</color>
     <color name="blue_3">#2286C3</color>
 
+    <color name="green_1">#00E676</color>
+    <color name="green_2">#66FFA6</color>
+    <color name="green_3">#00B248</color>
+    <color name="orange_1">#FF6E40</color>
+    <color name="orange_2">#FFA06D</color>
+    <color name="orange_3">#C53D13</color>
+
+    <color name="white_on_green">#EFF4EF</color>
+
 </resources>

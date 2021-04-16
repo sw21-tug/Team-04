@@ -24,6 +24,7 @@
         android:layout_marginStart="56dp"
         android:layout_marginBottom="67dp"
         android:text="@string/sign_out_text"
+        android:textColor="@color/white_on_green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

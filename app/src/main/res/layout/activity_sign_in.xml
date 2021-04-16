@@ -12,6 +12,7 @@
         android:layout_width="130dp"
         android:layout_height="68dp"
         android:text="@string/sign_in_text"
+        android:textColor="@color/white_on_green"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
