@@ -13,14 +13,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        /*val sign_out = findViewById<Button>(R.id.button_sign_out)
+        val sign_out = findViewById<Button>(R.id.button_sign_out)
         sign_out.setOnClickListener {
             AuthUI.getInstance()
-                .signOut(this@MyAccountFragment.context!!)
+                .signOut(this)
                 .addOnCompleteListener {
                     startActivity(intentFor<SignIn>().newTask().clearTask())
+                    finish()
                 }
 
-        }*/
+        }
     }
 }
