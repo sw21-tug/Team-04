@@ -22,7 +22,11 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         val navController = findNavController(R.id.buttom_menu_fragment)
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
         bottomNavigationView.setupWithNavController(navController)
+        setupActionBarWithNavController(navController,appBarConfiguration)
+
 
        /* val slideNavigationView = findViewById<NavigationView>(R.id.slide_menu_fragment)
         navControllerSlide = findNavController(R.id.slide_menu_fragment)
@@ -33,9 +37,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    /*override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.slide_menu_fragment)
+    override fun onSupportNavigateUp(): Boolean {
+       // val navController = findNavController(R.id.slide_menu_fragment)
+        val navController = findNavController(R.id.buttom_menu_fragment)
         return navController.navigateUp(appBarConfiguration)
          ||  super.onSupportNavigateUp()
-    }*/
+    }
 }

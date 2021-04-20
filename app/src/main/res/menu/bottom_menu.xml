@@ -10,13 +10,13 @@
         android:title="All"
         android:icon="@drawable/ic_post"  />
     <item
-        android:id = "@+id/new_popup_fragment"
-        android:title="New"
-        android:icon="@drawable/ic_popup" />
-    <item
         android:id = "@+id/chat_fragment"
         android:title="Chat"
         android:icon="@drawable/ic_chat" />
+    <item
+        android:id = "@+id/new_popup_fragment"
+        android:title="New"
+        android:icon="@drawable/ic_popup" />
     <item
         android:id = "@+id/news_fragment"
         android:title="News"
