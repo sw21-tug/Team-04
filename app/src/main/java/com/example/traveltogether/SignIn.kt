@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
@@ -49,14 +50,17 @@ class SignIn : AppCompatActivity() {
                 progressDialog.dismiss()
             }
             else if (resultCode == Activity.RESULT_CANCELED) {
-                if (response == null) return
-
-                /*when (response.error?.errorCode) {
+                if (response == null) {
+                    Toast.makeText(this@SignIn, "Sign in cancelled.", Toast.LENGTH_SHORT).show()
+                    return
+                }
+                when (response.error?.errorCode) {
                     ErrorCodes.NO_NETWORK ->
-                        longSnackbar(findViewById<View>(R.id.sign_in_layout), "No network")
+                        Toast.makeText(this@SignIn, "No Network.", Toast.LENGTH_SHORT).show()
                     ErrorCodes.UNKNOWN_ERROR ->
-                        longSnackbar(sign_in_layout, "Unknown error")
-                }*/
+                        Toast.makeText(this@SignIn, "Unknown error", Toast.LENGTH_SHORT).show()
+                }
+                return
             }
         }
     }
