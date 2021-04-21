@@ -3,9 +3,16 @@
     <string name="profile_name">Profile</string>
     <string name="profile_edit_picture">Edit Picture</string>
     <string name="profile_username">Username</string>
-    <string name="profile_Description">Description</string>
+    <string name="profile_description">Description</string>
     <string name="profile_edit_Description">Edit Description</string>
     <string name="profile_background">Profile Background</string>
     <string name="profile_picture">Profile Picture</string>
     <string name="profile_edit_pic">Profile Edit Pic Picture</string>
+    <string name="profile_container">Profile Container</string>
+    <string name="profile_description_container">Profile Description Container</string>
+    <string name="enter_one_text_here">Enter one text here</string>
+    <string name="choose_from_library">Choose from Library</string>
+    <string name="take_a_picture">Take a picture</string>
+
+
 </resources>
