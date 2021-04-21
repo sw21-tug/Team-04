@@ -4,25 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2">
+    tools:context=".SettingActivity">
 
     <Button
         android:id="@+id/change_pass"
         android:layout_width="185dp"
         android:layout_height="51dp"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="56dp"
         android:text="change password"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="7dp" />
+        tools:layout_editor_absoluteX="16dp" />
 
     <Switch
         android:id="@+id/allow_notification"
-        android:layout_width="391dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="146dp"
+        android:layout_width="348dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="144dp"
         android:text="Notify when activity in group chat"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="7dp" />
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
         android:id="@+id/delete_account"
@@ -31,6 +31,6 @@
         android:layout_marginTop="344dp"
         android:text="Delete account"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="7dp" />
+        tools:layout_editor_absoluteX="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
