@@ -24,8 +24,4 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
-    @Test
-    fun test_login_button () {
-        onView(withId(R.id.account_sign_in)).perform(click()).check(matches(isEnabled()))
-    }
 }
