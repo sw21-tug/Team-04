@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">TravelTogether</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_profile">ProfileActivity</string>
     <string name="sign_in_text">Log In/Sign Up</string>
     <string name="sign_out_text">Sign Out</string>
     <string name="main_screen_text">MAIN SCREEN</string>
+    <string name="hello_world">Hello Square World!</string>
 </resources>
