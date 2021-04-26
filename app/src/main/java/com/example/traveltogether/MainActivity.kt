@@ -1,5 +1,6 @@
 package com.example.traveltogether
 
+import com.firebase.ui.auth.AuthUI
 import org.jetbrains.anko.intentFor
 import android.os.Bundle
 import android.view.MenuItem
@@ -17,7 +18,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.newTask
-import com.firebase.ui.auth.AuthUI
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             val id: Int = menuItem.getItemId()
             if (id == R.id.profile_fragment) {
-                startActivity(intentFor<MainActivity>().newTask().clearTask())
+                startActivity(intentFor<ProfileActivity>().newTask().clearTask())
             } else if (id == R.id.logout_fragment) {
                 AuthUI.getInstance()
                         .signOut(this)
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                             finish()
                         }
             } else if (id == R.id.settings_fragment) {
-                startActivity(intentFor<MainActivity>().newTask().clearTask())
+                startActivity(intentFor<SettingsActivity>().newTask().clearTask())
             }
             drawerLayout.closeDrawer(GravityCompat.START)
             true
