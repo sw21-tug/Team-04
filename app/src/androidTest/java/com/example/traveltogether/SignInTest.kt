@@ -57,7 +57,7 @@ class LoginSignupTest {
 
         assertEquals(intent.data, activityRule.activity.intent.data)
 
-        onView(withText("Sign in")).check(matches(isDisplayed()));
+        onView(withId(R.id.button_next)).check(matches(isDisplayed()));
     }
 
     @Test

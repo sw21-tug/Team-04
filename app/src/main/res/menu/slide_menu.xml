@@ -3,14 +3,14 @@
 
     <item
         android:id = "@+id/profile_fragment"
-        android:title="Profile"
+        android:title="@string/profile_text"
         android:icon="@drawable/ic_profile" />
     <item
         android:id = "@+id/settings_fragment"
-        android:title="Settings"
+        android:title="@string/settings_text"
         android:icon="@drawable/ic_settings" />
     <item
         android:id = "@+id/logout_fragment"
-        android:title="Logout"
+        android:title="@string/logout_text"
         android:icon="@drawable/ic_logout" />
 </menu>
