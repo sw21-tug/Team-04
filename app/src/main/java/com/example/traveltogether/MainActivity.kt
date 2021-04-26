@@ -17,7 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.newTask
-
+import com.firebase.ui.auth.AuthUI
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,12 +40,12 @@ class MainActivity : AppCompatActivity() {
             if (id == R.id.profile_fragment) {
                 startActivity(intentFor<MainActivity>().newTask().clearTask())
             } else if (id == R.id.logout_fragment) {
-                /*AuthUI.getInstance()
+                AuthUI.getInstance()
                         .signOut(this)
                         .addOnCompleteListener { // user is now signed out
                             startActivity(intentFor<SignIn>().newTask().clearTask())
                             finish()
-                        }*/
+                        }
             } else if (id == R.id.settings_fragment) {
                 startActivity(intentFor<MainActivity>().newTask().clearTask())
             }

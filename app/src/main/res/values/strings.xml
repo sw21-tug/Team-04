@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">TravelTogether</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_in_text">Log In/Sign Up</string>
+    <string name="sign_out_text">Sign Out</string>
+    <string name="main_screen_text">MAIN SCREEN</string>
 </resources>
