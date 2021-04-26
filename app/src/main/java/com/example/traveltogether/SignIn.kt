@@ -50,10 +50,9 @@ class SignIn : AppCompatActivity() {
 
             if (resultCode == Activity.RESULT_OK) {
                 val progressDialog = indeterminateProgressDialog ( "Setting up your account" )
-                //TODO: Initialize current user in Firestore
-                val firebase_user = FirebaseAuth.getInstance().currentUser
-                if (!firebase_user?.isEmailVerified!!)
-                    firebase_user.sendEmailVerification()
+                val firebaseUser = FirebaseAuth.getInstance().currentUser
+                if (!firebaseUser?.isEmailVerified!!)
+                    firebaseUser.sendEmailVerification()
                 startActivity(intentFor<MainActivity>().newTask().clearTask())
                 progressDialog.dismiss()
             }
@@ -67,7 +66,9 @@ class SignIn : AppCompatActivity() {
                         Toast.makeText(this@SignIn, "No Network.", Toast.LENGTH_SHORT).show()
                     ErrorCodes.UNKNOWN_ERROR ->
                         Toast.makeText(this@SignIn, "Unknown error", Toast.LENGTH_SHORT).show()
-                }
+                    else ->
+                        Toast.makeText(this@SignIn, "Unknown error", Toast.LENGTH_SHORT).show()
+                    }
                 return
             }
         }
