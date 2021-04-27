@@ -4,15 +4,156 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".ProfileActivity">
 
-    <TextView
-        android:id="@+id/profile_activity_text"
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/profile_background"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:srcCompat="?attr/colorButtonNormal" />
+
+<ProgressBar
+        android:id="@+id/progress_bar_pic"
+        android:layout_width="150dp"
+        android:layout_height="149dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.034"
+        app:layout_constraintStart_toStartOf="@+id/profile_container"
+        app:layout_constraintTop_toTopOf="@+id/profile_container"
+        app:layout_constraintVertical_bias="0.241" />
+
+    <ImageView
+        android:id="@+id/profile_container"
+        android:layout_width="376dp"
+        android:layout_height="211dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:contentDescription="@string/profile_container"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toStartOf="@+id/background"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/background"
+        app:layout_constraintTop_toTopOf="@+id/background"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:color/darker_gray" />
+
+<ImageView
+        android:id="@+id/profile_picture"
+        android:layout_width="153dp"
+        android:layout_height="138dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="210dp"
+        android:layout_marginBottom="50dp"
+        android:contentDescription="@string/profile_picture"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_container"
+        app:layout_constraintEnd_toEndOf="@+id/profile_container"
+        app:layout_constraintStart_toStartOf="@+id/profile_container"
+        app:layout_constraintTop_toTopOf="@+id/profile_container"
+        app:srcCompat="@drawable/fui_ic_anonymous_white_24dp"
+        tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
+
+    <ImageView
+        android:id="@+id/profile_description_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="50dp"
+        android:contentDescription="@string/profile_description_container"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/profile_container"
+        app:layout_constraintVertical_bias="0.92"
+        app:srcCompat="@android:color/darker_gray"
+        tools:srcCompat="@android:color/darker_gray" />
+
+    <Button
+        android:id="@+id/edit_picture_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profiles Activity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:backgroundTint="@color/blue"
+        android:contentDescription="@string/profile_edit_pic"
+        android:paddingLeft="15dp"
+        android:paddingTop="5dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="5dp"
+        android:text="@string/profile_edit_picture"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/profile_picture"
+        app:layout_constraintStart_toStartOf="@+id/profile_picture"
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
+
+    <TextView
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="118dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="91dp"
+        android:ems="10"
+        android:text="@string/profile_username"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintStart_toEndOf="@+id/profile_picture"
+        app:layout_constraintTop_toTopOf="@+id/profile_picture"
+        app:layout_constraintVertical_bias="0.91" />
+
+    <TextView
+        android:id="@+id/profile_description_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="281dp"
+        android:layout_marginBottom="460dp"
+        android:text="@string/profile_description"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_description_container"
+        app:layout_constraintEnd_toEndOf="@+id/profile_description_container"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="@+id/profile_description_container"
+        app:layout_constraintTop_toTopOf="@+id/profile_description_container"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <TextView
+        android:id="@+id/description_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_description"
+        app:layout_constraintEnd_toEndOf="@+id/profile_description_container"
+        app:layout_constraintStart_toStartOf="@+id/profile_description_container"
+        app:layout_constraintTop_toBottomOf="@+id/profile_description_title"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/edit_description"
+        android:layout_width="199dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginBottom="21dp"
+        android:backgroundTint="@color/blue"
+        android:text="@string/profile_edit_Description"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_description_container"
+        app:layout_constraintEnd_toEndOf="@+id/profile_description_container"
+        app:layout_constraintHorizontal_bias="0.26"
+        app:layout_constraintStart_toStartOf="@+id/profile_description_container"
+        app:layout_constraintTop_toTopOf="@+id/profile_description_container"
+        app:layout_constraintVertical_bias="1.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
