@@ -20,6 +20,9 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_profile.*
 import org.jetbrains.anko.*
 import java.io.ByteArrayOutputStream
+import org.jetbrains.anko.clearTask
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.newTask
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -41,6 +44,7 @@ class ProfileActivity : AppCompatActivity() {
             popup.show()*/
             takePictureIntent()
         }
+
         val actionbar = supportActionBar
         actionbar!!.title = "Profile"
         actionbar.setDisplayHomeAsUpEnabled(true)
@@ -56,6 +60,7 @@ class ProfileActivity : AppCompatActivity() {
     override fun onBackPressed() {
         startActivity(intentFor<MainActivity>().newTask().clearTask())
     }
+
 
     private fun showEditTextDialog()
     {
@@ -120,3 +125,4 @@ class ProfileActivity : AppCompatActivity() {
     }
 
 }
+

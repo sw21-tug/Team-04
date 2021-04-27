@@ -14,5 +14,13 @@
     <string name="choose_from_library">Choose from Library</string>
     <string name="take_a_picture">Take a picture</string>
 
-
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="sign_in_text">Log In/Sign Up</string>
+    <string name="sign_out_text">Sign Out</string>
+    <string name="main_screen_text">MAIN SCREEN</string>
+    <string name="hello_world">Hello Square World!</string>
+    <string name="profile_text">Profile</string>
+    <string name="settings_text">Settings</string>
+    <string name="logout_text">Logout</string>
 </resources>

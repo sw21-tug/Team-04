@@ -41,3 +41,5 @@ and join others on their journeys.
 ## Implemented Features
 
 * TT-012 Database
+* TT-001 Login/Signup
+
