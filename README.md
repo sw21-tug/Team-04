@@ -39,3 +39,6 @@ and join others on their journeys.
 * 09 May 2021 - Sprint 4 (2 Release, 23:59)
 
 ## Implemented Features
+
+* TT-012 Database
+* TT-001 Login/Signup

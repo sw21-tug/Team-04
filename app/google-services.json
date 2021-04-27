@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "884040714166",
+    "firebase_url": "https://sw21tug04-f134c-default-rtdb.firebaseio.com",
+    "project_id": "sw21tug04-f134c",
+    "storage_bucket": "sw21tug04-f134c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884040714166:android:97217335fa63c763022317",
+        "android_client_info": {
+          "package_name": "at.markus.firebasetest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "884040714166-321bglf65vtk09ae261dtka3mvh2kmj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkvkbHGayIZ7u7BHCXWMmcccJ8hXgKHqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "884040714166-321bglf65vtk09ae261dtka3mvh2kmj2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884040714166:android:1d09b5f2953c6eb6022317",
+        "android_client_info": {
+          "package_name": "com.example.traveltogether"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "884040714166-321bglf65vtk09ae261dtka3mvh2kmj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkvkbHGayIZ7u7BHCXWMmcccJ8hXgKHqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "884040714166-321bglf65vtk09ae261dtka3mvh2kmj2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884040714166:android:f65925785ad38d5e022317",
+        "android_client_info": {
+          "package_name": "com.sw21tug.travelbuddies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "884040714166-321bglf65vtk09ae261dtka3mvh2kmj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkvkbHGayIZ7u7BHCXWMmcccJ8hXgKHqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "884040714166-321bglf65vtk09ae261dtka3mvh2kmj2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

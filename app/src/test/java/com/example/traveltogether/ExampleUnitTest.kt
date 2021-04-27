@@ -1,8 +1,18 @@
 package com.example.traveltogether
 
+import android.content.ContentValues
+import android.util.Log
+import com.google.firebase.database.*
 import org.junit.Test
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
+import com.firebase.ui.auth.AuthUI
+
 
 import org.junit.Assert.*
+import org.junit.runner.RunWith
 
 /**
  * Example local unit test, which will execute on the development machine (host).
