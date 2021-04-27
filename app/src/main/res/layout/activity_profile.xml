@@ -16,6 +16,19 @@
         tools:layout_editor_absoluteY="0dp"
         tools:srcCompat="?attr/colorButtonNormal" />
 
+<ProgressBar
+        android:id="@+id/progress_bar_pic"
+        android:layout_width="150dp"
+        android:layout_height="149dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.034"
+        app:layout_constraintStart_toStartOf="@+id/profile_container"
+        app:layout_constraintTop_toTopOf="@+id/profile_container"
+        app:layout_constraintVertical_bias="0.241" />
+
     <ImageView
         android:id="@+id/profile_container"
         android:layout_width="376dp"
@@ -31,10 +44,10 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:color/darker_gray" />
 
-    <ImageView
+<ImageView
         android:id="@+id/profile_picture"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="153dp"
+        android:layout_height="138dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="210dp"
         android:layout_marginBottom="50dp"
@@ -43,8 +56,8 @@
         app:layout_constraintEnd_toEndOf="@+id/profile_container"
         app:layout_constraintStart_toStartOf="@+id/profile_container"
         app:layout_constraintTop_toTopOf="@+id/profile_container"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/fui_ic_anonymous_white_24dp"
+        tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
     <ImageView
         android:id="@+id/profile_description_container"
