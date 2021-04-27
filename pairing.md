@@ -12,11 +12,11 @@
 
 | Syntax      | Dev 1   	  | Dev 2   	  | Dev 3   	  | Dev 4   	  | Dev 5   	  | Dev 6   	  | Dev 7   	  | Dev 8   	  |
 | :---        |    :----:   |    :----:   |    :----:   |    :----:   |    :----:   |    :----:   |    :----:   |    :----:   |
-| Dev 1       | X           | HH:MM       | HH:MM       | HH:MM       | HH:MM       | HH:MM       | HH:MM       | 04:00       |
-| Dev 2       | HH:MM       | X           | HH:MM       | HH:MM       | HH:MM       | HH:MM       | 04:00       | HH:MM       |
-| Dev 3       | HH:MM       | HH:MM       | X           | HH:MM       | HH:MM       | 04:00       | HH:MM       | HH:MM       |
-| Dev 4       | HH:MM       | HH:MM       | HH:MM       | X           | 04:00       | HH:MM       | HH:MM       | HH:MM       |
-| Dev 5       | HH:MM       | HH:MM       | HH:MM       | HH:MM       | X           | HH:MM       | HH:MM       | HH:MM       |
-| Dev 6       | HH:MM       | HH:MM       | HH:MM       | HH:MM       | HH:MM       | X           | HH:MM       | HH:MM       |
-| Dev 7       | HH:MM       | HH:MM       | HH:MM       | HH:MM       | HH:MM       | HH:MM       | X           | HH:MM       |
-| Dev 8       | HH:MM       | HH:MM       | HH:MM       | HH:MM       | HH:MM       | HH:MM       | HH:MM       | X           |
+| Dev 1       | X           | 00:00       | 00:00       | 00:00       | 00:00       | 00:00       | 00:00       | 08:00       |
+| Dev 2       | 00:00       | X           | 00:00       | 00:00       | 00:00       | 00:00       | 08:00       | 00:00       |
+| Dev 3       | 00:00       | 00:00       | X           | 00:00       | 00:00       | 08:00       | 00:00       | 00:00       |
+| Dev 4       | 00:00       | 00:00       | 00:00       | X           | 08:00       | 00:00       | 00:00       | 00:00       |
+| Dev 5       | 00:00       | 00:00       | 00:00       | 08:00       | X           | 00:00       | 00:00       | 00:00       |
+| Dev 6       | 00:00       | 00:00       | 08:00       | 00:00       | 00:00       | X           | 00:00       | 00:00       |
+| Dev 7       | 00:00       | 08:00       | 00:00       | 00:00       | 00:00       | 00:00       | X           | 00:00       |
+| Dev 8       | 08:00       | 00:00       | 00:00       | 00:00       | 00:00       | 00:00       | 00:00       | X           |
