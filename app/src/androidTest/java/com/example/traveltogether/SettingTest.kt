@@ -1,21 +1,25 @@
 package com.example.traveltogether
 
-import android.net.sip.SipSession
-import androidx.recyclerview.widget.RecyclerView
+import android.view.Gravity
+import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.junit.Assert
 
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Rule
-import java.util.regex.Pattern.matches
+import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.DrawerActions
+import androidx.test.espresso.contrib.DrawerMatchers
+import androidx.test.rule.ActivityTestRule
+import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.FirebaseAuth
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -28,10 +32,19 @@ class SettingTest {
     val activityRule = ActivityScenarioRule(SettingActivity::class.java)
 
     @Test
-    fun checkChangingPassButton()
-    {
+    fun changePasswordFalse () {
         onView(withId(R.id.change_pass)).perform(click())
-        val originalActivityState = activityRule.scenario.state
+        onView(withId(R.id.frameLayout)).check(matches(isDisplayed()))
+        onView(withId(R.id.TextPassword_Old)).perform(typeText("12345678"))
+        onView(withId(R.id.TextPassword_new)).perform(typeText("1234"))
+        onView(withId(R.id.TextPassword_new_again)).perform(typeText("1234"))
+        onView(withId(R.id.submit_button)).perform(click())
+    }
+
+    @Test
+    fun deleteUser () {
+        onView(withId(R.id.delete_account)).perform(click())
+        onView(withText("YES")).perform(click())
+        assertNotNull(FirebaseAuth.getInstance().currentUser)
     }
 }
-

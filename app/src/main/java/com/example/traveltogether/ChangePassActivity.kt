@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 class ChangePassActivity : AppCompatActivity() {
     val positiveButtonClick = { dialog: DialogInterface, which: Int ->
         Toast.makeText(applicationContext,
-                android.R.string.yes, Toast.LENGTH_SHORT).show()
+            android.R.string.yes, Toast.LENGTH_SHORT).show()
         if (successfully) {
             goBackToSetting();
         }
@@ -57,9 +57,18 @@ class ChangePassActivity : AppCompatActivity() {
                     user.reauthenticate(cred)
                         .addOnCompleteListener(OnCompleteListener<Void?> { task ->
                             if (task.isSuccessful) {
-                                FirebaseAuth.getInstance().currentUser.updatePassword(new_pass.toString());
-                                successfully = true;
-                                PopUp(success, "You have changed your password successfully");
+                                FirebaseAuth.getInstance().currentUser?.updatePassword(new_pass.text.toString())
+                                    ?.addOnCompleteListener { task_ ->
+                                        if (task_.isSuccessful) {
+                                            successfully = true;
+                                            PopUp(
+                                                success,
+                                                "You have changed your password successfully"
+                                            );
+                                        } else {
+                                            PopUp(alert, "password is not valid!");
+                                        }
+                                    };
                             } else {
                                 PopUp(alert, "old Password is wrong!");
                             }
