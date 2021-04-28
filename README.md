@@ -40,5 +40,9 @@ and join others on their journeys.
 
 ## Implemented Features
 
+* TT-000 Set Up the Project
 * TT-012 Database
 * TT-001 Login/Signup
+* TT-007 Menu (splited into TT-015 and TT-016)
+* TT-003 Profile (image, username, description)
+* TT-004 Settings (change password, delete account)
