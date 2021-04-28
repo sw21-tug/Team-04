@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".SettingActivity">
 
+
     <Button
         android:id="@+id/change_pass"
         android:layout_width="185dp"
