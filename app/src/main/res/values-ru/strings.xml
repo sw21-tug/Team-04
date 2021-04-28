@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_name">Профиль</string>
+    <string name="profile_edit_picture">Редактировать картинку</string>
+    <string name="profile_username">Имя пользователя</string>
+    <string name="profile_description">Описание</string>
+    <string name="profile_edit_Description">Изменить описание</string>
+    <string name="profile_background">Фон профиля</string>
+    <string name="profile_picture">Изображение профиля</string>
+    <string name="enter_one_text_here">Введите здесь один текст</string>
+    <string name="choose_from_library">Выбрать из библиотеки</string>
+    <string name="take_a_picture">Сделать фото</string>
+    <string name="sign_in_text">Войти Зарегистрироваться</string>
+    <string name="sign_out_text">выход</string>
+    <string name="settings_text">Настройки</string>
+    <string name="logout_text">Выйти</string>
+    <string name="change_language_text">Изменить язык</string>
+
+    <string name="all_post_section_text">Раздел Все сообщения</string>
+    <string name="chat_section_text">Раздел чата</string>
+    <string name="news_section_text">Раздел новостей</string>
+    <string name="saved_text">Сохранено</string>
+    <string name="all_text">Все</string>
+    <string name="chat_text">Чат</string>
+    <string name="new_text">Новый</string>
+    <string name="news_text">Новости</string>
+    <string name="saved_post_section_text">Раздел сохраненных сообщений</string>
+    <string name="newest_popup_text">Новое всплывающее окно</string>
+    <string name="settings_activity">Настройки Активность</string>
+    <string name="saved_post_text">Сохраненные сообщения</string>
+    <string name="chat_title_text">Чат</string>
+    <string name="new_title_text">Новый</string>
+    <string name="all_title_text">Все</string>
+    <string name="news_title_text">Новости</string>
+</resources>

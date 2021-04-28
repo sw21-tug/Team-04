@@ -9,14 +9,28 @@
 
     <Button
         android:id="@+id/account_sign_in"
-        android:layout_width="140dp"
-        android:layout_height="75dp"
+        android:layout_width="160dp"
+        android:layout_height="90dp"
         android:text="@string/sign_in_text"
         android:textColor="@color/white_on_green"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/language_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="159dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="159dp"
+        android:text="@string/change_language_text"
+        android:textColor="@color/white_on_green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_sign_in" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

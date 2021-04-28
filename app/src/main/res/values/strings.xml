@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TravelTogether</string>
+    <string name="app_name" translatable="false">TravelTogether</string>
     <string name="profile_name">Profile</string>
     <string name="profile_edit_picture">Edit Picture</string>
     <string name="profile_username">Username</string>
@@ -7,20 +7,33 @@
     <string name="profile_edit_Description">Edit Description</string>
     <string name="profile_background">Profile Background</string>
     <string name="profile_picture">Profile Picture</string>
-    <string name="profile_edit_pic">Profile Edit Pic Picture</string>
-    <string name="profile_container">Profile Container</string>
-    <string name="profile_description_container">Profile Description Container</string>
+    <string name="profile_edit_pic" translatable="false">Profile Edit Pic Picture</string>
+    <string name="profile_container" translatable="false">Profile Container</string>
+    <string name="profile_description_container" translatable="false">Profile Description Container</string>
     <string name="enter_one_text_here">Enter one text here</string>
     <string name="choose_from_library">Choose from Library</string>
     <string name="take_a_picture">Take a picture</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_profile">ProfileActivity</string>
     <string name="sign_in_text">Log In/Sign Up</string>
     <string name="sign_out_text">Sign Out</string>
-    <string name="main_screen_text">MAIN SCREEN</string>
-    <string name="hello_world">Hello Square World!</string>
-    <string name="profile_text">Profile</string>
+    <string name="profile_text" translatable="false">Profile</string>
     <string name="settings_text">Settings</string>
     <string name="logout_text">Logout</string>
+    <string name="change_language_text">Change Language</string>
+
+    <string name="all_post_section_text">All Post Section</string>
+    <string name="chat_section_text">Chat Section</string>
+    <string name="news_section_text">News Section</string>
+    <string name="saved_text">Saved</string>
+    <string name="all_text">All</string>
+    <string name="chat_text">Chat</string>
+    <string name="new_text">New</string>
+    <string name="news_text">News</string>
+    <string name="saved_post_section_text">Saved Post Section</string>
+    <string name="newest_popup_text">Newest Popup</string>
+    <string name="settings_activity">Settings Activity</string>
+    <string name="saved_post_text">Saved Posts</string>
+    <string name="chat_title_text">Chat</string>
+    <string name="new_title_text">New</string>
+    <string name="all_title_text">All</string>
+    <string name="news_title_text">News</string>
 </resources>

@@ -3,7 +3,7 @@
 
     <item
         android:id = "@+id/profile_fragment"
-        android:title="@string/profile_text"
+        android:title="@string/profile_name"
         android:icon="@drawable/ic_profile" />
     <item
         android:id = "@+id/settings_fragment"

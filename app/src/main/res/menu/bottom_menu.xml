@@ -3,22 +3,22 @@
 
     <item
         android:id = "@+id/saved_post_fragment"
-        android:title="Saved"
+        android:title="@string/saved_text"
         android:icon="@drawable/ic_save" />
     <item
         android:id = "@+id/all_post_fragment"
-        android:title="All"
+        android:title="@string/all_text"
         android:icon="@drawable/ic_post"  />
     <item
         android:id = "@+id/chat_fragment"
-        android:title="Chat"
+        android:title="@string/chat_text"
         android:icon="@drawable/ic_chat" />
     <item
         android:id = "@+id/new_popup_fragment"
-        android:title="New"
+        android:title="@string/new_text"
         android:icon="@drawable/ic_popup" />
     <item
         android:id = "@+id/news_fragment"
-        android:title="News"
+        android:title="@string/news_text"
         android:icon="@drawable/ic_news" />
 </menu>

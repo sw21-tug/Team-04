@@ -1,21 +1,21 @@
 package com.example.traveltogether
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.widget.Button
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import org.jetbrains.anko.*
-import org.jetbrains.anko.design.longSnackbar
-
+import java.util.*
 
 
 class SignIn : AppCompatActivity() {
@@ -32,6 +32,12 @@ class SignIn : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = resources.getString(R.string.app_name)
+
+        val changeLanguageButton : Button = findViewById(R.id.language_button)
+        changeLanguageButton.setOnClickListener { showChangeLang() }
+
         account_sign_in.setOnClickListener {
             val intent = AuthUI.getInstance().createSignInIntentBuilder()
                 .setAvailableProviders(signInProviders)
@@ -41,6 +47,37 @@ class SignIn : AppCompatActivity() {
             startActivityForResult(intent, RC_SIGN_IN)
 
         }
+    }
+
+    private fun showChangeLang() {
+        val listItems = arrayOf("English", "Русские")
+        val mBuilder = AlertDialog.Builder(this@SignIn)
+        mBuilder.setTitle("Choose Language")
+        mBuilder.setSingleChoiceItems(listItems, -1) { dialog, which ->
+            if (which == 0) {
+                setLocate("en")
+                recreate()
+            }
+            if (which == 1) {
+                setLocate("ru")
+                recreate()
+            }
+            dialog.dismiss()
+        }
+        val mDialog = mBuilder.create()
+        mDialog.show()
+    }
+
+    fun setLocate(language: String) {
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+
+        val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
+        editor.putString("My_Lang", language)
+        editor.apply()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
