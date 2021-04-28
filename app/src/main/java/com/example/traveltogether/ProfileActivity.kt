@@ -5,8 +5,6 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Editable
-import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -14,15 +12,18 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_profile.*
-import org.jetbrains.anko.*
-import java.io.ByteArrayOutputStream
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask
+import java.io.ByteArrayOutputStream
+
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -33,7 +34,14 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         showEditTextDialog()
-        editTextTextPersonName.text = FirebaseAuth.getInstance().currentUser?.displayName.toString()
+        val user = FirebaseAuth.getInstance().currentUser
+        editTextTextPersonName.text = FirebaseAuth.getInstance().currentUser?.displayName
+
+        if(user?.photoUrl != null) {
+            Glide.with(this)
+                .load(user.photoUrl)
+                .into(profile_picture)
+        }
         // set on-click listener
         edit_picture_button.setOnClickListener {
             val popup = PopupMenu(this, edit_picture_button)
@@ -86,7 +94,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun takePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { pictureIntent ->
-            pictureIntent.resolveActivity(this?.packageManager!!).also {
+            pictureIntent.resolveActivity(this.packageManager!!).also {
                 startActivityForResult(pictureIntent, REQUEST_IMAGE_CAPTURE)
             }
         }
@@ -98,14 +106,16 @@ class ProfileActivity : AppCompatActivity() {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             uploadImageAndSaveUri(imageBitmap)
+            profile_picture.setImageBitmap(imageBitmap)
         }
     }
 
     private fun uploadImageAndSaveUri(bitmap: Bitmap) {
         val baos = ByteArrayOutputStream()
+        val uid = FirebaseAuth.getInstance().currentUser?.uid;
         val storageRef = FirebaseStorage.getInstance()
             .reference
-            .child("pics/${FirebaseAuth.getInstance().currentUser?.uid}")
+            .child("profilePictures/${uid}")
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val image = baos.toByteArray()
 
@@ -114,14 +124,36 @@ class ProfileActivity : AppCompatActivity() {
         upload.addOnCompleteListener { uploadTask ->
             progress_bar_pic.visibility = View.INVISIBLE
             if (uploadTask.isSuccessful) {
-                storageRef.downloadUrl.addOnCompleteListener { urlTask ->
-                    urlTask.result?.let {
-                        imageUri = it
-                        profile_picture.setImageBitmap(bitmap)
-                    }
-                }
+                getDownloadUrl(storageRef)
             }
         }
+    }
+
+    private fun getDownloadUrl(reference: StorageReference) {
+        reference.downloadUrl
+            .addOnSuccessListener { uri ->
+                Log.d("DEBUG", "onSuccess: $uri")
+                setUserProfileUrl(uri)
+            }
+    }
+
+    private fun setUserProfileUrl(uri: Uri) {
+        val user = FirebaseAuth.getInstance().currentUser
+        val request = UserProfileChangeRequest.Builder()
+            .setPhotoUri(uri)
+            .build()
+        user?.updateProfile(request)?.addOnSuccessListener {
+            Toast.makeText(this, "Updated successfully", Toast.LENGTH_SHORT)
+                .show()
+            Log.d("DEBUG", "update profile")
+        }?.addOnFailureListener {
+            Toast.makeText(
+                this,
+                "Profile image failed...",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
     }
 }
 
