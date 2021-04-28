@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                             finish()
                         }
             } else if (id == R.id.settings_fragment) {
-                startActivity(intentFor<SettingsActivity>().newTask().clearTask())
+                startActivity(intentFor<SettingActivity>().newTask().clearTask())
             }
             drawerLayout.closeDrawer(GravityCompat.START)
             true

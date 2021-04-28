@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:padding="@dimen/box_inset_layout_padding"
     tools:context=".ChangePassActivity"
-    tools:deviceIds="wear">
+    tools:deviceIds="wear"
+    tools:ignore="MissingClass">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout"
@@ -80,6 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="354dp"
             android:text="Submit"
+            android:textColor="@color/white_on_green"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="20dp" />
 

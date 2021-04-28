@@ -10,6 +10,10 @@ import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import org.jetbrains.anko.clearTask
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.newTask
 
 
 class SettingActivity : AppCompatActivity() {
@@ -17,6 +21,12 @@ class SettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
+        val actionbar = supportActionBar
+        actionbar!!.title = "Settings"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+
         val change_pass_btn: Button = findViewById<View>(R.id.change_pass) as Button
         val delete_account_btn: Button = findViewById<View>(R.id.delete_account) as Button
         val allow_notif_switch: Switch = findViewById<View>(R.id.allow_notification) as Switch
@@ -45,10 +55,10 @@ class SettingActivity : AppCompatActivity() {
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes"
         ) {
-            //TODO delete Account from fireBase
-            //TODO logout!
-            // Goto logInPage!!
-            dialog, which -> dialog.dismiss()
+            dialog, which ->
+            FirebaseAuth.getInstance().currentUser?.delete();
+            startActivity(intentFor<SignIn>().newTask().clearTask())
+            finish()
         }
 
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No"
@@ -62,5 +72,15 @@ class SettingActivity : AppCompatActivity() {
         layoutParams.weight = 10f
         btnPositive.layoutParams = layoutParams
         btnNegative.layoutParams = layoutParams
+    }
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    override fun onBackPressed() {
+        startActivity(intentFor<MainActivity>().newTask().clearTask())
     }
 }

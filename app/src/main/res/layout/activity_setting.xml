@@ -12,6 +12,7 @@
         android:layout_height="51dp"
         android:layout_marginTop="56dp"
         android:text="change password"
+        android:textColor="@color/white_on_green"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
 
@@ -30,6 +31,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="344dp"
         android:text="Delete account"
+        android:textColor="@color/white_on_green"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
 
