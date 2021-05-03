@@ -15,6 +15,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -44,7 +48,18 @@ class ProfileActivity : AppCompatActivity() {
             popup.show()*/
             takePictureIntent()
         }
-
+        val firebasereal = FirebaseDatabase.getInstance()
+        val firebaseref = firebasereal.getReference().child("users").child(FirebaseAuth.getInstance().currentUser.uid)
+        firebaseref.child("Description").addValueEventListener (object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val description = dataSnapshot.value.toString()
+                if (description != "null")
+                    description_text.text = description
+            }
+            override fun onCancelled (databaseError: DatabaseError) {
+                //errors
+            }
+        })
         val actionbar = supportActionBar
         actionbar!!.title = "Profile"
         actionbar.setDisplayHomeAsUpEnabled(true)
@@ -73,6 +88,9 @@ class ProfileActivity : AppCompatActivity() {
                 setTitle("Add your profile description here")
                 setPositiveButton("OK"){ dialog, which->
                     description_text.text = editText.text.toString()
+                    val firebasereal = FirebaseDatabase.getInstance()
+                    val firebaseref = firebasereal.getReference()
+                    firebaseref.child("users").child(FirebaseAuth.getInstance().currentUser.uid).child("Description").setValue(description_text.text)
                 }
                 setNegativeButton("Cancel"){ dialog, which->
                     Log.d("Main", "negative button clicked")
