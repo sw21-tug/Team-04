@@ -49,7 +49,7 @@ class ProfileActivity : AppCompatActivity() {
             takePictureIntent()
         }
         val firebasereal = FirebaseDatabase.getInstance()
-        val firebaseref = firebasereal.getReference().child("users").child(FirebaseAuth.getInstance().currentUser.uid)
+        val firebaseref = firebasereal.reference.child("users").child(FirebaseAuth.getInstance().currentUser?.uid.toString())
         firebaseref.child("Description").addValueEventListener (object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val description = dataSnapshot.value.toString()
