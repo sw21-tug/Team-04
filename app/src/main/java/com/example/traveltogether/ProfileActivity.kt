@@ -46,7 +46,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         val actionbar = supportActionBar
-        actionbar!!.title = "Profile"
+        actionbar!!.title = getString(R.string.profile_name)
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
 
