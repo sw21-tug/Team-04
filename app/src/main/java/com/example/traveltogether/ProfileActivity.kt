@@ -12,7 +12,6 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -110,7 +109,7 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadImageAndSaveUri(bitmap: Bitmap) {
+    fun uploadImageAndSaveUri(bitmap: Bitmap) {
         val baos = ByteArrayOutputStream()
         val uid = FirebaseAuth.getInstance().currentUser?.uid;
         val storageRef = FirebaseStorage.getInstance()
