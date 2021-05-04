@@ -32,10 +32,10 @@ class LoginSignupTest {
     @get:Rule
     val activityRule = ActivityTestRule(SignIn::class.java)
 
-    @Before
-    fun setup(){
+    private fun setup(){
         FirebaseAuth.getInstance().signOut()
     }
+
     @Test
     fun checkSignUpButton() {
         val loginSignUpButton = withId(R.id.account_sign_in)
@@ -66,6 +66,7 @@ class LoginSignupTest {
 
     @Test
     fun login () {
+        setup()
         assertNull(FirebaseAuth.getInstance().currentUser)
         val loginSignUpButton = withId(R.id.account_sign_in)
 
@@ -82,11 +83,11 @@ class LoginSignupTest {
 
         assertEquals(intent.data, activityRule.activity.intent.data)
 
-        onView(withId(R.id.email)).perform(typeText("markus1234@gmail.com"))
+        onView(withId(R.id.email)).perform(typeText("markus123@gmail.com"))
 
         onView(withId(R.id.button_next)).perform(click())
 
-        onView(withId(R.id.password)).perform(typeText("Markus1234"))
+        onView(withId(R.id.password)).perform(typeText("markus123"))
         onView(withId(R.id.button_done)).perform(click())
 
         assertNotNull(FirebaseAuth.getInstance().currentUser)
