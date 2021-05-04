@@ -50,7 +50,7 @@ class SignIn : AppCompatActivity() {
     }
 
     private fun showChangeLang() {
-        val listItems = arrayOf("English", "Русские")
+        val listItems = arrayOf("English", "Русские", "中國人" )
         val mBuilder = AlertDialog.Builder(this@SignIn)
         mBuilder.setTitle("Choose Language")
         mBuilder.setSingleChoiceItems(listItems, -1) { dialog, which ->
@@ -60,6 +60,10 @@ class SignIn : AppCompatActivity() {
             }
             if (which == 1) {
                 setLocate("ru")
+                recreate()
+            }
+            if (which == 2) {
+                setLocate("zh")
                 recreate()
             }
             dialog.dismiss()
