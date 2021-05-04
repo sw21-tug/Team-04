@@ -11,7 +11,9 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.design.longSnackbar
@@ -51,6 +53,9 @@ class SignIn : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 val progressDialog = indeterminateProgressDialog ( "Setting up your account" )
                 val firebaseUser = FirebaseAuth.getInstance().currentUser
+                val firebasereal = FirebaseDatabase.getInstance()
+                val firebaseref = firebasereal.getReference()
+                firebaseref.child("users").child(FirebaseAuth.getInstance().currentUser.uid).child("Description")
                 if (!firebaseUser?.isEmailVerified!!)
                     firebaseUser.sendEmailVerification()
                 startActivity(intentFor<MainActivity>().newTask().clearTask())
@@ -68,7 +73,7 @@ class SignIn : AppCompatActivity() {
                         Toast.makeText(this@SignIn, "Unknown error", Toast.LENGTH_SHORT).show()
                     else ->
                         Toast.makeText(this@SignIn, "Unknown error", Toast.LENGTH_SHORT).show()
-                    }
+                }
                 return
             }
         }
