@@ -27,46 +27,18 @@ import org.junit.runner.RunWith
  */
 
 @RunWith(AndroidJUnit4::class)
-class LoginSignupTest {
+class SignInChangePasswordTest {
 
     @get:Rule
     val activityRule = ActivityTestRule(SignIn::class.java)
 
-    private fun setup(){
+    @Before
+    fun setup(){
         FirebaseAuth.getInstance().signOut()
     }
 
     @Test
-    fun checkSignUpButton() {
-        val loginSignUpButton = withId(R.id.account_sign_in)
-        onView(loginSignUpButton).check(matches(isDisplayed()))
-        onView(loginSignUpButton).check(matches(withText("Log In/Sign Up")))
-
-    }
-
-    @Test
-    fun checkSignUpIntent () {
-        val loginSignUpButton = withId(R.id.account_sign_in)
-
-        onView(loginSignUpButton).perform(click())
-
-        val signInProviders = listOf(AuthUI.IdpConfig.EmailBuilder()
-            .setAllowNewAccounts(true)
-            .setRequireName(true)
-            .build())
-
-        val intent = AuthUI.getInstance().createSignInIntentBuilder()
-            .setAvailableProviders(signInProviders)
-            .build()
-
-        assertEquals(intent.data, activityRule.activity.intent.data)
-
-        onView(withId(R.id.button_next)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    fun login () {
-        setup()
+    fun loginAndChangePasswort () {
         assertNull(FirebaseAuth.getInstance().currentUser)
         val loginSignUpButton = withId(R.id.account_sign_in)
 
@@ -83,13 +55,29 @@ class LoginSignupTest {
 
         assertEquals(intent.data, activityRule.activity.intent.data)
 
-        onView(withId(R.id.email)).perform(typeText("markus123@gmail.com"))
+        onView(withId(R.id.email)).perform(typeText("manar1@gmail.com"))
 
         onView(withId(R.id.button_next)).perform(click())
 
-        onView(withId(R.id.password)).perform(typeText("markus123"))
+        onView(withId(R.id.password)).perform(typeText("manar123"))
         onView(withId(R.id.button_done)).perform(click())
 
         assertNotNull(FirebaseAuth.getInstance().currentUser)
+
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        onView(withId(R.id.drawer_layout))
+            .check(matches(DrawerMatchers.isClosed(Gravity.LEFT)))
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+        onView(withId(R.id.drawer_layout))
+            .check(matches(DrawerMatchers.isOpen(Gravity.LEFT)))
+        onView(withText("Settings")).perform(click())
+        onView(withText("Settings")).check(matches(isDisplayed()))
+
+        onView(withId(R.id.change_pass)).perform(click())
+        onView(withId(R.id.frameLayout)).check(matches(isDisplayed()))
+        onView(withId(R.id.TextPassword_Old)).perform(typeText("manar123"))
+        onView(withId(R.id.TextPassword_new)).perform(typeText("Markus1234"))
+        onView(withId(R.id.TextPassword_new_again)).perform(typeText("Markus1234"))
+        onView(withId(R.id.submit_button)).perform(click())
     }
 }

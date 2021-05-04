@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingActivity">
+
+
+    <Button
+        android:id="@+id/change_pass"
+        android:layout_width="185dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="56dp"
+        android:text="@string/change_password_text"
+        android:textColor="@color/white_on_green"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Switch
+        android:id="@+id/allow_notification"
+        android:layout_width="348dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="144dp"
+        android:text="@string/notify_when_activity_in_group_chat_text"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/delete_account"
+        android:layout_width="193dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="344dp"
+        android:text="@string/delete_account_text"
+        android:textColor="@color/white_on_green"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

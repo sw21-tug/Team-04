@@ -46,3 +46,6 @@ and join others on their journeys.
 * TT-007 Menu (splited into TT-015 and TT-016)
 * TT-003 Profile (image, username, description)
 * TT-004 Settings (change password, delete account)
+* TT-020 Profile Pic
+* TT-021 Profile Save Pic
+* TT-022 Profile Save Description
