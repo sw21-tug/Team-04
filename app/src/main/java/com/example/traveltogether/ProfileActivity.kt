@@ -12,6 +12,7 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -31,6 +32,7 @@ import java.io.ByteArrayOutputStream
 class ProfileActivity : AppCompatActivity() {
 
     private val REQUEST_IMAGE_CAPTURE = 100
+    private val REQUEST_IMAGE_GALLERY = 101
     private lateinit var imageUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,10 +52,11 @@ class ProfileActivity : AppCompatActivity() {
             val popup = PopupMenu(this, edit_picture_button)
             popup.inflate(R.menu.test)
             popup.setOnMenuItemClickListener {
-                if (it.title == "Take a picture")
-                    takePictureIntent()
-                else
-                    Toast.makeText(this, "Item: " + it.title, Toast.LENGTH_SHORT).show()
+                when (it.title) {
+                    "Take a picture" -> takePictureIntent()
+                    "Choose from Library" -> takeImageFormGalleryIntent()
+                    else -> Toast.makeText(this, "Item: " + it.title, Toast.LENGTH_SHORT).show()
+                }
                 true
             }
             popup.show()
@@ -119,6 +122,12 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+    private fun takeImageFormGalleryIntent() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_IMAGE_GALLERY)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -126,6 +135,10 @@ class ProfileActivity : AppCompatActivity() {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             uploadImageAndSaveUri(imageBitmap)
             profile_picture.setImageBitmap(imageBitmap)
+        } else if (requestCode == REQUEST_IMAGE_GALLERY && resultCode == RESULT_OK) {
+            val imageUri = data?.data
+            profile_picture.setImageURI(imageUri)
+            uploadImageAndSaveUri(profile_picture.drawable.toBitmap())
         }
     }
 
