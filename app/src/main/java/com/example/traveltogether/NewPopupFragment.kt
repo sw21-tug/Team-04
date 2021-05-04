@@ -34,7 +34,7 @@ class new_popup_fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_popup_fragment, container, false)
+        return inflater.inflate(R.layout.activity_edit_post, container, false)
     }
 
     companion object {
