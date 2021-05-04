@@ -8,10 +8,6 @@ plugins {
 android {
     compileSdkVersion 30
 
-    lintOptions {
-        abortOnError false
-    }
-
     defaultConfig {
         applicationId "com.example.traveltogether"
         minSdkVersion 23
