@@ -6,6 +6,12 @@ plugins {
 }
 
 android {
+    lintOptions {
+        abortOnError false
+    }
+}
+
+android {
     compileSdkVersion 30
 
     defaultConfig {
