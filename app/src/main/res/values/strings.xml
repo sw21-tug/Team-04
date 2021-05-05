@@ -79,4 +79,6 @@
     <string name="no_text">No</string>
     <string name="take_picture">Take a picture</string>
     <string name="add_description">Add your profile description here</string>
+    <string name="edit_post_text">Edit Post</string>
+    <string name="ending_date_text">ending date</string>
 </resources>
