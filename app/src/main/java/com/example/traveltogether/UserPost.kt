@@ -2,10 +2,9 @@ package com.example.traveltogether
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import java.util.*
 
 class UserPost (val UID: String, var PID: String?, var Title: String, var Destination: String, var StartDate: Long, var EndDate: Long,
-                var NumOfPeople: Int?, var Description: String, var Comments: List<String>?){
+                var NumOfPeople: Long?, var Description: String, var Comments: List<String>?){
 
     fun delete(): Boolean{
         if (UID != FirebaseAuth.getInstance().currentUser?.uid.toString())
