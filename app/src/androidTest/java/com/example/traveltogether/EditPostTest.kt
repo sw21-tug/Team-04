@@ -1,74 +1,70 @@
 package com.example.traveltogether
 
+import android.content.Intent
+import android.view.Gravity
+import androidx.navigation.testing.TestNavHostController
+import androidx.test.core.app.ActivityScenario
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.DrawerActions
+import androidx.test.espresso.contrib.DrawerMatchers.isClosed
+import androidx.test.espresso.contrib.DrawerMatchers.isOpen
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
-import org.junit.Before
-import org.junit.Rule
 
 import org.junit.Test
 import org.junit.runner.RunWith
+
+import org.junit.Assert.*
+
 @RunWith(AndroidJUnit4::class)
-class EditPostTest {
-
-    @get:Rule
-    val activityRule = ActivityScenarioRule(MainActivity::class.java)
-
-    private lateinit var loginUser: LoginUser
+class PostTest {
 
     @Before
-    fun setup() {
-        loginUser = LoginUser("markus123@gmail.com", "Markus", "markus123", "Hallo")
-        loginUser.signIn()
-        onView(withId(R.id.new_popup_fragment)).perform(click())
+    fun setup () {
+        if (FirebaseAuth.getInstance().currentUser == null)
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword("test@gmail.com", "12345678")
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+
+        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withId(R.id.edit_post_button)).check(matches(isDisplayed()))
+        onView(withId(R.id.edit_post_button)).perform(click())
     }
 
     @Test
-    fun checkPopupFragment() {
-        onView(withId(R.id.title_edit_post)).perform(typeText("bus trip"))
-        onView(withId(R.id.destination_text_post)).perform(typeText("Ohio"))
-        onView(withHint(R.string.starting_date)).check(matches(isDisplayed()))
-        onView(withHint(R.string.ending_date)).check(matches(isDisplayed()))
-        onView(withId(R.id.number_people_post_text)).perform(typeText("4"))
-        onView(withId(R.id.description_post_text)).perform(typeText("Trip with bus"))
-    }
+    fun checkDisplay() {
 
-    private fun getRandomString(size: Int ) : String {
-        val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
-        return (1..size)
-                .map { _ -> kotlin.random.Random.nextInt(0, charPool.size) }
-                .map(charPool::get)
-                .joinToString("")
+        onView(withId(R.id.title_field)).check(matches(isDisplayed()))
+        onView(withId(R.id.starting_date_field)).check(matches(isDisplayed()))
+        onView(withId(R.id.destination_field)).check(matches(isDisplayed()))
+        onView(withId(R.id.number_people_field)).check(matches(isDisplayed()))
+        onView(withId(R.id.ending_date_field)).check(matches(isDisplayed()))
+        onView(withId(R.id.delete_button)).check(matches(isDisplayed()))
+        onView(withId(R.id.save_button)).check(matches(isDisplayed()))
+
+
+        onView(withId(R.id.save_button)).perform(click())
+        onView(withId(R.id.edit_post_button)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun addPost() {
-        val testTitle = getRandomString(10)
-        val testLocation = getRandomString(5)
-        val testDescription = getRandomString(15)
-        val numberOfPeople = kotlin.random.Random.nextInt(0, 10).toString()
+    fun editPost() {
+        Thread.sleep(2000)
 
-        onView(withId(R.id.title_edit_post)).perform(typeText(testTitle))
-        onView(withId(R.id.destination_text_post)).perform(typeText(testLocation))
-        onView(withHint(R.string.starting_date)).perform(click())
-        onView(withText("OK")).perform(click())
-        onView(withId(R.id.number_people_post_text)).perform(typeText(numberOfPeople))
+        onView(withId(R.id.title_field)).check(matches(isDisplayed()))
+        onView(withId(R.id.title_field)).perform(ViewActions.clearText())
+        onView(withId(R.id.title_field)).perform(ViewActions.typeText("trip with bus"))
         pressBack()
-        onView(withId(R.id.description_post_text)).perform(typeText(testDescription))
-        pressBack()
-        onView(withId(R.id.button_save_new_post)).perform(click())
+        onView(withId(R.id.save_button)).perform(click())
+        onView(withId(R.id.edit_post_button)).check(matches(isDisplayed()))
+        onView(withId(R.id.edit_post_button)).perform(click())
+        Thread.sleep(2000)
+        onView(withText("trip with bus")).check(matches(isDisplayed()))
 
-        onView(withHint(R.string.title)).check(matches(isDisplayed()))
-        onView(withHint(R.string.destination)).check(matches(isDisplayed()))
-        onView(withHint(R.string.number_people)).check(matches(isDisplayed()))
-        onView(withHint(R.string.starting_date)).check(matches(isDisplayed()))
-        onView(withHint(R.string.ending_date)).check(matches(isDisplayed()))
     }
 
 }

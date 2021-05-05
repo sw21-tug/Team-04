@@ -3,7 +3,6 @@ package com.example.traveltogether
 import com.firebase.ui.auth.AuthUI
 import org.jetbrains.anko.intentFor
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -14,10 +13,18 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.gms.tasks.Tasks
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_profile.*
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.newTask
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,8 +59,6 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
-
-
     }
 
 
@@ -63,5 +68,4 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 ||  super.onSupportNavigateUp()
     }
-
 }

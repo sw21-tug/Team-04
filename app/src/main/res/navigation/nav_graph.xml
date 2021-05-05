@@ -14,7 +14,11 @@
         android:id="@+id/saved_post_fragment"
         android:name="com.example.traveltogether.saved_post_fragment"
         android:label="@string/saved_post_text"
-        tools:layout="@layout/fragment_all_post_fragment" />
+        tools:layout="@layout/fragment_all_post_fragment" >
+        <action
+            android:id="@+id/action_saved_post_fragment_to_post_edit"
+            app:destination="@id/post_edit" />
+    </fragment>
     <fragment
         android:id="@+id/new_popup_fragment"
         android:name="com.example.traveltogether.new_popup_fragment"
@@ -30,4 +34,17 @@
         android:name="com.example.traveltogether.news_fragment"
         android:label="@string/news_title_text"
         tools:layout="@layout/fragment_news_fragment" />
+    <fragment
+        android:id="@+id/post_edit"
+        android:name="com.example.traveltogether.post_edit"
+        android:label="@string/edit_post_text"
+        tools:layout="@layout/fragment_post_edit" >
+        <action
+            android:id="@+id/action_post_edit_to_saved_post_fragment"
+            app:destination="@id/saved_post_fragment" />
+        <argument
+            android:name="PID"
+            app:argType="string"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

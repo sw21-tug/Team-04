@@ -95,6 +95,7 @@
             android:id="@+id/title_edit_post"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:ems="10"
             android:hint="@string/title"
             android:inputType="textPersonName"
@@ -102,6 +103,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.11"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+            app:layout_constraintVertical_bias="0.120000005" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:text="@string/delete"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.17000002" />
 

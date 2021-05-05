@@ -49,4 +49,18 @@
     <string name="no_text">Нет</string>
     <string name="yes_text">да</string>
     <string name="delete_acc_text">Удалить аккаунт</string>
+
+    <string name="title">заглавие</string>
+    <string name="starting_date">Дата начала</string>
+    <string name="time_posted">time posted</string>
+    <string name="destination">назначения</string>
+    <string name="delete">Удалить</string>
+    <string name="save">спасти</string>
+    <string name="post">Почта</string>
+    <string name="duration">продолжительность</string>
+    <string name="number_people">число людей</string>
+
+    <string name="edit_post_text">редактировать пост</string>
+    <string name="ending_date_text">дата окончания</string>
+
 </resources>
