@@ -104,7 +104,7 @@ class SignIn : AppCompatActivity() {
             }
             else if (resultCode == Activity.RESULT_CANCELED) {
                 if (response == null) {
-                    Toast.makeText(this@SignIn, "Sign in cancelled.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SignIn, getString(R.string.sign_in_canceled_text), Toast.LENGTH_SHORT).show()
                     return
                 }
                 when (response.error?.errorCode) {

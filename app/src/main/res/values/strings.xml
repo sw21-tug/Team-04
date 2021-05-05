@@ -81,4 +81,23 @@
     <string name="add_description">Add your profile description here</string>
     <string name="edit_post_text">Edit Post</string>
     <string name="ending_date_text">ending date</string>
+    <string name="delete_acc_question">Are you sure you want to delete your account?</string>
+    <string name="ok_text">OK</string>
+    <string name="cancel_text">Cancel</string>
+    <string name="error_text">Error</string>
+    <string name="success_text">Success</string>
+    <string name="enter_old_pwd_text">Please enter the old password</string>
+    <string name="enter_new_pwd_text">Please enter the new password</string>
+    <string name="reenter_pwd_text">Please re-enter the new password</string>
+    <string name="same_new_pwd_text">Please enter the same new password!</string>
+    <string name="cant_be_same_pwd_text">Old and new passwords can\'t be the same!</string>
+    <string name="success_pwd_change_text">You have changed your password successfully</string>
+    <string name="invalid_pwd_text">Password is not valid!</string>
+    <string name="old_pwd_wrong_text">Old Password is wrong!</string>
+    <string name="update_success_text">Updated successfully</string>
+    <string name="sign_in_canceled_text">Sign in cancelled.</string>
+    <string name="enter_old_password_text">Enter old password:</string>
+    <string name="enter_new_password_text">Enter new password:</string>
+    <string name="re_enter_the_same_password_text">Re-enter the same password:</string>
+    <string name="submit_text">Submit</string>
 </resources>
