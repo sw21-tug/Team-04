@@ -37,10 +37,14 @@
     <fragment
         android:id="@+id/post_edit"
         android:name="com.example.traveltogether.post_edit"
-        android:label="@string/edit_post_string"
+        android:label="@string/edit_post_text"
         tools:layout="@layout/fragment_post_edit" >
         <action
             android:id="@+id/action_post_edit_to_saved_post_fragment"
             app:destination="@id/saved_post_fragment" />
+        <argument
+            android:name="PID"
+            app:argType="string"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

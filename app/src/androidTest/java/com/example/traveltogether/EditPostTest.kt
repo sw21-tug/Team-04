@@ -5,14 +5,14 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
+
 import androidx.test.espresso.assertion.ViewAssertions.matches
+
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
 class EditPostTest {
@@ -20,6 +20,7 @@ class EditPostTest {
     @Test //how to test UI elements
     fun checkDisplay() {
         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+
         onView(withId(R.id.saved_post_fragment)).perform(click())
         onView(withId(R.id.edit_post_button)).check(matches(isDisplayed()))
         onView(withId(R.id.edit_post_button)).perform(click())
@@ -52,6 +53,7 @@ class EditPostTest {
         onView(withId(R.id.edit_post_button)).perform(click())
         Thread.sleep(2000)
         onView(withText("trip with bus")).check(matches(isDisplayed()))
+
     }
 
 }
