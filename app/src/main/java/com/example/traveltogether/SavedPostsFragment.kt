@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_saved_post_fragment.*
+import org.jetbrains.anko.contentView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,14 +31,23 @@ class saved_post_fragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        //findNavController().navigate(R.id.action_saved_post_fragment_to_edit_post_fragment)
+
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view : View = inflater.inflate(R.layout.fragment_saved_post_fragment, container, false)
+        val button : Button = view.findViewById(R.id.edit_post_button)
+        button.setOnClickListener {
+            findNavController().navigate(R.id.action_saved_post_fragment_to_post_edit)
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_saved_post_fragment, container, false)
+        return view
     }
 
     companion object {
