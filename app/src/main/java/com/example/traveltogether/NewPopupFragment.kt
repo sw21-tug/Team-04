@@ -52,7 +52,7 @@ class new_popup_fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.activity_edit_post, container,
+        val view: View = inflater.inflate(R.layout.fragment_new_popup_fragment, container,
                 false)
         val activity = activity as Context
         
@@ -151,7 +151,7 @@ class new_popup_fragment : Fragment() {
         val endDate: Long = sdf.parse(endDatePost.text.toString())?.time!!
         val description = descriptionPost.text.toString()
 
-        return UserPost(FirebaseAuth.getInstance().currentUser?.uid.toString(), title, destination,
+        return UserPost(FirebaseAuth.getInstance().currentUser?.uid.toString(), 0, title, destination,
             startDate, endDate, numberOfPerson, description, null)
     }
 
