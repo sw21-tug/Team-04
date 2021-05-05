@@ -66,7 +66,7 @@
     <string name="saved_post_section_text">Saved Post Section</string>
     <string name="newest_popup_text">Newest Popup</string>
     <string name="settings_activity">Settings Activity</string>
-    <string name="saved_post_text">Saved Posts</string>
+    <string name="save_title_text">Saved Posts</string>
     <string name="chat_title_text">Chat</string>
     <string name="new_title_text">New</string>
     <string name="all_title_text">All</string>

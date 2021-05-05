@@ -56,8 +56,9 @@ class SettingActivity : AppCompatActivity() {
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.yes_text)
         ) {
             dialog, which ->
-            FirebaseAuth.getInstance().currentUser?.delete();
+            FirebaseAuth.getInstance().currentUser?.delete()
             startActivity(intentFor<SignIn>().newTask().clearTask())
+
             finish()
         }
 

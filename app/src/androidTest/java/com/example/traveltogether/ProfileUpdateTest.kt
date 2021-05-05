@@ -16,10 +16,14 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.coroutines.awaitAll
+import org.jetbrains.anko.doAsync
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -38,10 +42,17 @@ class ProfileUpdateTest {
     @get:Rule
     val activityRule = ActivityScenarioRule(ProfileActivity::class.java)
 
+    private lateinit var loginUser: LoginUser
+
     private var refBitmap: Bitmap = Bitmap.createBitmap(100, 200, Bitmap.Config.ARGB_8888)
 
+    @Before
     fun setup() {
-        Assert.assertNotNull(FirebaseAuth.getInstance().currentUser)
+        loginUser = LoginUser("markus123@gmail.com", "Markus", "markus123", "")
+        loginUser.signIn()
+    }
+
+    private fun createBitmap() {
         val canvas = Canvas(refBitmap)
         val rnd = Random()
         val color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
@@ -50,19 +61,16 @@ class ProfileUpdateTest {
 
     @Test
     fun checkIfPhotoUriUpdates() {
-        //FirebaseAuth.getInstance().signInWithEmailAndPassword("test123@gmail.com", "12345678")
-        setup()
-        //ActivityScenario.launch(ProfileActivity::class.java)
+        createBitmap()
         val request = UserProfileChangeRequest.Builder()
             .setPhotoUri(null)
             .build()
         val user = FirebaseAuth.getInstance().currentUser
-        user?.updateProfile(request)
-        Thread.sleep(2000)
+        user?.updateProfile(request)?.let { await(it) }
         Assert.assertNull(FirebaseAuth.getInstance().currentUser?.photoUrl)
 
         val scenario: ActivityScenario<ProfileActivity>? = activityRule.scenario
-        scenario?.onActivity { activity -> run { activity.uploadImageAndSaveUri(refBitmap) } }
+        scenario?.onActivity { activity -> run { activity.uploadImageAndSaveUri(refBitmap)} }
         scenario?.onActivity { activity -> activity.profile_picture.setImageBitmap(refBitmap)}
 
         Thread.sleep(4000)
@@ -72,10 +80,7 @@ class ProfileUpdateTest {
 
     @Test
     fun checkIfPhotoBitmapUpdates() {
-        setup()
-        //ActivityScenario.launch(ProfileActivity::class.java)
-        Thread.sleep(2000)
-
+        createBitmap()
         val scenario: ActivityScenario<ProfileActivity>? = activityRule.scenario
         var oldBitmap : Bitmap = Bitmap.createBitmap(100, 200, Bitmap.Config.ARGB_8888)
         scenario?.onActivity { activity -> oldBitmap = activity.profile_picture.drawable.toBitmap()}

@@ -27,7 +27,7 @@
     <string name="saved_post_section_text">Раздел сохраненных сообщений</string>
     <string name="newest_popup_text">Новое всплывающее окно</string>
     <string name="settings_activity">Настройки Активность</string>
-    <string name="saved_post_text">Сохраненные сообщения</string>
+    <string name="save_title_text">Сохраненные сообщения</string>
     <string name="chat_title_text">Чат</string>
     <string name="new_title_text">Новый</string>
     <string name="all_title_text">Все</string>

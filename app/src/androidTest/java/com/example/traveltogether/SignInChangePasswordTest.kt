@@ -9,6 +9,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.DrawerMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.firebase.ui.auth.AuthUI
@@ -29,42 +30,28 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class SignInChangePasswordTest {
 
+    private lateinit var email:String
+    private lateinit var name:String
+    private lateinit var password:String
+    private lateinit var description:String
+    private lateinit var loginUser: LoginUser
+
     @get:Rule
-    val activityRule = ActivityTestRule(SignIn::class.java)
+    val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Before
     fun setup(){
-        FirebaseAuth.getInstance().signOut()
+        email = getRandomString(10)
+        name = getRandomString(10)
+        password = getRandomString(10)
+        description = getRandomString(10)
+
+        loginUser = LoginUser("$email@gmail.com", name, password, description)
+        loginUser.createUser()
     }
 
     @Test
-    fun loginAndChangePasswort () {
-        assertNull(FirebaseAuth.getInstance().currentUser)
-        val loginSignUpButton = withId(R.id.account_sign_in)
-
-        onView(loginSignUpButton).perform(click())
-
-        val signInProviders = listOf(AuthUI.IdpConfig.EmailBuilder()
-            .setAllowNewAccounts(true)
-            .setRequireName(true)
-            .build())
-
-        val intent = AuthUI.getInstance().createSignInIntentBuilder()
-            .setAvailableProviders(signInProviders)
-            .build()
-
-        assertEquals(intent.data, activityRule.activity.intent.data)
-
-        onView(withId(R.id.email)).perform(typeText("manar1@gmail.com"))
-
-        onView(withId(R.id.button_next)).perform(click())
-
-        onView(withId(R.id.password)).perform(typeText("manar123"))
-        onView(withId(R.id.button_done)).perform(click())
-
-        assertNotNull(FirebaseAuth.getInstance().currentUser)
-
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+    fun loginAndChangePassword () {
         onView(withId(R.id.drawer_layout))
             .check(matches(DrawerMatchers.isClosed(Gravity.LEFT)))
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
@@ -75,9 +62,17 @@ class SignInChangePasswordTest {
 
         onView(withId(R.id.change_pass)).perform(click())
         onView(withId(R.id.frameLayout)).check(matches(isDisplayed()))
-        onView(withId(R.id.TextPassword_Old)).perform(typeText("manar123"))
-        onView(withId(R.id.TextPassword_new)).perform(typeText("Markus1234"))
-        onView(withId(R.id.TextPassword_new_again)).perform(typeText("Markus1234"))
+        onView(withId(R.id.TextPassword_Old)).perform(typeText(password))
+        onView(withId(R.id.TextPassword_new)).perform(typeText("password"))
+        onView(withId(R.id.TextPassword_new_again)).perform(typeText("password"))
         onView(withId(R.id.submit_button)).perform(click())
+    }
+
+    private fun getRandomString(size: Int ) : String {
+        val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+        return (1..size)
+            .map { _ -> kotlin.random.Random.nextInt(0, charPool.size) }
+            .map(charPool::get)
+            .joinToString("")
     }
 }

@@ -27,7 +27,7 @@
     <string name="saved_post_section_text">保存的帖子部分</string>
     <string name="newest_popup_text">最新彈出窗口</string>
     <string name="settings_activity">設置活動</string>
-    <string name="saved_post_text">已保存的帖子</string>
+    <string name="save_title_text">已保存的帖子</string>
     <string name="chat_title_text">聊天</string>
     <string name="new_title_text">新的</string>
     <string name="all_title_text">全部</string>

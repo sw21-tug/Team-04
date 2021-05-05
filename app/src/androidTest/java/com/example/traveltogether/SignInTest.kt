@@ -1,17 +1,13 @@
 package com.example.traveltogether
 
-import android.view.Gravity
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.DrawerActions
-import androidx.test.espresso.contrib.DrawerMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.rule.ActivityTestRule
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import org.junit.Assert.*
@@ -28,10 +24,10 @@ import org.junit.runner.RunWith
  */
 
 @RunWith(AndroidJUnit4::class)
-class LoginSignupTest {
+class LoginSignUpTest {
 
     @get:Rule
-    val activityRule = ActivityScenarioRule(ProfileActivity::class.java)
+    val activityRule = ActivityScenarioRule(SignIn::class.java)
 
 
     private lateinit var loginUser: LoginUser
@@ -64,7 +60,7 @@ class LoginSignupTest {
             .setAvailableProviders(signInProviders)
             .build()
 
-        val scenario: ActivityScenario<ProfileActivity>? = activityRule.scenario
+        val scenario: ActivityScenario<SignIn>? = activityRule.scenario
         scenario?.onActivity { activity -> run { assertEquals(intent.data, activity.intent.data) } }
         onView(withId(R.id.button_next)).check(matches(isDisplayed()));
     }
