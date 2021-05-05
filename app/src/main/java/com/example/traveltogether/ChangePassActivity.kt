@@ -26,14 +26,15 @@ class ChangePassActivity : AppCompatActivity() {
         }
     }
 
-    val alert : String = "Error";
-    val success : String = "Success";
+    var alert : String = ""
+    var success : String = ""
     var successfully : Boolean = false;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_pass)
-
+        alert = getString(R.string.error_text)
+        success = getString(R.string.success_text)
         val submit_btn: Button = findViewById<View>(R.id.submit_button) as Button
         val old_pass: EditText = findViewById<View>(R.id.TextPassword_Old) as EditText
         val new_pass: EditText = findViewById<View>(R.id.TextPassword_new) as EditText
@@ -41,15 +42,15 @@ class ChangePassActivity : AppCompatActivity() {
 
         submit_btn.setOnClickListener {
             if (old_pass.text.toString().isEmpty())
-                PopUp(alert, "Please enter the old password");
+                PopUp(alert, getString(R.string.enter_old_pwd_text));
             else if( new_pass.text.isEmpty() )
-                PopUp(alert, "Please enter the new password");
+                PopUp(alert, getString(R.string.enter_new_pwd_text));
             else if(new_pass_again.text.isEmpty())
-                PopUp(alert, "Please re-enter the new password");
+                PopUp(alert, getString(R.string.reenter_pwd_text));
             else if(!new_pass.text.toString().equals(new_pass_again.text.toString()))
-                PopUp(alert, "Please enter the same new password!");
+                PopUp(alert, getString(R.string.same_new_pwd_text));
             else if(old_pass.text.toString().equals(new_pass.text.toString()))
-                PopUp(alert,"Your old password and new one are the same, please change it!");
+                PopUp(alert,getString(R.string.cant_be_same_pwd_text));
             else
             {
                 var cred = EmailAuthProvider.getCredential(FirebaseAuth.getInstance().currentUser.email,
@@ -66,14 +67,14 @@ class ChangePassActivity : AppCompatActivity() {
                                             successfully = true;
                                             PopUp(
                                                 success,
-                                                "You have changed your password successfully"
+                                                getString(R.string.success_pwd_change_text)
                                             );
                                         } else {
-                                            PopUp(alert, "password is not valid!");
+                                            PopUp(alert, getString(R.string.invalid_pwd_text));
                                         }
                                     };
                             } else {
-                                PopUp(alert, "old Password is wrong!");
+                                PopUp(alert, getString(R.string.old_pwd_wrong_text));
                             }
                         })
 
@@ -91,7 +92,7 @@ class ChangePassActivity : AppCompatActivity() {
         {
             setTitle(title)
             setMessage(msg)
-            setPositiveButton("OK", DialogInterface.OnClickListener(function = positiveButtonClick))
+            setPositiveButton(getString(R.string.ok_text), DialogInterface.OnClickListener(function = positiveButtonClick))
             show()
         }
     }

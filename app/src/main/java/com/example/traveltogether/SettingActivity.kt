@@ -42,7 +42,6 @@ class SettingActivity : AppCompatActivity() {
         }
 
         allow_notif_switch.setOnClickListener {
-            //TODO activate notifications
         }
     }
 
@@ -51,7 +50,7 @@ class SettingActivity : AppCompatActivity() {
 
         val alertDialog = AlertDialog.Builder(this).create()
         alertDialog.setTitle(getString(R.string.delete_acc_text))
-        alertDialog.setMessage("Are you sure you want to delete your account?")
+        alertDialog.setMessage(getString(R.string.delete_acc_question))
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.yes_text)
         ) {
