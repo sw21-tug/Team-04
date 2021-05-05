@@ -144,7 +144,7 @@ class new_popup_fragment : Fragment() {
 
         val title = titlePost.text.toString()
         val destination = destinationPost.text.toString()
-        val numberOfPerson = if (numOfPersonsPost.text.isNotEmpty()) numOfPersonsPost.text.toString().toInt() else 0
+        val numberOfPerson = if (numOfPersonsPost.text.isNotEmpty()) numOfPersonsPost.text.toString().toLong() else 0
 
         val sdf = SimpleDateFormat(myFormat, Locale.GERMANY)
         val startDate: Long = sdf.parse(startDatePost.text.toString())?.time!!
