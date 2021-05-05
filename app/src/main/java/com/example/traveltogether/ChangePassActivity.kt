@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import org.jetbrains.anko.clearTask
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.newTask
 
 
 class ChangePassActivity : AppCompatActivity() {
@@ -97,5 +100,14 @@ class ChangePassActivity : AppCompatActivity() {
     {
         val intent = Intent(this, SettingActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    override fun onBackPressed() {
+        startActivity(intentFor<MainActivity>().newTask().clearTask())
     }
 }
