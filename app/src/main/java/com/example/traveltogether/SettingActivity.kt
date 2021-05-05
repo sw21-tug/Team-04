@@ -22,7 +22,7 @@ class SettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
         val actionbar = supportActionBar
-        actionbar!!.title = "Settings"
+        actionbar!!.title = getString(R.string.settings_text)
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
 
@@ -50,10 +50,10 @@ class SettingActivity : AppCompatActivity() {
     fun areYouSurePopUp() {
 
         val alertDialog = AlertDialog.Builder(this).create()
-        alertDialog.setTitle("Delete Account")
+        alertDialog.setTitle(getString(R.string.delete_acc_text))
         alertDialog.setMessage("Are you sure you want to delete your account?")
 
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes"
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.yes_text)
         ) {
             dialog, which ->
             FirebaseAuth.getInstance().currentUser?.delete();
@@ -61,7 +61,7 @@ class SettingActivity : AppCompatActivity() {
             finish()
         }
 
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No"
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.no_text)
         ) { dialog, which -> dialog.dismiss() }
         alertDialog.show()
 

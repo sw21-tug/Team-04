@@ -53,8 +53,8 @@ class ProfileActivity : AppCompatActivity() {
             popup.inflate(R.menu.test)
             popup.setOnMenuItemClickListener {
                 when (it.title) {
-                    "Take a picture" -> takePictureIntent()
-                    "Choose from Library" -> takeImageFormGalleryIntent()
+                    getString(R.string.take_picture) -> takePictureIntent()
+                    getString(R.string.choose_from_library) -> takeImageFormGalleryIntent()
                     else -> Toast.makeText(this, "Item: " + it.title, Toast.LENGTH_SHORT).show()
                 }
                 true
@@ -75,7 +75,7 @@ class ProfileActivity : AppCompatActivity() {
         })
 
         val actionbar = supportActionBar
-        actionbar!!.title = "Profile"
+        actionbar!!.title = getString(R.string.profile_name)
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
 
@@ -97,7 +97,7 @@ class ProfileActivity : AppCompatActivity() {
             val dialogLayout = inflater.inflate(R.layout.edit_text_layout, null)
             val editText = dialogLayout.findViewById<EditText>(R.id.et_editView)
             with(builder) {
-                setTitle("Add your profile description here")
+                setTitle(getString(R.string.add_description))
                 setPositiveButton("OK") { dialog, which ->
                     description_text.text = editText.text.toString()
                     val firebasereal = FirebaseDatabase.getInstance()

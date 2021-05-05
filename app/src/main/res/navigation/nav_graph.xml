@@ -8,26 +8,26 @@
     <fragment
         android:id="@+id/all_post_fragment"
         android:name="com.example.traveltogether.all_post_fragment"
-        android:label="All Posts"
+        android:label="@string/all_title_text"
         tools:layout="@layout/fragment_saved_post_fragment" />
     <fragment
         android:id="@+id/saved_post_fragment"
         android:name="com.example.traveltogether.saved_post_fragment"
-        android:label="Saved Post"
+        android:label="@string/saved_post_text"
         tools:layout="@layout/fragment_all_post_fragment" />
     <fragment
         android:id="@+id/new_popup_fragment"
         android:name="com.example.traveltogether.new_popup_fragment"
-        android:label="New Popup"
+        android:label="@string/new_title_text"
         tools:layout="@layout/fragment_new_popup_fragment" />
     <fragment
         android:id="@+id/chat_fragment"
         android:name="com.example.traveltogether.chat_fragment"
-        android:label="Chat"
+        android:label="@string/chat_title_text"
         tools:layout="@layout/fragment_chat_fragment" />
     <fragment
         android:id="@+id/news_fragment"
         android:name="com.example.traveltogether.news_fragment"
-        android:label="News"
+        android:label="@string/news_title_text"
         tools:layout="@layout/fragment_news_fragment" />
 </navigation>

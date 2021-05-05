@@ -6,7 +6,6 @@ import com.google.firebase.database.*
 import org.junit.Test
 import com.firebase.ui.auth.AuthUI
 
-
 import org.junit.Assert.*
 import org.junit.runner.RunWith
 

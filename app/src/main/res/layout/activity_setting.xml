@@ -12,7 +12,7 @@
         android:layout_width="185dp"
         android:layout_height="51dp"
         android:layout_marginTop="56dp"
-        android:text="change password"
+        android:text="@string/change_password_text"
         android:textColor="@color/white_on_green"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
@@ -22,7 +22,7 @@
         android:layout_width="348dp"
         android:layout_height="53dp"
         android:layout_marginTop="144dp"
-        android:text="Notify when activity in group chat"
+        android:text="@string/notify_when_activity_in_group_chat_text"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
 
@@ -31,7 +31,7 @@
         android:layout_width="193dp"
         android:layout_height="48dp"
         android:layout_marginTop="344dp"
-        android:text="Delete account"
+        android:text="@string/delete_account_text"
         android:textColor="@color/white_on_green"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
