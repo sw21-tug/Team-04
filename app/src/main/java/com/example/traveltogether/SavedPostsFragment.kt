@@ -32,8 +32,6 @@ class saved_post_fragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
-        //findNavController().navigate(R.id.action_saved_post_fragment_to_edit_post_fragment)
-
     }
 
 
@@ -44,7 +42,8 @@ class saved_post_fragment : Fragment() {
         val view : View = inflater.inflate(R.layout.fragment_saved_post_fragment, container, false)
         val button : Button = view.findViewById(R.id.edit_post_button)
         button.setOnClickListener {
-            findNavController().navigate(R.id.action_saved_post_fragment_to_post_edit)
+            val actionArguments = saved_post_fragmentDirections.actionSavedPostFragmentToPostEdit("a_unique_pid")
+            findNavController().navigate(actionArguments)
         }
         // Inflate the layout for this fragment
         return view
