@@ -9,6 +9,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.DrawerMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.firebase.ui.auth.AuthUI
@@ -30,10 +31,15 @@ import org.junit.runner.RunWith
 class LoginSignupTest {
 
     @get:Rule
-    val activityRule = ActivityTestRule(SignIn::class.java)
+    val activityRule = ActivityScenarioRule(ProfileActivity::class.java)
 
-    private fun setup(){
-        FirebaseAuth.getInstance().signOut()
+
+    private lateinit var loginUser: LoginUser
+
+    @Before
+    fun setup() {
+        loginUser = LoginUser("markus123@gmail.com", "Markus", "markus123", "")
+        loginUser.signIn()
     }
 
     @Test
@@ -41,7 +47,6 @@ class LoginSignupTest {
         val loginSignUpButton = withId(R.id.account_sign_in)
         onView(loginSignUpButton).check(matches(isDisplayed()))
         onView(loginSignUpButton).check(matches(withText("Log In/Sign Up")))
-
     }
 
     @Test
@@ -59,34 +64,21 @@ class LoginSignupTest {
             .setAvailableProviders(signInProviders)
             .build()
 
-        assertEquals(intent.data, activityRule.activity.intent.data)
-
+        val scenario: ActivityScenario<ProfileActivity>? = activityRule.scenario
+        scenario?.onActivity { activity -> run { assertEquals(intent.data, activity.intent.data) } }
         onView(withId(R.id.button_next)).check(matches(isDisplayed()));
     }
 
     @Test
     fun login () {
         setup()
+        loginUser.signOut()
         assertNull(FirebaseAuth.getInstance().currentUser)
         val loginSignUpButton = withId(R.id.account_sign_in)
 
         onView(loginSignUpButton).perform(click())
-
-        val signInProviders = listOf(AuthUI.IdpConfig.EmailBuilder()
-            .setAllowNewAccounts(true)
-            .setRequireName(true)
-            .build())
-
-        val intent = AuthUI.getInstance().createSignInIntentBuilder()
-            .setAvailableProviders(signInProviders)
-            .build()
-
-        assertEquals(intent.data, activityRule.activity.intent.data)
-
         onView(withId(R.id.email)).perform(typeText("markus123@gmail.com"))
-
         onView(withId(R.id.button_next)).perform(click())
-
         onView(withId(R.id.password)).perform(typeText("markus123"))
         onView(withId(R.id.button_done)).perform(click())
 

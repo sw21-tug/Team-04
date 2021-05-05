@@ -19,10 +19,14 @@ class LoginUser {
     }
 
     fun signIn() {
+        signOut()
+        await(FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password))
+    }
+
+    fun signOut() {
         if(FirebaseAuth.getInstance().currentUser != null) {
             FirebaseAuth.getInstance().signOut()
         }
-        await(FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password))
     }
 
     fun createUser() {
