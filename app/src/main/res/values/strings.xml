@@ -17,12 +17,12 @@
     <string name="title_activity_settings" translatable="false">SettingsActivity</string>
     <string name="title">title</string>
     <string name="starting_date">starting date</string>
+    <string name="ending_date">ending date</string>
     <string name="time_posted">time posted</string>
     <string name="destination">destination</string>
     <string name="delete">delete</string>
     <string name="save">save</string>
     <string name="post">post</string>
-    <string name="duration">duration</string>
     <string name="number_people"># of people</string>
 
     <!-- Preference Titles -->
