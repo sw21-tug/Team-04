@@ -87,14 +87,12 @@ class LanguageRussianTest {
         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
         // @string profile_text
-        onView(withText("Профили")).perform(click())
-        onView(withText("Профили")).check(matches(isDisplayed()))
+        onView(withText("Профиль")).perform(click())
+        onView(withText("Профиль")).check(matches(isDisplayed()))
         // @string profile_description
         onView(withText("Описание")).check(matches(isDisplayed()))
         // @string profile_edit_description
         onView(withText("Изменить описание")).check(matches(isDisplayed()))
-        // @string profile_username
-        onView(withText("Имя пользователя")).check(matches(isDisplayed()))
         // @string profile_edit_picture
         onView(withText("Редактировать картинку")).check(matches(isDisplayed()))
     }

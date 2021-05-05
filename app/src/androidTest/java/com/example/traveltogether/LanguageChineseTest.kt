@@ -93,8 +93,6 @@ class LanguageChineseTest {
         onView(withText("描述")).check(matches(isDisplayed()))
         // @string profile_edit_description
         onView(withText("編輯說明")).check(matches(isDisplayed()))
-        // @string profile_username
-        onView(withText("用戶名")).check(matches(isDisplayed()))
         // @string profile_edit_picture
         onView(withText("編輯圖片")).check(matches(isDisplayed()))
     }
