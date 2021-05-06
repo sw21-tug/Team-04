@@ -1,3 +1,103 @@
 <resources>
-    <string name="app_name">TravelTogether</string>
+    <string name="app_name" translatable="false">TravelTogether</string>
+    <string name="profile_name">Profile</string>
+    <string name="profile_edit_picture">Edit Picture</string>
+    <string name="profile_username">Username</string>
+    <string name="profile_description">Description</string>
+    <string name="profile_edit_Description">Edit Description</string>
+    <string name="profile_background">Profile Background</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="profile_edit_pic" translatable="false">Profile Edit Pic Picture</string>
+    <string name="profile_container" translatable="false">Profile Container</string>
+    <string name="profile_description_container" translatable="false">Profile Description Container</string>
+    <string name="enter_one_text_here">Enter one text here</string>
+    <string name="choose_from_library">Choose from Library</string>
+    <string name="take_a_picture">Take a picture</string>
+
+    <string name="title_activity_settings" translatable="false">SettingsActivity</string>
+    <string name="title">title</string>
+    <string name="starting_date">starting date</string>
+    <string name="ending_date">ending date</string>
+    <string name="time_posted">time posted</string>
+    <string name="destination">destination</string>
+    <string name="delete">delete</string>
+    <string name="save">save</string>
+    <string name="post">post</string>
+    <string name="number_people"># of people</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title" translatable="false">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_change_pass" translatable="false">ChangePassActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world" translatable="false">Hello Square World!</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="title_activity_profile" translatable="false">ProfileActivity</string>
+    <string name="sign_in_text">Log In/Sign Up</string>
+    <string name="sign_out_text">Sign Out</string>
+    <string name="main_screen_text">MAIN SCREEN</string>
+    <string name="profile_text">Profile</string>
+    <string name="settings_text">Settings</string>
+    <string name="logout_text">Logout</string>
+    <string name="change_language_text">Change Language</string>
+
+    <string name="all_post_section_text">All Post Section</string>
+    <string name="chat_section_text">Chat Section</string>
+    <string name="news_section_text">News Section</string>
+    <string name="saved_text">Saved</string>
+    <string name="all_text">All</string>
+    <string name="chat_text">Chat</string>
+    <string name="new_text">New</string>
+    <string name="news_text">News</string>
+    <string name="saved_post_section_text">Saved Post Section</string>
+    <string name="newest_popup_text">Newest Popup</string>
+    <string name="settings_activity">Settings Activity</string>
+    <string name="save_title_text">Saved Posts</string>
+    <string name="chat_title_text">Chat</string>
+    <string name="new_title_text">New</string>
+    <string name="all_title_text">All</string>
+    <string name="news_title_text">News</string>
+    <string name="change_password_text">change password</string>
+    <string name="delete_account_text">Delete account</string>
+    <string name="notify_when_activity_in_group_chat_text">Notify when activity in group chat</string>
+    <string name="delete_acc_text">Delete Account</string>
+    <string name="yes_text">Yes</string>
+    <string name="no_text">No</string>
+    <string name="take_picture">Take a picture</string>
+    <string name="add_description">Add your profile description here</string>
+    <string name="edit_post_text">Edit Post</string>
+    <string name="ending_date_text">ending date</string>
+    <string name="delete_acc_question">Are you sure you want to delete your account?</string>
+    <string name="ok_text">OK</string>
+    <string name="cancel_text">Cancel</string>
+    <string name="error_text">Error</string>
+    <string name="success_text">Success</string>
+    <string name="enter_old_pwd_text">Please enter the old password</string>
+    <string name="enter_new_pwd_text">Please enter the new password</string>
+    <string name="reenter_pwd_text">Please re-enter the new password</string>
+    <string name="same_new_pwd_text">Please enter the same new password!</string>
+    <string name="cant_be_same_pwd_text">Old and new passwords can\'t be the same!</string>
+    <string name="success_pwd_change_text">You have changed your password successfully</string>
+    <string name="invalid_pwd_text">Password is not valid!</string>
+    <string name="old_pwd_wrong_text">Old Password is wrong!</string>
+    <string name="update_success_text">Updated successfully</string>
+    <string name="sign_in_canceled_text">Sign in cancelled.</string>
+    <string name="enter_old_password_text">Enter old password:</string>
+    <string name="enter_new_password_text">Enter new password:</string>
+    <string name="re_enter_the_same_password_text">Re-enter the same password:</string>
+    <string name="submit_text">Submit</string>
 </resources>
