@@ -12,7 +12,9 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.DrawerMatchers.isClosed
 import androidx.test.espresso.contrib.DrawerMatchers.isOpen
+import androidx.test.espresso.contrib.NavigationViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -20,39 +22,38 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import org.junit.Rule
 
 @RunWith(AndroidJUnit4::class)
 class BottomMenuTest {
 
-    @Test //how to test UI elements
-    fun checksavedpostsfragment() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+    @get:Rule
+    val activityRule = ActivityScenarioRule(MainActivity::class.java)
+
+    @Test
+    fun checkSavedPostsFragment() {
         onView(withId(R.id.saved_post_fragment)).perform(click())
-        onView(withText("Saved Post Section")).check(matches(isDisplayed()))
+        onView(withText(R.string.save_title_text)).check(matches(isDisplayed()))
     }
-    @Test //how to test UI elements
-    fun checkallpostfragment() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+    @Test
+    fun checkAllPostFragment() {
         onView(withId(R.id.all_post_fragment)).perform(click())
-        onView(withText("All Posts")).check(matches(isDisplayed()))
+        onView(withId(R.id.all_post_fragment)).check(matches(isDisplayed()))
     }
-    @Test //how to test UI elements
-    fun checkpopupfragment() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+    @Test
+    fun checkPopupFragment() {
         onView(withId(R.id.new_popup_fragment)).perform(click())
-        onView(withText("Newest Popup")).check(matches(isDisplayed()))
+        onView(withId(R.id.new_popup_fragment)).check(matches(isDisplayed()))
     }
-    @Test //how to test UI elements
-    fun checkchatpostfragment() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+    @Test
+    fun checkChatPostFragment() {
         onView(withId(R.id.chat_fragment)).perform(click())
-        onView(withText("Chat Section")).check(matches(isDisplayed()))
+        onView(withId(R.id.chat_fragment)).check(matches(isDisplayed()))
     }
-    @Test //how to test UI elements
-    fun checknewsfragment() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+    @Test
+    fun checkNewsFragment() {
         onView(withId(R.id.news_fragment)).perform(click())
-        onView(withText("News Section")).check(matches(isDisplayed()))
+        onView(withId(R.id.news_fragment)).check(matches(isDisplayed()))
     }
 
 }

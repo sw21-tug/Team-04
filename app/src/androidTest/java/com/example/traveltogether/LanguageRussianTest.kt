@@ -7,11 +7,13 @@ import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import org.hamcrest.core.AllOf.allOf
+import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
@@ -20,54 +22,66 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class LanguageRussianTest {
+    @get:Rule
+    val activityRule = ActivityScenarioRule(SignIn::class.java)
 
     @Before
     fun setup(){
         val activityScenario = ActivityScenario.launch(SignIn::class.java)
         onView(withId(R.id.language_button)).perform(click())
+        Thread.sleep(100)
         // add Language as in menu to choose (i.e. "Русские")
         onView(withText("Русские")).perform(click())
     }
 
+    @After
+    fun clean() {
+        val activityScenario = ActivityScenario.launch(SignIn::class.java)
+        onView(withId(R.id.language_button)).perform(click())
+        // add Language as in menu to choose (i.e. "Русские")
+        Thread.sleep(100)
+        onView(withText("English")).perform(click())
+    }
+
     @Test
-    fun LogIn () {
+    fun logIn () {
         val activityScenario = ActivityScenario.launch(SignIn::class.java)
         // @string sign_in_text
-        onView(withText("Войти Зарегистрироваться")).check(matches(isDisplayed()))
+        onView(withText(R.string.sign_in_text)).check(matches(isDisplayed()))
         // already correct
         onView(withText("Изменить язык")).check(matches(isDisplayed()))
     }
 
     @Test
-    fun MainActivity () {
+    fun mainActivity () {
         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
         // @string all_text
-        onView(withId(R.id.all_post_fragment)).check(matches(withContentDescription("Все")))
+        onView(withId(R.id.all_post_fragment)).check(matches(withContentDescription(R.string.all_text)))
         onView(withId(R.id.all_post_fragment)).perform(click())
-        onView(withId(R.id.all_post_fragment)).check(matches(withContentDescription("Все")))
+        onView(withId(R.id.all_post_fragment)).check(matches(withContentDescription(R.string.all_text)))
 
         // @string saved_text
-        onView(withId(R.id.saved_post_fragment)).check(matches(withContentDescription("Сохранено")))
+        onView(withId(R.id.saved_post_fragment)).check(matches(withContentDescription(R.string.saved_text)))
         onView(withId(R.id.saved_post_fragment)).perform(click())
         // @string saved_post_section_text
-        onView(withText("Раздел сохраненных сообщений")).check(matches(isDisplayed()))
+        onView(withText(R.string.saved_post_section_text)).check(matches(isDisplayed()))
 
         // @string chat_text
-        onView(withId(R.id.chat_fragment)).check(matches(withContentDescription("Чат")))
+        onView(withId(R.id.chat_fragment)).check(matches(withContentDescription(R.string.chat_text)))
         onView(withId(R.id.chat_fragment)).perform(click())
-        onView(withId(R.id.chat_fragment)).check(matches(withContentDescription("Чат")))
+        onView(withId(R.id.chat_fragment)).check(matches(withContentDescription(R.string.chat_text)))
 
 
         // @string new_text
-        onView(withId(R.id.new_popup_fragment)).check(matches(withContentDescription("Новый")))
+        onView(withId(R.id.new_popup_fragment)).check(matches(withContentDescription(R.string.new_text)))
         onView(withId(R.id.new_popup_fragment)).perform(click())
-        onView(withId(R.id.new_popup_fragment)).check(matches(withContentDescription("Новый")))
+        onView(withId(R.id.new_popup_fragment)).check(matches(withContentDescription(R.string.new_text)))
 
 
         // @string news_text
-        onView(withId(R.id.news_fragment)).check(matches(withContentDescription("Новости")))
+        onView(withId(R.id.news_fragment)).check(matches(withContentDescription(R.string.news_text)))
         onView(withId(R.id.news_fragment)).perform(click())
-        onView(withId(R.id.news_fragment)).check(matches(withContentDescription("Новости")))
+        onView(withId(R.id.news_fragment)).check(matches(withContentDescription(R.string.news_text)))
 
     }
 
@@ -76,11 +90,11 @@ class LanguageRussianTest {
         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
         // @string settings_text
-        onView(withText("Настройки")).check(matches(isDisplayed()))
+        onView(withText(R.string.settings_text)).check(matches(isDisplayed()))
         //@string profile_name
-        onView(withText("Профиль")).check(matches(isDisplayed()))
+        onView(withText(R.string.profile_name)).check(matches(isDisplayed()))
         //@string logout_text
-        onView(withText("Выйти")).check(matches(isDisplayed()))
+        onView(withText(R.string.logout_text)).check(matches(isDisplayed()))
     }
     @Test
     fun profile () {
@@ -90,17 +104,18 @@ class LanguageRussianTest {
         onView(withText("Профиль")).perform(click())
         onView(withText("Профиль")).check(matches(isDisplayed()))
         // @string profile_description
-        onView(withText("Описание")).check(matches(isDisplayed()))
+        onView(withText(R.string.profile_description)).check(matches(isDisplayed()))
         // @string profile_edit_description
-        onView(withText("Изменить описание")).check(matches(isDisplayed()))
+        onView(withText(R.string.profile_edit_Description)).check(matches(isDisplayed()))
         // @string profile_edit_picture
-        onView(withText("Редактировать картинку")).check(matches(isDisplayed()))
+        onView(withText(R.string.profile_edit_picture)).check(matches(isDisplayed()))
     }
 
     @Test
     fun chooseLanguage () {
         val activityScenario = ActivityScenario.launch(SignIn::class.java)
         onView(withId(R.id.language_button)).perform(click())
+        Thread.sleep(100)
         // already correct
         onView(withText("Choose Language")).check(matches(isDisplayed()))
         // add Language as in menu to choose (i.e. "Русские")

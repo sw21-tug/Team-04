@@ -27,7 +27,7 @@
     <string name="saved_post_section_text">Раздел сохраненных сообщений</string>
     <string name="newest_popup_text">Новое всплывающее окно</string>
     <string name="settings_activity">Настройки Активность</string>
-    <string name="saved_post_text">Сохраненные сообщения</string>
+    <string name="save_title_text">Сохраненные сообщения</string>
     <string name="chat_title_text">Чат</string>
     <string name="new_title_text">Новый</string>
     <string name="all_title_text">Все</string>
@@ -52,15 +52,34 @@
 
     <string name="title">заглавие</string>
     <string name="starting_date">Дата начала</string>
-    <string name="time_posted">time posted</string>
+    <string name="time_posted">время опубликовано</string>
     <string name="destination">назначения</string>
     <string name="delete">Удалить</string>
     <string name="save">спасти</string>
     <string name="post">Почта</string>
-    <string name="duration">продолжительность</string>
     <string name="number_people">число людей</string>
 
     <string name="edit_post_text">редактировать пост</string>
     <string name="ending_date_text">дата окончания</string>
+    <string name="ending_date">дата окончания</string>
+    <string name="delete_acc_question">Вы уверены, что хотите удалить свою учетную запись?</string>
+    <string name="ok_text">ОК</string>
+    <string name="cancel_text">Отмена</string>
+    <string name="error_text">Ошибка</string>
+    <string name="success_text">Успех</string>
+    <string name="enter_old_pwd_text">Пожалуйста, введите старый пароль</string>
+    <string name="enter_new_pwd_text">Пожалуйста, введите новый пароль</string>
+    <string name="reenter_pwd_text">Пожалуйста, введите новый пароль еще раз</string>
+    <string name="same_new_pwd_text">Пожалуйста, введите тот же новый пароль!</string>
+    <string name="cant_be_same_pwd_text">Старый и новый пароли не могут совпадать!</string>
+    <string name="success_pwd_change_text">Вы успешно изменили свой пароль</string>
+    <string name="invalid_pwd_text">пароль недействителен!</string>
+    <string name="old_pwd_wrong_text">Старый пароль неверен!</string>
+    <string name="update_success_text">Успешно Обновлено</string>
+    <string name="sign_in_canceled_text">Вход отменен.</string>
+    <string name="submit_text">подчиняться</string>
+    <string name="re_enter_the_same_password_text">Повторно введите тот же пароль:</string>
+    <string name="enter_new_password_text">Введите новый пароль:</string>
+    <string name="enter_old_password_text">Введите старый пароль:</string>
 
 </resources>

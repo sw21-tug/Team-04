@@ -98,13 +98,13 @@ class ProfileActivity : AppCompatActivity() {
             val editText = dialogLayout.findViewById<EditText>(R.id.et_editView)
             with(builder) {
                 setTitle(getString(R.string.add_description))
-                setPositiveButton("OK") { dialog, which ->
+                setPositiveButton(getString(R.string.ok_text)) { dialog, which ->
                     description_text.text = editText.text.toString()
                     val firebasereal = FirebaseDatabase.getInstance()
                     val firebaseref = firebasereal.getReference()
                     firebaseref.child("users").child(FirebaseAuth.getInstance().currentUser.uid).child("Description").setValue(description_text.text)
                 }
-                setNegativeButton("Cancel") { dialog, which ->
+                setNegativeButton(getString(R.string.cancel_text)) { dialog, which ->
                     Log.d("Main", "negative button clicked")
                 }
                 setView(dialogLayout)
@@ -175,7 +175,7 @@ class ProfileActivity : AppCompatActivity() {
             .setPhotoUri(uri)
             .build()
         user?.updateProfile(request)?.addOnSuccessListener {
-            Toast.makeText(this, "Updated successfully", Toast.LENGTH_SHORT)
+            Toast.makeText(this, getString(R.string.update_success_text), Toast.LENGTH_SHORT)
                 .show()
             Log.d("DEBUG", "update profile")
         }?.addOnFailureListener {
