@@ -49,3 +49,8 @@ and join others on their journeys.
 * TT-020 Profile Pic
 * TT-021 Profile Save Pic
 * TT-022 Profile Save Description
+* TT-019 Post Add Display
+* TT-010 Post Add
+* TT-014 Post Edit
+* TT-013 Post Delete
+* TT-025 Translation
