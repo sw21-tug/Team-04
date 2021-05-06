@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id = "@+id/saved_post_fragment"
+        android:title="@string/saved_text"
+        android:icon="@drawable/ic_save" />
+    <item
+        android:id = "@+id/all_post_fragment"
+        android:title="@string/all_text"
+        android:icon="@drawable/ic_post"  />
+    <item
+        android:id = "@+id/chat_fragment"
+        android:title="@string/chat_text"
+        android:icon="@drawable/ic_chat" />
+    <item
+        android:id = "@+id/new_popup_fragment"
+        android:title="@string/new_text"
+        android:icon="@drawable/ic_popup" />
+    <item
+        android:id = "@+id/news_fragment"
+        android:title="@string/news_text"
+        android:icon="@drawable/ic_news" />
+</menu>

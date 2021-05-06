@@ -9,13 +9,48 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelTogether">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity 
+          android:name=".ProfileActivity" 
+          android:configChanges="orientation"
+          android:screenOrientation="portrait">
         </activity>
+      
+        <activity
+          android:name=".StartActivity"
+          android:theme="@style/StartTheme"
+          android:configChanges="orientation"
+          android:screenOrientation="portrait">
+          <intent-filter>
+              <action android:name="android.intent.action.MAIN" />
+              <category android:name="android.intent.category.LAUNCHER" />
+          </intent-filter>
+        </activity>
+      
+        <activity
+            android:name=".SettingActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ChangePassActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="TravelTogether"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".SignIn"
+            android:label="Signing in"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+
+
     </application>
 
 </manifest>

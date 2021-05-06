@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/box_inset_layout_padding"
+    tools:context=".ChangePassActivity"
+    tools:deviceIds="wear"
+    tools:ignore="MissingClass">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/inner_frame_layout_padding">
+
+        <ImageView
+            android:id="@+id/profile_description_container2"
+            android:layout_width="366dp"
+            android:layout_height="250dp"
+            android:contentDescription="@string/profile_description_container"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/starting_date_post_text"
+            app:layout_constraintVertical_bias="0.473"
+            app:srcCompat="@android:color/darker_gray"
+            tools:srcCompat="@android:color/darker_gray" />
+
+        <EditText
+            android:id="@+id/description_post_text"
+            android:layout_width="335dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_description_container2"
+            app:layout_constraintEnd_toEndOf="@+id/profile_description_container2"
+            app:layout_constraintStart_toStartOf="@+id/profile_description_container2"
+            app:layout_constraintTop_toBottomOf="@+id/profile_description_title3"
+            app:layout_constraintVertical_bias="0.086" />
+
+        <TextView
+            android:id="@+id/profile_description_title3"
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:text="@string/profile_description"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_description_container2"
+            app:layout_constraintEnd_toEndOf="@+id/profile_description_container2"
+            app:layout_constraintHorizontal_bias="0.141"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/profile_description_container2"
+            app:layout_constraintVertical_bias="0.07999998" />
+
+        <EditText
+            android:id="@+id/starting_date_post_text"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="@string/starting_date"
+            android:inputType="date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/destination_text_post"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.431" />
+
+        <EditText
+            android:id="@+id/end_date_post_text"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="@string/ending_date"
+            android:inputType="date"
+            app:layout_constraintBottom_toBottomOf="@+id/starting_date_post_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/starting_date_post_text"
+            app:layout_constraintTop_toTopOf="@+id/starting_date_post_text" />
+
+        <EditText
+            android:id="@+id/number_people_post_text"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:hint="@string/number_people"
+            android:inputType="numberSigned"
+            app:layout_constraintBottom_toBottomOf="@+id/destination_text_post"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/destination_text_post" />
+
+        <EditText
+            android:id="@+id/title_edit_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/title"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.17000002" />
+
+        <EditText
+            android:id="@+id/destination_text_post"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="@string/destination"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/starting_date_post_text"
+            app:layout_constraintEnd_toEndOf="@+id/title_edit_post"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/title_edit_post"
+            app:layout_constraintTop_toBottomOf="@+id/title_edit_post" />
+
+        <Button
+            android:id="@+id/button_save_new_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_description_container2" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/starting_date_post_text"
+            app:layout_constraintEnd_toEndOf="@+id/starting_date_post_text"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/starting_date_post_text"
+            app:layout_constraintTop_toTopOf="@+id/starting_date_post_text"
+            app:layout_constraintVertical_bias="0.538"
+            app:srcCompat="@android:drawable/ic_menu_day" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/destination_text_post"
+            app:layout_constraintEnd_toEndOf="@+id/destination_text_post"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/destination_text_post"
+            app:layout_constraintTop_toTopOf="@+id/destination_text_post"
+            app:layout_constraintVertical_bias="0.53"
+            app:srcCompat="@android:drawable/ic_menu_mylocation" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/number_people_post_text"
+            app:layout_constraintEnd_toEndOf="@+id/number_people_post_text"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/number_people_post_text"
+            app:layout_constraintTop_toTopOf="@+id/number_people_post_text"
+            app:layout_constraintVertical_bias="0.39"
+            app:srcCompat="@android:drawable/ic_menu_myplaces" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/end_date_post_text"
+            app:layout_constraintEnd_toEndOf="@+id/end_date_post_text"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/end_date_post_text"
+            app:layout_constraintTop_toTopOf="@+id/end_date_post_text"
+            app:layout_constraintVertical_bias="0.56"
+            app:srcCompat="@android:drawable/ic_menu_day" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.wear.widget.BoxInsetLayout>
