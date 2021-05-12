@@ -25,6 +25,7 @@ class AddComment {
     @Before
     fun checkLogin () {
         loginUser = LoginUser("test@gmail.com", "Name", "12345678", "")
+        loginUser.signIn()
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
         val list : MutableList<String> = mutableListOf()
@@ -65,5 +66,6 @@ class AddComment {
 
         val data_ = Tasks.await(firebaseRef.child("posts").child(dataNew.key.toString()).get())
         assert(data_.child("comments").child("0").value.toString() == string)
+        user.delete()
     }
 }

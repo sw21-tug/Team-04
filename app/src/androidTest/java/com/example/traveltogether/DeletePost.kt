@@ -23,6 +23,7 @@ class DeletePost {
     @Before
     fun checkLogin () {
         loginUser = LoginUser("test@gmail.com", "Name", "12345678", "")
+        loginUser.signIn()
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
         val list : MutableList<String> = mutableListOf()
