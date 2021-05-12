@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_saved_post_fragment_to_post_edit"
             app:destination="@id/post_edit" />
+        <action
+            android:id="@+id/action_saved_post_fragment_to_comment"
+            app:destination="@id/comment" />
     </fragment>
     <fragment
         android:id="@+id/new_popup_fragment"
@@ -46,5 +49,18 @@
             android:name="PID"
             app:argType="string"
             android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/comment"
+        android:name="com.example.traveltogether.Comments"
+        android:label="Comments"
+        tools:layout="@layout/fragment_comments" >
+        <argument
+            android:name="PID"
+            app:argType="string"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_comment_to_saved_post_fragment"
+            app:destination="@id/saved_post_fragment" />
     </fragment>
 </navigation>
