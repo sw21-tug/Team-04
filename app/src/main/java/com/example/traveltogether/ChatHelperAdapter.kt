@@ -18,11 +18,9 @@ class ChatHelperAdapter(var context: Context,var arrayList: ArrayList<String>) :
         val view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item, parent, false)
         val viewHolderClass = ViewHolderClass(view)
         Log.d("Fuck","On Create View Holder")
-        viewHolderClass.itemView.setOnClickListener(View.OnClickListener() {
-             fun onClick(v: View ) {
-                Toast.makeText(context, "Item Selected",Toast.LENGTH_LONG).show();
-            }
-        });
+        viewHolderClass.itemView.setOnClickListener {
+            Toast.makeText(context, arrayList[viewHolderClass.adapterPosition],Toast.LENGTH_SHORT).show();
+        }
 
         return viewHolderClass;
     }
