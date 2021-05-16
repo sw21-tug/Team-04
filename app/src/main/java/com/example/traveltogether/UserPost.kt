@@ -8,7 +8,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class UserPost (val UID: String, val PID: String?, var Title: String, var Destination: String, var StartDate: Long, var EndDate: Long,
+class UserPost (val UID: String, val PID: String?, var TimePosted : Long, var Title: String, var Destination: String, var StartDate: Long, var EndDate: Long,
                 var NumOfPeople: Long, var Description: String, var Comments: List<String>?) {
 
 
@@ -23,6 +23,7 @@ class UserPost (val UID: String, val PID: String?, var Title: String, var Destin
             var firebaseReference = firebase.reference.child("posts").child(pid)
             var userPost: UserPost? = null
             var title : String = "title old"
+            var timePosted : Long = 0
             var destination : String = "destination"
             var description : String = "description"
             var endDate : Long = 1
@@ -47,7 +48,7 @@ class UserPost (val UID: String, val PID: String?, var Title: String, var Destin
                     //numOfPeople = dataSnapshot.child("numOfPeople").value.toString()
                     uid = dataSnapshot.child("uid").value.toString()
                     pid = dataSnapshot.child("pid").value.toString()
-                    userPost = UserPost(uid, pid, title, destination, startDate, endDate, numOfPeople, description, null)
+                    userPost = UserPost(uid, pid, timePosted, title, destination, startDate, endDate, numOfPeople, description, null)
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {}

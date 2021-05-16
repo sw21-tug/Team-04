@@ -2,6 +2,7 @@ package com.example.traveltogether
 
 import android.content.Context
 import android.text.Layout
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,16 +31,17 @@ class PostsAdapter (val context: Context, val posts: List<UserPost>) :
         fun bind(userPost: UserPost) {
             itemView.post_title.text = userPost.Title
             itemView.destination.text = userPost.Destination
-            itemView.start_date.text = getDateTime(userPost.StartDate)
-            itemView.end_date.text = getDateTime(userPost.EndDate)
+            itemView.start_date.text = "From " + getDate(userPost.StartDate)
+            itemView.end_date.text = "To " + getDate(userPost.EndDate)
             itemView.description.text = userPost.Description
-            itemView.num_people.text = userPost.NumOfPeople.toString()
+            itemView.num_people.text = "Group size: " + userPost.NumOfPeople.toString()
+            itemView.time_of_post.text = DateUtils.getRelativeTimeSpanString(userPost.TimePosted)
             //look at video for e.g. some time ago
             //have to save time posted in userpost
         }
     }
 
-    private fun getDateTime(l: Long): String? {
+    private fun getDate(l: Long): String? {
         try {
             val sdf = SimpleDateFormat("dd/MM/yyyy")
             val netDate = Date(l)

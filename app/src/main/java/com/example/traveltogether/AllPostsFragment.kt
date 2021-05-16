@@ -63,6 +63,7 @@ class all_post_fragment : Fragment() {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     for (snapshot in dataSnapshot.children) {
                         val title = snapshot.child("title").value.toString()
+                        val timePosted = snapshot.child("timePosted").value as Long
                         val destination = snapshot.child("destination").value.toString()
                         val description = snapshot.child("description").value.toString()
                         val endDate = snapshot.child("endDate").value as Long
@@ -70,7 +71,7 @@ class all_post_fragment : Fragment() {
                         val numOfPeople = snapshot.child("numOfPeople").value as Long
                         val uid = snapshot.child("uid").value.toString()
                         val pid = snapshot.key.toString()
-                        val userPost = UserPost(uid, pid, title, destination, startDate, endDate, numOfPeople, description, null)
+                        val userPost = UserPost(uid, pid, timePosted, title, destination, startDate, endDate, numOfPeople, description, null)
                         posts.add(userPost)
                         adapter.notifyDataSetChanged()
                     }
