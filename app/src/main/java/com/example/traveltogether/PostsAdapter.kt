@@ -1,11 +1,14 @@
 package com.example.traveltogether
 
 import android.content.Context
-import android.text.Layout
 import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_post.view.*
 import kotlinx.android.synthetic.main.item_post.view.*
@@ -13,16 +16,19 @@ import kotlinx.android.synthetic.main.item_post.view.destination
 import java.text.SimpleDateFormat
 import java.util.*
 
-class PostsAdapter (val context: Context, val posts: List<UserPost>) :
+
+class PostsAdapter(val context: Context, val posts: List<UserPost>) :
         RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
+    private lateinit var view : View
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false)
+        view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(posts[position])
+
     }
 
     override fun getItemCount() = posts.size
@@ -36,8 +42,6 @@ class PostsAdapter (val context: Context, val posts: List<UserPost>) :
             itemView.description.text = userPost.Description
             itemView.num_people.text = "Group size: " + userPost.NumOfPeople.toString()
             itemView.time_of_post.text = DateUtils.getRelativeTimeSpanString(userPost.TimePosted)
-            //look at video for e.g. some time ago
-            //have to save time posted in userpost
         }
     }
 
