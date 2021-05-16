@@ -5,7 +5,7 @@ import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
 class UserPost (val UID: String, val PID: String?, var Title: String, var Destination: String, var StartDate: Long, var EndDate: Long,
-                var NumOfPeople: Long, var Description: String, var Comments: MutableList<String>?) {
+                var NumOfPeople: Long, var Description: String, var Comments: MutableList<Comment>?) {
 
 
     fun post() {
@@ -28,7 +28,8 @@ class UserPost (val UID: String, val PID: String?, var Title: String, var Destin
 
     fun addComment (comment : String) {
         val firebase = FirebaseDatabase.getInstance().reference
-        Comments?.add(comment)
-        firebase.child("posts").child(PID.toString()).child("comments").setValue(Comments)
+        val com = Comment(comment, UID, System.currentTimeMillis())
+        Comments?.add(com)
+        firebase.child("posts").child(PID.toString()).child("comments").push().setValue(com)
     }
 }

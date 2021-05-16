@@ -26,7 +26,7 @@ class DeletePost {
         loginUser.signIn()
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
-        val list : MutableList<String> = mutableListOf()
+        val list : MutableList<Comment> = mutableListOf()
         firebaseRef.child("posts").push().
         setValue(UserPost(FirebaseAuth.getInstance().currentUser?.uid.toString(), "1",
                 "Delete Test", "Malle", 1, 1,

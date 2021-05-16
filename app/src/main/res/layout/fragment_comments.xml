@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Comments">
+    android:orientation="vertical"
+    tools:context=".Comment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/comments_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-1dp"
+        android:layout_marginBottom="70dp"
+        android:verticalScrollbarPosition="defaultPosition">
 
-</FrameLayout>
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comments_recycler_view"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-70dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/enter_comment_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="3dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/enter_new_comment_text"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/button_comment_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="0.05"
+            android:text="@string/send_text"
+            android:textColor="@color/white_on_green" />
+    </LinearLayout>
+
+</RelativeLayout>

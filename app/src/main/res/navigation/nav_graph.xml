@@ -52,13 +52,12 @@
     </fragment>
     <fragment
         android:id="@+id/comment"
-        android:name="com.example.traveltogether.Comments"
-        android:label="Comments"
+        android:name="com.example.traveltogether.CommentsFragment"
+        android:label="@string/comments_text"
         tools:layout="@layout/fragment_comments" >
         <argument
             android:name="PID"
-            app:argType="string"
-            android:defaultValue="0" />
+            app:argType="string" />
         <action
             android:id="@+id/action_comment_to_saved_post_fragment"
             app:destination="@id/saved_post_fragment" />
