@@ -37,7 +37,7 @@ class AddComment {
         var list : MutableList<Comment> = mutableListOf()
         firebaseRef.child("posts").push().
         setValue(UserPost(
-            FirebaseAuth.getInstance().currentUser?.uid.toString(), "1",
+            FirebaseAuth.getInstance().currentUser?.uid.toString(), "1", System.currentTimeMillis(),
             "Delete Test", "Malle", 1, 1,
             3, "hallo", list))
         var data = Tasks.await(firebaseRef.child("posts").get())
@@ -58,7 +58,7 @@ class AddComment {
         val dataNew = Tasks.await(firebaseRef.child("posts").child(pid).get())
 
         userPost = UserPost(dataNew.child("uid").value.toString(),
-            dataNew.key, dataNew.child("title").value.toString(),
+            dataNew.key, dataNew.child("timePosted").value as Long, dataNew.child("title").value.toString(),
             dataNew.child("destination").value.toString(),
             dataNew.child("startDate").value as Long,
             dataNew.child("endDate").value as Long,
