@@ -20,6 +20,7 @@ import java.util.*
 class PostsAdapter(val context: Context, val posts: List<UserPost>) :
         RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
     private lateinit var view : View
+    private lateinit var buttonComments : Button
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false)
@@ -28,7 +29,6 @@ class PostsAdapter(val context: Context, val posts: List<UserPost>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(posts[position])
-
     }
 
     override fun getItemCount() = posts.size
@@ -42,6 +42,13 @@ class PostsAdapter(val context: Context, val posts: List<UserPost>) :
             itemView.description.text = userPost.Description
             itemView.num_people.text = "Group size: " + userPost.NumOfPeople.toString()
             itemView.time_of_post.text = DateUtils.getRelativeTimeSpanString(userPost.TimePosted)
+
+            itemView.comment_button.setOnClickListener {
+                itemView.post_title.text = "comment button worked" //add go to fragment
+            }
+            itemView.join_group_chat.setOnClickListener {
+                itemView.post_title.text = "join group chat button worked" //add go to fragment
+            }
         }
     }
 
@@ -54,4 +61,6 @@ class PostsAdapter(val context: Context, val posts: List<UserPost>) :
             return e.toString()
         }
     }
+
+
 }
