@@ -79,6 +79,21 @@ class CommentsFragment : Fragment() {
                 override fun onCancelled(error: DatabaseError) {}
             })
 
+            firebaseref.child("posts").child(pid).addValueEventListener(object  : ValueEventListener{
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    for (snapshot in dataSnapshot.children) {
+                        view.findViewById<TextView>(R.id.title_comment).text = snapshot.child("title").value.toString()
+                        view.findViewById<TextView>(R.id.destination_comment).text  = snapshot.child("destination").value.toString()
+                        view.findViewById<TextView>(R.id.description_comment).text  = snapshot.child("description").value.toString()
+                        view.findViewById<TextView>(R.id.end_date_comment).text  = snapshot.child("endDate").value.toString()
+                        view.findViewById<TextView>(R.id.start_date_comment).text = snapshot.child("startDate").value.toString()
+                        view.findViewById<TextView>(R.id.number_people_comment).text  = snapshot.child("numOfPeople").value.toString()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
+
             val send_button = view.findViewById<Button>(R.id.button_comment_send)
             send_button.setOnClickListener{
                 val text = view.findViewById<TextView>(R.id.enter_comment_field).text.toString()
