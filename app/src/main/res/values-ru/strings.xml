@@ -52,7 +52,7 @@
 
     <string name="title">заглавие</string>
     <string name="starting_date">Дата начала</string>
-    <string name="time_posted">время опубликовано</string>
+    <string name="time_posted">дата окончания</string>
     <string name="destination">назначения</string>
     <string name="delete">Удалить</string>
     <string name="save">спасти</string>
@@ -81,5 +81,15 @@
     <string name="re_enter_the_same_password_text">Повторно введите тот же пароль:</string>
     <string name="enter_new_password_text">Введите новый пароль:</string>
     <string name="enter_old_password_text">Введите старый пароль:</string>
+    <string name="comments_text">Комментарии</string>
+    <string name="send_text">послать</string>
+    <string name="enter_new_comment_text">Введите новый комментарий…</string>
+    <string name="title_comment">заглавие</string>
+    <string name="starting_date_comment">Дата начала</string>
+    <string name="ending_date_comment">дата окончания</string>
+    <string name="time_posted_comment">дата окончания</string>
+    <string name="destination_comment">назначения</string>
+    <string name="number_people_comment">число людей</string>
+    <string name="description_comment">описание</string>
 
 </resources>
