@@ -25,6 +25,14 @@
     <string name="post">post</string>
     <string name="number_people"># of people</string>
 
+    <string name="title_comment">title</string>
+    <string name="starting_date_comment">starting date</string>
+    <string name="ending_date_comment">ending date</string>
+    <string name="time_posted_comment">time posted</string>
+    <string name="destination_comment">destination</string>
+    <string name="description_comment">description</string>
+    <string name="number_people_comment"># of people</string>
+
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>

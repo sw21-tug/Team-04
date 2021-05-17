@@ -1,10 +1,13 @@
 package com.example.traveltogether
 
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import org.junit.After
@@ -23,7 +26,7 @@ class AddComment {
     private lateinit var userPost : UserPost
 
     @get:Rule
-    val activityRule = ActivityScenarioRule(MainActivity::class.java)
+    var activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Before
     fun checkLogin () {
@@ -53,7 +56,7 @@ class AddComment {
         assert(pid != "")
 
         val dataNew = Tasks.await(firebaseRef.child("posts").child(pid).get())
-        list.clear()
+
         userPost = UserPost(dataNew.child("uid").value.toString(),
             dataNew.key, dataNew.child("title").value.toString(),
             dataNew.child("destination").value.toString(),
@@ -69,7 +72,7 @@ class AddComment {
     }
 
     @Test
-    fun commentTest() {
+    fun functionality() {
 
         firebaseRef.child("posts").child(pid).child("comments").push()
             .setValue(Comment(string, if (FirebaseAuth.getInstance().currentUser?.displayName == "") "Anonymous"
@@ -79,6 +82,28 @@ class AddComment {
         for (comment in data_.children) {
             assert(comment.child("comment").value == string)
         }
+    }
+
+    @Test
+    fun checkDisplay() {
+        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withText("Comments")).perform(click())
+
+        onView(withId(R.id.enter_comment_field)).check(matches(isDisplayed()))
+        onView(withId(R.id.button_comment_send)).check(matches(isDisplayed()))
+        onView(withText("Comments")).check(matches(isDisplayed()))
+
+    }
+
+    @Test
+    fun testCommentDisplay() {
+        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withText("Comments")).perform(click())
+
+        onView(withId(R.id.enter_comment_field)).perform(typeText(string))
+        onView(withId(R.id.button_comment_send)).perform(click())
+        Thread.sleep(1000)
+        onView(withText(string)).check(matches(isDisplayed()))
 
     }
 }
