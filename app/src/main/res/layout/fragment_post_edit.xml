@@ -10,172 +10,178 @@
     tools:ignore="MissingClass">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/outerConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/inner_frame_layout_padding"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
         android:scrollbars="vertical">
 
-        <EditText
-            android:id="@+id/starting_date_field"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="384dp"
-            android:ems="10"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:hint="@string/starting_date"
-            android:inputType="date"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/ending_date_field"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/destination_field" />
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
 
-        <EditText
-            android:id="@+id/number_people_field"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="15dp"
-            android:ems="10"
-            android:hint="@string/number_people"
-            android:inputType="numberSigned"
-            app:layout_constraintBottom_toTopOf="@+id/ending_date_field"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/destination_field"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/title_field"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="30dp"
-            android:ems="10"
-            android:hint="@string/title"
-            android:inputType="textPersonName"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/destination_field"
+            android:orientation="horizontal"
+            android:padding="@dimen/inner_frame_layout_padding"
+            android:scrollbars="vertical"
+
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/delete_button"
-            android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/title_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:ems="10"
+                android:hint="@string/title"
+                android:inputType="textPersonName"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/delete_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/delete"
+                android:textColor="@color/white_on_green" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:text="@string/delete"
-            android:textColor="@color/white_on_green"
-            app:layout_constraintBottom_toBottomOf="@+id/title_field"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+
+            android:orientation="horizontal"
+            android:padding="@dimen/inner_frame_layout_padding"
+            android:scrollbars="vertical"
+
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.945"
-            app:layout_constraintStart_toEndOf="@+id/title_field"
-            app:layout_constraintTop_toTopOf="@+id/title_field"
-            app:layout_constraintVertical_bias="0.013" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
-        <EditText
-            android:id="@+id/destination_field"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="@string/destination"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/starting_date_field"
-            app:layout_constraintEnd_toStartOf="@+id/number_people_field"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            <EditText
+                android:id="@+id/destination_field"
+                android:layout_width="150dp"
+                android:layout_height="45dp"
+                android:layout_alignParentLeft="true"
+                android:ems="10"
+                android:hint="@string/destination"
+                android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/ending_date_field"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="15dp"
-            android:ems="10"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:hint="@string/ending_date_text"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/starting_date_field"
-            app:layout_constraintVertical_bias="0.0" />
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/destination_field"
+                app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/save"
-            android:textColor="@color/white_on_green"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <EditText
+                android:id="@+id/number_people_field"
+                android:layout_width="150dp"
+                android:layout_height="45dp"
+                android:layout_alignRight="@id/imageView2"
+                android:ems="10"
+                android:hint="@string/number_people"
+                android:inputType="numberSigned" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/starting_date_field"
-            app:layout_constraintEnd_toEndOf="@+id/starting_date_field"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/starting_date_field"
-            app:layout_constraintTop_toTopOf="@+id/starting_date_field"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@android:drawable/ic_menu_day" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/destination_field"
-            app:layout_constraintEnd_toEndOf="@+id/destination_field"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/destination_field"
-            app:layout_constraintTop_toTopOf="@+id/destination_field"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@android:drawable/ic_menu_mylocation" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                app:srcCompat="@android:drawable/ic_menu_mylocation" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/number_people_field"
-            app:layout_constraintEnd_toEndOf="@+id/number_people_field"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/number_people_field"
-            app:layout_constraintTop_toTopOf="@+id/number_people_field"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/ending_date_field"
-            app:layout_constraintEnd_toEndOf="@+id/ending_date_field"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/ending_date_field"
-            app:layout_constraintTop_toTopOf="@+id/ending_date_field"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@android:drawable/ic_menu_day" />
+        </RelativeLayout>
 
-        <androidx.cardview.widget.CardView
+        <RelativeLayout
+            android:id="@+id/linearLayout2"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
 
-            app:cardBackgroundColor="@color/white_on_green"
-            app:layout_constraintBottom_toTopOf="@+id/save_button"
+            android:orientation="horizontal"
+            android:padding="@dimen/inner_frame_layout_padding"
+            android:scrollbars="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/starting_date_field">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <EditText
+                android:id="@+id/starting_date_field"
+                android:layout_width="150dp"
+                android:layout_height="45dp"
+                android:layout_alignParentLeft="true"
+                android:ems="10"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/starting_date"
+                android:inputType="date" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/starting_date_field"
+                app:srcCompat="@android:drawable/ic_menu_day" />
+
+
+            <EditText
+                android:id="@+id/ending_date_field"
+                android:layout_width="150dp"
+                android:layout_height="45dp"
+                android:layout_alignParentRight="true"
+                android:ems="10"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/ending_date_text"
+                android:inputType="textPersonName" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/ending_date_field"
+                app:srcCompat="@android:drawable/ic_menu_day" />
+
+
+        </RelativeLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias="0.86">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+
+            app:cardBackgroundColor="@color/white_on_green">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -209,6 +215,35 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.88">
+
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                android:textColor="@color/white_on_green"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </Button>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.wear.widget.BoxInsetLayout>
