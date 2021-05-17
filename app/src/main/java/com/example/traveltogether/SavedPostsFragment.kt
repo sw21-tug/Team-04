@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.fragment_saved_post_fragment.*
-import org.jetbrains.anko.contentView
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,6 +44,11 @@ class saved_post_fragment : Fragment() {
             val actionArguments = saved_post_fragmentDirections.actionSavedPostFragmentToPostEdit("a_unique_pid")
             findNavController().navigate(actionArguments)
         }
+        val button2 : Button = view.findViewById(R.id.comment_button)
+        button2.setOnClickListener {
+            val actionArguments = saved_post_fragmentDirections.actionSavedPostFragmentToComment("-M_p37kHMlW5bmRdAa_6")
+            findNavController().navigate(actionArguments)
+        }
         // Inflate the layout for this fragment
         return view
     }
@@ -56,7 +60,7 @@ class saved_post_fragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment profiel_fragment.
+         * @return A new instance of fragment profile_fragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic

@@ -6,12 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_post.view.*
-import kotlinx.android.synthetic.main.item_post.view.destination
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -43,7 +40,10 @@ class PostsAdapter(val context: Context, val posts: List<UserPost>) :
             itemView.time_of_post.text = DateUtils.getRelativeTimeSpanString(userPost.TimePosted)
 
             itemView.comment_button.setOnClickListener {
-                itemView.post_title.text = "comment button worked" //add go to fragment
+                val actionArguments = all_post_fragmentDirections.actionAllPostFragmentToComment(
+                    userPost.PID!!
+                )
+                view.findNavController().navigate(actionArguments)
             }
             itemView.join_group_chat.setOnClickListener {
                 itemView.post_title.text = "join group chat button worked" //add go to fragment

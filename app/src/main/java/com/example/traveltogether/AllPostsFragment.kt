@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.traveltogether.UserPost.Companion.getPost
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -53,14 +52,13 @@ class all_post_fragment : Fragment() {
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(container.context)
             posts.clear()
-            //posts.add(UserPost("asdfas", "asdf", "asdf", "asdf", 23, 234, 23, "sdf", null))
-            //val userPost = getPost("-MZyhWBW-3qPPOHZnF6O")
 
             var firebase = FirebaseDatabase.getInstance()
             var firebaseReference = firebase.reference.child("posts")
 
             firebaseReference.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    posts.clear()
                     for (snapshot in dataSnapshot.children) {
                         val title = snapshot.child("title").value.toString()
                         val timePosted = snapshot.child("timePosted").value as Long
@@ -71,6 +69,7 @@ class all_post_fragment : Fragment() {
                         val numOfPeople = snapshot.child("numOfPeople").value as Long
                         val uid = snapshot.child("uid").value.toString()
                         val pid = snapshot.key.toString()
+
                         val userPost = UserPost(uid, pid, timePosted, title, destination, startDate, endDate, numOfPeople, description, null)
                         posts.add(userPost)
                         adapter.notifyDataSetChanged()
@@ -79,7 +78,6 @@ class all_post_fragment : Fragment() {
 
                 override fun onCancelled(databaseError: DatabaseError) {}
             })
-
         }
 
         return view
