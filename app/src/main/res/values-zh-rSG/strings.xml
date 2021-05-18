@@ -82,4 +82,14 @@
     <string name="re_enter_the_same_password_text">重新输入相同的密码：</string>
     <string name="submit_text">提交</string>
     <string name="conversation_fragment_name">信息</string>
+    <string name="enter_new_comment_text">输入新评论…</string>
+    <string name="comments_text">注释</string>
+    <string name="send_text">发送</string>
+    <string name="title_comment">标题</string>
+    <string name="starting_date_comment">开始日期</string>
+    <string name="ending_date_comment">結束日期</string>
+    <string name="time_posted_comment">時間發布</string>
+    <string name="destination_comment">目的地</string>
+    <string name="description_comment">描述</string>
+    <string name="number_people_comment">人数</string>
 </resources>

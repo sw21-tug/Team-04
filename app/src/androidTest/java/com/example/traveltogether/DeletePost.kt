@@ -23,9 +23,10 @@ class DeletePost {
     @Before
     fun checkLogin () {
         loginUser = LoginUser("test@gmail.com", "Name", "12345678", "")
+        loginUser.signIn()
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
-        val list : List<String> = emptyList()
+        val list : MutableList<Comment> = mutableListOf()
         firebaseRef.child("posts").push().
         setValue(UserPost(FirebaseAuth.getInstance().currentUser?.uid.toString(), "1",
                 "Delete Test", "Malle", 1, 1,
