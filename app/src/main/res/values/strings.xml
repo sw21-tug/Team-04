@@ -112,4 +112,9 @@
     <string name="comments_text">Comments</string>
     <string name="send_text">Send</string>
     <string name="enter_new_comment_text">Enter new comment…</string>
+
+    <string name="join_group_chat">Join Group Chat </string>
+
+
+
 </resources>
