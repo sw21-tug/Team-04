@@ -81,5 +81,8 @@
     <string name="re_enter_the_same_password_text">Повторно введите тот же пароль:</string>
     <string name="enter_new_password_text">Введите новый пароль:</string>
     <string name="enter_old_password_text">Введите старый пароль:</string>
+    <string name="conversation_fragment_name">Сообщение</string>
+
+
 
 </resources>

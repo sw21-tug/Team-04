@@ -81,4 +81,5 @@
     <string name="enter_new_password_text">输入新密码：</string>
     <string name="re_enter_the_same_password_text">重新输入相同的密码：</string>
     <string name="submit_text">提交</string>
+    <string name="conversation_fragment_name">信息</string>
 </resources>
