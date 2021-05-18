@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class chat_fragment : Fragment() {
-    lateinit var recyclerView: RecyclerView;
-    var name: ArrayList<String> = ArrayList();
+    lateinit var recyclerView: RecyclerView
+    var groupNames: ArrayList<String> = ArrayList()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -20,11 +20,11 @@ class chat_fragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_chat_fragment, container, false)
         recyclerView = view.findViewById(R.id.recyclerView);
-        name.add("Markus is faul!!")
-        name.add("Freddy stinkt!!")
-        Log.d("Fuck it",name[0])
+        groupNames.add("Markus is faul!!")
+        groupNames.add("Freddy stinkt!!")
+        Log.d("Fuck it",groupNames[0])
         val activity = activity as Context
-        val helperAdapter: ChatHelperAdapter = ChatHelperAdapter(activity,name)
+        val helperAdapter: ChatHelperAdapter = ChatHelperAdapter(activity, groupNames, this)
         val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(activity)
         recyclerView .layoutManager = linearLayoutManager
         recyclerView.adapter = helperAdapter

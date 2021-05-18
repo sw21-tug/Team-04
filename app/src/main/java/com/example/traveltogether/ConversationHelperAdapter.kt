@@ -14,39 +14,36 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 
-class ChatHelperAdapter(var context: Context,var arrayList: ArrayList<String>, var fragment: Fragment) :
+class ConversationHelperAdapter(var context: Context, var arrayList: ArrayList<conversationMessage>, var fragment: Fragment) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     @NonNull
     override fun onCreateViewHolder(@NonNull parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.conversation_message, parent, false)
         val viewHolderClass = ViewHolderClass(view)
-        Log.d("Fuck","On Create View Holder")
-        viewHolderClass.itemView.setOnClickListener {
-            Toast.makeText(context, arrayList[viewHolderClass.adapterPosition],Toast.LENGTH_SHORT).show()
-            val args = chat_fragmentDirections.actionChatFragmentToConversationFragment("TEST")
-            fragment.findNavController().navigate(args)
-        }
-
-        return viewHolderClass;
+        return viewHolderClass
     }
 
     override fun onBindViewHolder(@NonNull holder: RecyclerView.ViewHolder, position: Int) {
         val viewHolderClass: ViewHolderClass = holder as ViewHolderClass
-        Log.d("Fuck",arrayList[position])
-        viewHolderClass.textView.text = arrayList[position]
+        viewHolderClass.messageTextView.text = arrayList[position].message
+        viewHolderClass.nameTextView.text = arrayList[position].name
+        viewHolderClass.dateTextView.text = arrayList[position].date
     }
 
     override fun getItemCount(): Int{
-        return arrayList.size;
+        return arrayList.size
     }
     class ViewHolderClass(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var textView: TextView
+        var messageTextView: TextView
+        var nameTextView: TextView
+        var dateTextView: TextView
 
         init {
-            Log.d("Fuck", "Bin im ViewHolderClass Constructer")
-            textView = itemView.findViewById(R.id.chat_item_text_view)
+            messageTextView = itemView.findViewById(R.id.message_text_view)
+            nameTextView = itemView.findViewById(R.id.name_text_view)
+            dateTextView = itemView.findViewById(R.id.date_text_view)
         }
     }
 

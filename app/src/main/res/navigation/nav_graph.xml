@@ -54,7 +54,7 @@
     <fragment
         android:id="@+id/conversation_fragment"
         android:name="com.example.traveltogether.conversation_fragment"
-        android:label="fragment_conversation_fragment"
+        android:label="@string/conversation_fragment_name"
         tools:layout="@layout/fragment_conversation_fragment" >
         <action
             android:id="@+id/action_conversation_fragment_to_chat_fragment"
