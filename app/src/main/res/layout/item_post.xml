@@ -110,7 +110,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_weight="0.5"
-                android:text="Comments"
+                android:text="@string/comments_text"
                 android:textColor="@color/white_on_green" />
 
             <Button
@@ -120,7 +120,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_weight="0.5"
-                android:text="Join Group Chat"
+                android:text="@string/join_group_chat"
                 android:textColor="@color/white_on_green" />
         </LinearLayout>
 

@@ -91,4 +91,15 @@
     <string name="destination_comment">目的地</string>
     <string name="description_comment">描述</string>
     <string name="number_people_comment">人数</string>
+
+    <string name="join_group_chat">加入群聊</string>
+
+
+
+
+
+
+
+
+
 </resources>
