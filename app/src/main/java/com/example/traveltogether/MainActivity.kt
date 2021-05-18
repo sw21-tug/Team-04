@@ -28,7 +28,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var navControllerSlide: NavController
+    lateinit var navControllerSlide: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

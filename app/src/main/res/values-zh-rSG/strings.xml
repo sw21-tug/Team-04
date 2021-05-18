@@ -81,6 +81,7 @@
     <string name="enter_new_password_text">输入新密码：</string>
     <string name="re_enter_the_same_password_text">重新输入相同的密码：</string>
     <string name="submit_text">提交</string>
+    <string name="conversation_fragment_name">信息</string>
     <string name="enter_new_comment_text">输入新评论…</string>
     <string name="comments_text">注释</string>
     <string name="send_text">发送</string>
