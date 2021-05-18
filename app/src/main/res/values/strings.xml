@@ -115,6 +115,14 @@
 
     <string name="join_group_chat">Join Group Chat </string>
 
+    <string name="From">From</string>
+    <string name="Group_Size">Group Size:</string>
+    <string name="to">To</string>
+
+
+
+
+
 
 
 </resources>
