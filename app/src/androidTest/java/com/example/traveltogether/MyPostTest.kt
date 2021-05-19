@@ -17,11 +17,12 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(androidx.test.ext.junit.runners.AndroidJUnit4::class)
-class AddComment {
+class MyPostTest {
     private lateinit var loginUser: LoginUser
     private lateinit var firebaseDb: FirebaseDatabase
     private lateinit var firebaseRef: DatabaseReference
-    private var string = "test comment"
+    private val string = "test comment"
+    private val postTitle = "Urlaub"
     private lateinit var pid : String
     private lateinit var userPost : UserPost
 
@@ -34,18 +35,18 @@ class AddComment {
         loginUser.signIn()
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
-        var list : MutableList<Comment> = mutableListOf()
+        val list : MutableList<Comment> = mutableListOf()
         firebaseRef.child("posts").push().
         setValue(UserPost(
             FirebaseAuth.getInstance().currentUser?.uid.toString(), "1", System.currentTimeMillis(),
-            "Delete Test", "Malle", 1, 1,
+                postTitle, "Malle", 1, 1,
             3, "hallo", list))
-        var data = Tasks.await(firebaseRef.child("posts").get())
+        val data = Tasks.await(firebaseRef.child("posts").get())
 
 
         for (item in data.children) {
             assert(item.hasChild("title"))
-            if (item.child("title").value.toString() == "Delete Test" &&
+            if (item.child("title").value.toString() == postTitle &&
                 item.child("uid").value.toString() ==
                 FirebaseAuth.getInstance().currentUser?.uid
             ) {
@@ -72,38 +73,9 @@ class AddComment {
     }
 
     @Test
-    fun functionality() {
-
-        firebaseRef.child("posts").child(pid).child("comments").push()
-            .setValue(Comment(string, if (FirebaseAuth.getInstance().currentUser?.displayName == "") "Anonymous"
-            else FirebaseAuth.getInstance().currentUser?.displayName , System.currentTimeMillis()))
-
-        val data_ = Tasks.await(firebaseRef.child("posts").child(pid).child("comments").get())
-        for (comment in data_.children) {
-            assert(comment.child("comment").value == string)
-        }
-    }
-
-    @Test
     fun checkDisplay() {
         onView(withId(R.id.saved_post_fragment)).perform(click())
-        onView(withText("Comments")).perform(click())
-
-        onView(withId(R.id.enter_comment_field)).check(matches(isDisplayed()))
-        onView(withId(R.id.button_comment_send)).check(matches(isDisplayed()))
-        onView(withText("Comments")).check(matches(isDisplayed()))
-
+        onView(withId(R.id.recycler_view_my_post)).check(matches(isDisplayed()))
     }
 
-    @Test
-    fun testCommentDisplay() {
-        onView(withId(R.id.saved_post_fragment)).perform(click())
-        onView(withText("Comments")).perform(click())
-
-        onView(withId(R.id.enter_comment_field)).perform(typeText(string))
-        onView(withId(R.id.button_comment_send)).perform(click())
-        Thread.sleep(1000)
-        onView(withText(string)).check(matches(isDisplayed()))
-
-    }
 }
