@@ -151,7 +151,8 @@ class new_popup_fragment : Fragment() {
         val endDate: Long = sdf.parse(endDatePost.text.toString())?.time!!
         val description = descriptionPost.text.toString()
 
-        return UserPost(FirebaseAuth.getInstance().currentUser?.uid.toString(), null, title, destination,
+        return UserPost(FirebaseAuth.getInstance().currentUser?.uid.toString(), "",
+            System.currentTimeMillis(), title, destination,
             startDate, endDate, numberOfPerson, description, null)
     }
 

@@ -51,7 +51,7 @@ class DeletePost {
 
         val dataNew = Tasks.await(firebaseRef.child("posts").child(found).get())
         val user = UserPost(dataNew.child("uid").value.toString(),
-                dataNew.key, dataNew.child("title").value.toString(),
+                dataNew.key, dataNew.child("timePosted").value as Long, dataNew.child("title").value.toString(),
                 dataNew.child("destination").value.toString(),
                 dataNew.child("startDate").value as Long,
                 dataNew.child("endDate").value as Long,

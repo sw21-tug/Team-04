@@ -1,12 +1,20 @@
 package com.example.traveltogether
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_saved_post_fragment.*
 import org.jetbrains.anko.contentView
 
@@ -24,6 +32,8 @@ class saved_post_fragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var posts: MutableList<UserPost>
+    private lateinit var adapter: PostsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,25 +41,61 @@ class saved_post_fragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view : View = inflater.inflate(R.layout.fragment_saved_post_fragment, container, false)
-        val button : Button = view.findViewById(R.id.edit_post_button)
-        button.setOnClickListener {
-            val actionArguments = saved_post_fragmentDirections.actionSavedPostFragmentToPostEdit("a_unique_pid")
-            findNavController().navigate(actionArguments)
+        val view: View = inflater.inflate(R.layout.fragment_saved_post_fragment, container, false)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_my_post)
+        posts = mutableListOf()
+        if (container != null) {
+            adapter = PostsAdapter(container.context, posts)
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(container.context)
+            posts.clear()
+            val firebase = FirebaseDatabase.getInstance()
+            val firebaseReference = firebase.reference.child("posts")
+
+            firebaseReference.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    posts.clear()
+                    for (snapshot in dataSnapshot.children) {
+                        if (snapshot.child("uid").value.toString() == FirebaseAuth.getInstance().currentUser?.uid) {
+                            val title = snapshot.child("title").value.toString()
+                            val timePosted = snapshot.child("timePosted").value as Long
+                            val destination = snapshot.child("destination").value.toString()
+                            val description = snapshot.child("description").value.toString()
+                            val endDate = snapshot.child("endDate").value as Long
+                            val startDate = snapshot.child("startDate").value as Long
+                            val numOfPeople = snapshot.child("numOfPeople").value as Long
+                            val uid = snapshot.child("uid").value.toString()
+                            val pid = snapshot.key.toString()
+
+                            val userPost = UserPost(
+                                uid,
+                                pid,
+                                timePosted,
+                                title,
+                                destination,
+                                startDate,
+                                endDate,
+                                numOfPeople,
+                                description,
+                                null
+                            )
+                            posts.add(userPost)
+                        }
+                    }
+                    posts.reverse()
+                    adapter.notifyDataSetChanged()
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {}
+            })
         }
-        val button2 : Button = view.findViewById(R.id.comment_button)
-        button2.setOnClickListener {
-            val actionArguments = saved_post_fragmentDirections.actionSavedPostFragmentToComment("-M_p37kHMlW5bmRdAa_6")
-            findNavController().navigate(actionArguments)
-        }
+
         // Inflate the layout for this fragment
         return view
     }

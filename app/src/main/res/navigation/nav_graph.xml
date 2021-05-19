@@ -13,8 +13,8 @@
     <fragment
         android:id="@+id/saved_post_fragment"
         android:name="com.example.traveltogether.saved_post_fragment"
-        android:label="@string/save_title_text"
-        tools:layout="@layout/fragment_all_post_fragment" >
+        android:label="@string/my_posts_text"
+        tools:layout="@layout/fragment_all_post_fragment">
         <action
             android:id="@+id/action_saved_post_fragment_to_post_edit"
             app:destination="@id/post_edit" />
