@@ -152,7 +152,7 @@ class new_popup_fragment : Fragment() {
         val description = descriptionPost.text.toString()
 
         return UserPost(FirebaseAuth.getInstance().currentUser?.uid.toString(), null, title, destination,
-            startDate, endDate, numberOfPerson, description, null)
+            startDate, endDate, numberOfPerson, description, null, null, null)
     }
 
     companion object {

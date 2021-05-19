@@ -3,9 +3,10 @@ package com.example.traveltogether
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
+import java.util.jar.Attributes
 
 class UserPost (val UID: String, val PID: String?, var Title: String, var Destination: String, var StartDate: Long, var EndDate: Long,
-                var NumOfPeople: Long, var Description: String, var Comments: MutableList<Comment>?) {
+                var NumOfPeople: Long, var Description: String, var Comments: MutableList<Comment>?, var Messages: MutableList<Message>?, var UserID: MutableList<String>?) {
 
 
     fun post() {
@@ -31,5 +32,16 @@ class UserPost (val UID: String, val PID: String?, var Title: String, var Destin
         val com = Comment(comment, UID, System.currentTimeMillis())
         Comments?.add(com)
         firebase.child("posts").child(PID.toString()).child("comments").push().setValue(com)
+    }
+    fun addMessage (message : String){
+        val firebase = FirebaseDatabase.getInstance().reference
+        val msg = Message(message, UID, FirebaseAuth.getInstance().currentUser?.displayName.toString() ,System.currentTimeMillis())
+        Messages?.add(msg)
+        firebase.child("posts").child(PID.toString()).child("messages").push().setValue(msg)
+    }
+    //todo add to clicklistener in postadpater
+    fun addPostChat(PID: String){
+        val firebase = FirebaseDatabase.getInstance().reference
+        firebase.child("posts").child(PID).child("userIDs").child(FirebaseAuth.getInstance().currentUser.uid)
     }
 }
