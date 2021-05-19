@@ -92,7 +92,7 @@ class ChatTest {
     //TODO call chat groug segment
 
     @Test
-    fun functionality()
+    fun functionalityAddingMessage()
     {
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
@@ -101,11 +101,25 @@ class ChatTest {
             else FirebaseAuth.getInstance().currentUser?.displayName.toString() , System.currentTimeMillis()))
 
         val data_ = Tasks.await(firebaseRef.child("posts").child(pid).child("messages").get())
-        for (comment in data_.children) {
-            assert(comment.child("comment").value == message_string)
+        for (message in data_.children) {
+            assert(message.child("message").value == message_string)
         }
     }
 
+
+    @Test
+    fun functionalityAddingUsersToChat()
+    {
+        firebaseDb = FirebaseDatabase.getInstance()
+        firebaseRef = firebaseDb.reference
+        firebaseRef.child("posts").child(pid).child("userIDs").push()
+            .setValue(FirebaseAuth.getInstance().currentUser.uid)
+
+        val data_ = Tasks.await(firebaseRef.child("posts").child(pid).child("userIDs").get())
+        for (id in data_.children) {
+            assert(id.value == message_string)
+        }
+    }
 
     @Test
     fun checkDisplayOfMessage() {
@@ -118,6 +132,6 @@ class ChatTest {
 
     }
 
-    
+
 
 }
