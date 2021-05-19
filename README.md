@@ -35,8 +35,8 @@ and join others on their journeys.
 * 19 May 2021 - Sprint 3
 
 * 26 May 2021 - Sprint 4
-* 02 May 2021 - Sprint 4
-* 09 May 2021 - Sprint 4 (2 Release, 23:59)
+* 02 June 2021 - Sprint 4
+* 09 June 2021 - Sprint 4 (2 Release, 23:59)
 
 ## Implemented Features
 
