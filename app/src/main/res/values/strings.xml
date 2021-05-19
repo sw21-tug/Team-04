@@ -113,4 +113,5 @@
     <string name="send_text">Send</string>
     <string name="enter_new_comment_text">Enter new comment…</string>
     <string name="conversation_fragment_name">Messages</string>
+    <string name="my_posts_text">My Posts</string>
 </resources>
