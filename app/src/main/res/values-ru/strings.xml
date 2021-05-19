@@ -92,4 +92,5 @@
     <string name="number_people_comment">число людей</string>
     <string name="description_comment">описание</string>
     <string name="conversation_fragment_name">Сообщение</string>
+    <string name="my_posts_text">мой пост</string>
 </resources>
