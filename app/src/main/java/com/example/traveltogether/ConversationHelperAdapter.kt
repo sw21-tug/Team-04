@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 
 
-class ConversationHelperAdapter(var context: Context, var arrayList: ArrayList<conversationMessage>, var fragment: Fragment) :
+class ConversationHelperAdapter(var context: Context, var arrayList: List<Message>, var fragment: Fragment) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     @NonNull
@@ -23,7 +23,7 @@ class ConversationHelperAdapter(var context: Context, var arrayList: ArrayList<c
         val viewHolderClass: ViewHolderClass = holder as ViewHolderClass
         viewHolderClass.messageTextView.text = arrayList[position].message
         viewHolderClass.nameTextView.text = arrayList[position].name
-        viewHolderClass.dateTextView.text = arrayList[position].date
+        viewHolderClass.dateTextView.text = arrayList[position].time.toString()
     }
 
     override fun getItemCount(): Int{
