@@ -17,8 +17,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.fragment_post_edit.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -131,9 +129,17 @@ class post_edit : Fragment() {
         })
         firebaseReference.child("startDate").addValueEventListener (object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val start_date = dataSnapshot.value as Long
-                if (start_date != 0L)
-                    startingDateText.setText(getDate(start_date))
+                val startDate = dataSnapshot.value.toString()
+                if (startDate != "null")
+                    startingDateText.setText(getDate(startDate.toLong()))
+            }
+            override fun onCancelled (databaseError: DatabaseError) { }
+        })
+        firebaseReference.child("endDate").addValueEventListener (object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val endDate = dataSnapshot.value.toString()
+                if (endDate != "null")
+                    endDateText.setText(getDate(endDate.toLong()))
             }
             override fun onCancelled (databaseError: DatabaseError) { }
         })
@@ -142,14 +148,6 @@ class post_edit : Fragment() {
                 val description = dataSnapshot.value.toString()
                 if (description != "null")
                     descriptionText.setText(description)
-            }
-            override fun onCancelled (databaseError: DatabaseError) { }
-        })
-        firebaseReference.child("endDate").addValueEventListener (object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val endDate = dataSnapshot.value as Long
-                if (endDate != 0L)
-                    endDateText.setText(getDate(endDate))
             }
             override fun onCancelled (databaseError: DatabaseError) { }
         })

@@ -84,13 +84,15 @@ class CommentsFragment : Fragment() {
 
             firebaseref.child("posts").child(pid).addValueEventListener(object  : ValueEventListener{
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    view.findViewById<TextView>(R.id.post_title).text = dataSnapshot.child("title").value.toString()
-                    view.findViewById<TextView>(R.id.destination).text  = dataSnapshot.child("destination").value.toString()
-                    view.findViewById<TextView>(R.id.description).text  = dataSnapshot.child("description").value.toString()
-                    view.findViewById<TextView>(R.id.end_date).text  = "To " + getDate(dataSnapshot.child("endDate").value as Long)
-                    view.findViewById<TextView>(R.id.start_date).text = "From " + getDate(dataSnapshot.child("startDate").value as Long)
-                    view.findViewById<TextView>(R.id.num_people).text  = dataSnapshot.child("numOfPeople").value.toString()
-                    view.findViewById<TextView>(R.id.time_of_post).text = DateUtils.getRelativeTimeSpanString(dataSnapshot.child("timePosted").value as Long)
+                    if(dataSnapshot.exists()) {
+                        view.findViewById<TextView>(R.id.post_title).text = dataSnapshot.child("title").value.toString()
+                        view.findViewById<TextView>(R.id.destination).text  = dataSnapshot.child("destination").value.toString()
+                        view.findViewById<TextView>(R.id.description).text  = dataSnapshot.child("description").value.toString()
+                        view.findViewById<TextView>(R.id.end_date).text  = "To " + getDate(dataSnapshot.child("endDate").value as Long)
+                        view.findViewById<TextView>(R.id.start_date).text = "From " + getDate(dataSnapshot.child("startDate").value as Long)
+                        view.findViewById<TextView>(R.id.num_people).text  = dataSnapshot.child("numOfPeople").value.toString()
+                        view.findViewById<TextView>(R.id.time_of_post).text = DateUtils.getRelativeTimeSpanString(dataSnapshot.child("timePosted").value as Long)
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {}
