@@ -32,6 +32,7 @@
     <string name="destination_comment">destination</string>
     <string name="description_comment">description</string>
     <string name="number_people_comment"># of people</string>
+    <string name="show_more">show more</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
