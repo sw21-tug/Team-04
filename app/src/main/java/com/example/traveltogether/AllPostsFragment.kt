@@ -72,8 +72,9 @@ class all_post_fragment : Fragment() {
 
                         val userPost = UserPost(uid, pid, timePosted, title, destination, startDate, endDate, numOfPeople, description, null)
                         posts.add(userPost)
-                        adapter.notifyDataSetChanged()
                     }
+                    posts.reverse()
+                    adapter.notifyDataSetChanged()
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {}
