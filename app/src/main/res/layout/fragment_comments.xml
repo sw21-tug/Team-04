@@ -10,10 +10,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/comments_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="513dp"
+        android:layout_height="426dp"
         android:layout_alignWithParentIfMissing="false"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="202dp"
+        android:layout_marginTop="235dp"
         android:layout_marginBottom="70dp"
         android:verticalScrollbarPosition="defaultPosition">
 
@@ -96,5 +96,14 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="150dp"
         android:text="@string/number_people_comment" />
+
+    <Button
+        android:id="@+id/show_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="180dp"
+        android:text="@string/show_more"
+        android:textSize="8sp" />
 
 </RelativeLayout>
