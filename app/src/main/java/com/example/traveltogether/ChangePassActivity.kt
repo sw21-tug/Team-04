@@ -2,7 +2,9 @@ package com.example.traveltogether
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -12,9 +14,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask
+import org.jetbrains.anko.toast
 
 
 class ChangePassActivity : AppCompatActivity() {
@@ -37,8 +41,11 @@ class ChangePassActivity : AppCompatActivity() {
         success = getString(R.string.success_text)
         val submit_btn: Button = findViewById<View>(R.id.submit_button) as Button
         val old_pass: EditText = findViewById<View>(R.id.TextPassword_Old) as EditText
+
         val new_pass: EditText = findViewById<View>(R.id.TextPassword_new) as EditText
         val new_pass_again: EditText = findViewById<View>(R.id.TextPassword_new_again) as EditText
+
+
 
         submit_btn.setOnClickListener {
             if (old_pass.text.toString().isEmpty())
@@ -77,12 +84,8 @@ class ChangePassActivity : AppCompatActivity() {
                                 PopUp(alert, getString(R.string.old_pwd_wrong_text));
                             }
                         })
-
                 }
-
-
             }
-
         }
     }
 

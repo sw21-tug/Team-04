@@ -98,7 +98,7 @@
     <string name="Group_Size">размер группы:</string>
     <string name="to">К</string>
 
-
-
-
+    <string name="conversation_fragment_name">Сообщение</string>
+    <string name="change_username">Изменение имени пользователя</string>
+    <string name="user_name">Имя пользователя</string>
 </resources>

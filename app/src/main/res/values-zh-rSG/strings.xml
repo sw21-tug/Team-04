@@ -81,6 +81,7 @@
     <string name="enter_new_password_text">输入新密码：</string>
     <string name="re_enter_the_same_password_text">重新输入相同的密码：</string>
     <string name="submit_text">提交</string>
+    <string name="conversation_fragment_name">信息</string>
     <string name="enter_new_comment_text">输入新评论…</string>
     <string name="comments_text">注释</string>
     <string name="send_text">发送</string>
@@ -91,6 +92,8 @@
     <string name="destination_comment">目的地</string>
     <string name="description_comment">描述</string>
     <string name="number_people_comment">人数</string>
+    <string name="change_username">變更使用者名稱</string>
+    <string name="user_name">用戶名</string>
 
     <string name="join_group_chat">加入群聊</string>
 

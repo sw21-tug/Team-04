@@ -35,7 +35,11 @@
         android:id="@+id/chat_fragment"
         android:name="com.example.traveltogether.chat_fragment"
         android:label="@string/chat_title_text"
-        tools:layout="@layout/fragment_chat_fragment" />
+        tools:layout="@layout/fragment_chat_fragment" >
+        <action
+            android:id="@+id/action_chat_fragment_to_conversation_fragment"
+            app:destination="@id/conversation_fragment" />
+    </fragment>
     <fragment
         android:id="@+id/news_fragment"
         android:name="com.example.traveltogether.news_fragment"
@@ -68,5 +72,17 @@
         <action
             android:id="@+id/action_comment_to_all_post_fragment"
             app:destination="@id/all_post_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/conversation_fragment"
+        android:name="com.example.traveltogether.conversation_fragment"
+        android:label="@string/conversation_fragment_name"
+        tools:layout="@layout/fragment_conversation_fragment" >
+        <action
+            android:id="@+id/action_conversation_fragment_to_chat_fragment"
+            app:destination="@id/chat_fragment" />
+        <argument
+            android:name="chatId"
+            app:argType="string" />
     </fragment>
 </navigation>
