@@ -41,7 +41,7 @@
             android:layout_marginTop="57dp"
             android:layout_marginEnd="145dp"
             android:layout_marginBottom="68dp"
-            android:text="Comments"
+            android:text="@string/comments_text"
             android:textColor="@color/white_on_green"
             app:layout_constraintBottom_toTopOf="@+id/saved_post_lable"
             app:layout_constraintEnd_toEndOf="parent"
