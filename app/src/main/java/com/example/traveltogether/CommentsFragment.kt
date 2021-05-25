@@ -93,7 +93,7 @@ class CommentsFragment : Fragment() {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         comments.clear()
                         for (comment in snapshot.children.reversed()) {
-                            if (comments.size >= iterator + five)
+                            if (comments.size >= iterator )
                                 break
                             val com = Comment(
                                 comment.child("comment").value.toString(),
