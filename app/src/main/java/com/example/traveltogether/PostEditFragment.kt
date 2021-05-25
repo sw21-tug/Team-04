@@ -103,53 +103,25 @@ class post_edit : Fragment() {
                 calendar.get(Calendar.DAY_OF_MONTH)).show()
         }
 
-        firebaseReference.child("destination").addValueEventListener (object: ValueEventListener {
+        firebaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val destination = dataSnapshot.value.toString()
-                if (destination != "null")
-                    destinationText.setText(destination)
+                val title = dataSnapshot.child("title").value.toString()
+                titleEdit.setText(title)
+                val destination = dataSnapshot.child("destination").value.toString()
+                destinationText.setText(destination)
+                val description = dataSnapshot.child("description").value.toString()
+                descriptionText.setText(description)
+                val endDate = dataSnapshot.child("endDate").value.toString()
+                endDateText.setText(endDate)
+                val startDate = dataSnapshot.child("startDate").value.toString()
+                startingDateText.setText(startDate)
+                val numOfPeople = dataSnapshot.child("numOfPeople").value.toString()
+                numberPeopleText.setText(numOfPeople)
+                val uid = dataSnapshot.child("uid").value.toString()
+                val pid = dataSnapshot.child("pid").value.toString()
             }
-            override fun onCancelled (databaseError: DatabaseError) { }
-        })
-        firebaseReference.child("title").addValueEventListener (object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val title = dataSnapshot.value.toString()
-                if (title != "null")
-                    titleEdit.setText(title)
-            }
-            override fun onCancelled (databaseError: DatabaseError) { }
-        })
-        firebaseReference.child("numOfPeople").addValueEventListener (object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val people = dataSnapshot.value.toString()
-                if (people != "null")
-                    numberPeopleText.setText(people)
-            }
-            override fun onCancelled (databaseError: DatabaseError) { }
-        })
-        firebaseReference.child("startDate").addValueEventListener (object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val startDate = dataSnapshot.value.toString()
-                if (startDate != "null")
-                    startingDateText.setText(getDate(startDate.toLong()))
-            }
-            override fun onCancelled (databaseError: DatabaseError) { }
-        })
-        firebaseReference.child("endDate").addValueEventListener (object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val endDate = dataSnapshot.value.toString()
-                if (endDate != "null")
-                    endDateText.setText(getDate(endDate.toLong()))
-            }
-            override fun onCancelled (databaseError: DatabaseError) { }
-        })
-        firebaseReference.child("description").addValueEventListener (object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val description = dataSnapshot.value.toString()
-                if (description != "null")
-                    descriptionText.setText(description)
-            }
-            override fun onCancelled (databaseError: DatabaseError) { }
+
+            override fun onCancelled(databaseError: DatabaseError) {}
         })
 
         val buttonSave : Button = view.findViewById(R.id.save_button)

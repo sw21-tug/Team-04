@@ -1,13 +1,10 @@
 package com.example.traveltogether
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -15,8 +12,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.fragment_saved_post_fragment.*
-import org.jetbrains.anko.contentView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,7 +28,7 @@ class saved_post_fragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var posts: MutableList<UserPost>
-    private lateinit var adapter: PostsAdapter
+    private lateinit var adapter: MyPostAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +46,7 @@ class saved_post_fragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_my_post)
         posts = mutableListOf()
         if (container != null) {
-            adapter = PostsAdapter(container.context, posts)
+            adapter = MyPostAdapter(container.context, posts)
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(container.context)
             posts.clear()

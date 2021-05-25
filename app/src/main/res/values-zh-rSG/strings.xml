@@ -93,4 +93,12 @@
     <string name="description_comment">描述</string>
     <string name="number_people_comment">人数</string>
     <string name="my_posts_text">我的帖子</string>
+    <string name="change_username">變更使用者名稱</string>
+    <string name="user_name">用戶名</string>
+
+    <string name="join_group_chat">加入群聊</string>
+
+    <string name="From">從</string>
+    <string name="Group_Size">小組人數:</string>
+    <string name="to">至</string>
 </resources>

@@ -91,6 +91,15 @@
     <string name="destination_comment">назначения</string>
     <string name="number_people_comment">число людей</string>
     <string name="description_comment">описание</string>
+
+    <string name="join_group_chat">присоединиться к групповому чату</string>
+
+    <string name="From">Из</string>
+    <string name="Group_Size">размер группы:</string>
+    <string name="to">К</string>
+
     <string name="conversation_fragment_name">Сообщение</string>
+    <string name="change_username">Изменение имени пользователя</string>
+    <string name="user_name">Имя пользователя</string>
     <string name="my_posts_text">мой пост</string>
 </resources>
