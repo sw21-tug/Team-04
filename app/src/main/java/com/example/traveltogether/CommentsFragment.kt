@@ -35,6 +35,8 @@ class CommentsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var post: UserPost? = null
     private var param2: String? = null
+    private var iterator: Int = 5
+    private var five: Int = 5
     private val args : CommentsFragmentArgs by navArgs()
 
     private lateinit var comments : MutableList<Comment>
@@ -67,7 +69,9 @@ class CommentsFragment : Fragment() {
             firebaseref.child("posts").child(pid).child("comments").addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     comments.clear()
-                    for (comment in snapshot.children) {
+                    for (comment in snapshot.children.reversed()) {
+                        if (comments.size >= 5)
+                            break
                         val com = Comment(
                             comment.child("comment").value.toString(),
                             comment.child("uid").value.toString(),
@@ -81,6 +85,31 @@ class CommentsFragment : Fragment() {
 
                 override fun onCancelled(error: DatabaseError) {}
             })
+
+            val show_more_button = view.findViewById<Button>(R.id.show_more)
+            show_more_button.setOnClickListener{
+                val firebaseref = FirebaseDatabase.getInstance().reference
+                firebaseref.child("posts").child(pid).child("comments").addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        comments.clear()
+                        for (comment in snapshot.children.reversed()) {
+                            if (comments.size >= iterator )
+                                break
+                            val com = Comment(
+                                comment.child("comment").value.toString(),
+                                comment.child("uid").value.toString(),
+                                comment.child("time").value as Long)
+
+                            comments.add(com)
+                            adapter.notifyDataSetChanged()
+                        }
+                        comments.reverse()
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {}
+                })
+                iterator += 5
+            }
 
             firebaseref.child("posts").child(pid).addValueEventListener(object  : ValueEventListener{
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
