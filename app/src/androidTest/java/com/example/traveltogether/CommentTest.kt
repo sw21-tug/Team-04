@@ -89,8 +89,10 @@ class AddComment {
         onView(withId(R.id.saved_post_fragment)).perform(click())
         onView(withText("Comments")).perform(click())
 
+
         onView(withId(R.id.enter_comment_field)).check(matches(isDisplayed()))
         onView(withId(R.id.button_comment_send)).check(matches(isDisplayed()))
+        Thread.sleep(4000)
         onView(withText("Comments")).check(matches(isDisplayed()))
 
     }
@@ -106,4 +108,25 @@ class AddComment {
         onView(withText(string)).check(matches(isDisplayed()))
 
     }
+    @Test
+    fun checkDisplay2() {
+        onView(withId(R.id.all_post_fragment)).perform(click())
+        onView(withText("Comments")).perform(click())
+        //onView(withText("Comments")).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun showmoreButton() {
+        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withText("Comments")).perform(click())
+        onView(withText("show more")).check(matches(isDisplayed()))
+
+        //onView(withId(R.id.enter_comment_field)).perform(typeText(string))
+        //onView(withId(R.id.button_comment_send)).perform(click())
+        Thread.sleep(1000)
+        //onView(withText(string)).check(matches(isDisplayed()))
+
+    }
+
+
 }
