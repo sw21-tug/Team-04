@@ -38,9 +38,7 @@ class new_popup_fragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private val dateFormat = "dd/MM/yyyy"
-    private val dateTimeFormat = "dd/MM/yyyy hh:mm"
-
+    private val myFormat = "dd/MM/yyyy"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +79,7 @@ class new_popup_fragment : Fragment() {
                 calendar.set(Calendar.YEAR, year)
                 calendar.set(Calendar.MONTH, monthOfYear)
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                val sdf = SimpleDateFormat(dateFormat, Locale.GERMANY)
+                val sdf = SimpleDateFormat(myFormat, Locale.GERMANY)
                 startDatePost.setText(sdf.format(calendar.time))
                 endDatePost.setText(sdf.format(calendar.time))
             }
@@ -91,7 +89,7 @@ class new_popup_fragment : Fragment() {
                 calendar.set(Calendar.YEAR, year)
                 calendar.set(Calendar.MONTH, monthOfYear)
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                val sdf = SimpleDateFormat(dateFormat, Locale.GERMANY)
+                val sdf = SimpleDateFormat(myFormat, Locale.GERMANY)
                 endDatePost.setText(sdf.format(calendar.time))
             }
 
@@ -129,7 +127,7 @@ class new_popup_fragment : Fragment() {
             Toast.makeText(activity, "Please fill in all fields!", Toast.LENGTH_LONG).show()
             return false
         }
-        val sdf = SimpleDateFormat(dateFormat, Locale.GERMANY)
+        val sdf = SimpleDateFormat(myFormat, Locale.GERMANY)
         val startDate: Long = sdf.parse(startDatePost.text.toString())?.time!!
         val endDate: Long = sdf.parse(endDatePost.text.toString())?.time!!
 
@@ -148,14 +146,13 @@ class new_popup_fragment : Fragment() {
         val destination = destinationPost.text.toString()
         val numberOfPerson = if (numOfPersonsPost.text.isNotEmpty()) numOfPersonsPost.text.toString().toLong() else 0
 
-        val timePostedLong: Long = System.currentTimeMillis()
-
-        val sdf = SimpleDateFormat(dateFormat, Locale.GERMANY)
+        val sdf = SimpleDateFormat(myFormat, Locale.GERMANY)
         val startDate: Long = sdf.parse(startDatePost.text.toString())?.time!!
         val endDate: Long = sdf.parse(endDatePost.text.toString())?.time!!
         val description = descriptionPost.text.toString()
 
-        return UserPost(FirebaseAuth.getInstance().currentUser?.uid.toString(), null, timePostedLong, title, destination,
+        return UserPost(FirebaseAuth.getInstance().currentUser?.uid.toString(), "",
+            System.currentTimeMillis(), title, destination,
             startDate, endDate, numberOfPerson, description, null)
     }
 

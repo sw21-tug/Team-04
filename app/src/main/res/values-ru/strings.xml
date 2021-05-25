@@ -101,4 +101,5 @@
     <string name="conversation_fragment_name">Сообщение</string>
     <string name="change_username">Изменение имени пользователя</string>
     <string name="user_name">Имя пользователя</string>
+    <string name="my_posts_text">мой пост</string>
 </resources>
