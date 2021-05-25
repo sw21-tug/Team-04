@@ -1,5 +1,6 @@
 package com.example.traveltogether
 
+import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -37,7 +38,7 @@ class MyPostTest {
 
     @Before
     fun checkLogin () {
-        loginUser = LoginUser("markus123@gmail.com", "Markus", "markus123", "")
+        loginUser = LoginUser("mypoststests@gmail.com", "mypoststests", "mypoststests", "mypoststests")
         loginUser.signIn()
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
@@ -73,10 +74,10 @@ class MyPostTest {
             dataNew.child("description").value.toString(), list)
     }
 
+
     @After
     fun cleanup () {
         var activityRule = ActivityScenarioRule(MainActivity::class.java)
-        onView(withId(R.id.saved_post_fragment)).perform(click())
         userPost.delete()
     }
 
@@ -102,7 +103,7 @@ class MyPostTest {
     @Test
     fun checkIfPostEditButtonClickable() {
         onView(withId(R.id.saved_post_fragment)).perform(click())
-        onView(allOf(withText("Edit Post"), hasSibling(withText(postTitle))))
+        onView(withText("Edit Post"))
                 .perform(click())
 
     }
@@ -110,14 +111,14 @@ class MyPostTest {
     @Test
     fun checkIfPostCommentButtonClickable() {
         onView(withId(R.id.saved_post_fragment)).perform(click())
-        onView(allOf(withText("Comments"), hasSibling(withText(postTitle))))
+        onView(withText("Comments"))
                 .perform(click())
     }
 
     @Test
     fun checkIfPostJoinButtonClickable() {
         onView(withId(R.id.saved_post_fragment)).perform(click())
-        onView(allOf(withText("Join Group Chat"), hasSibling(withText(postTitle))))
+        onView(withText("Join Group Chat"))
                 .perform(click())
     }
 
