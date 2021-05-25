@@ -9,13 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.fragment_post_edit.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,6 +35,7 @@ class post_edit : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private val args : post_editArgs by navArgs()
+    private val myFormat = "dd/MM/yyyy"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,13 @@ class post_edit : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
+
+    private lateinit var titleEdit : EditText
+    private lateinit var numberPeopleText : EditText
+    private lateinit var startingDateText : EditText
+    private lateinit var descriptionText : EditText
+    private lateinit var destinationText : EditText
+    private lateinit var endDateText : EditText
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -53,12 +62,12 @@ class post_edit : Fragment() {
         var firebase = FirebaseDatabase.getInstance()
         val pid = args.PID
         var firebaseReference = firebase.reference.child("posts").child(pid)
-        val titleEdit = view.findViewById<View>(R.id.title_field) as EditText
-        val numberPeopleText = view.findViewById<View>(R.id.number_people_field) as EditText
-        val startingDateText = view.findViewById<View>(R.id.starting_date_field) as EditText
-        val descriptionText = view.findViewById<View>(R.id.description_field) as EditText
-        val destinationText = view.findViewById<View>(R.id.destination_field) as EditText
-        val endDateText = view.findViewById<View>(R.id.ending_date_field) as EditText
+        titleEdit = view.findViewById<View>(R.id.title_field) as EditText
+        numberPeopleText = view.findViewById<View>(R.id.number_people_field) as EditText
+        startingDateText = view.findViewById<View>(R.id.starting_date_field) as EditText
+        descriptionText = view.findViewById<View>(R.id.description_field) as EditText
+        destinationText = view.findViewById<View>(R.id.destination_field) as EditText
+        endDateText = view.findViewById<View>(R.id.ending_date_field) as EditText
 
         val startDateSetListener =
             DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
@@ -94,71 +103,53 @@ class post_edit : Fragment() {
                 calendar.get(Calendar.DAY_OF_MONTH)).show()
         }
 
-        firebaseReference.child("destination").addValueEventListener (object: ValueEventListener {
+        firebaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val destination = dataSnapshot.value.toString()
-                if (destination != "null")
-                    destinationText.setText(destination)
+                val title = dataSnapshot.child("title").value.toString()
+                titleEdit.setText(title)
+                val destination = dataSnapshot.child("destination").value.toString()
+                destinationText.setText(destination)
+                val description = dataSnapshot.child("description").value.toString()
+                descriptionText.setText(description)
+                val endDate = dataSnapshot.child("endDate").value.toString()
+                endDateText.setText(endDate)
+                val startDate = dataSnapshot.child("startDate").value.toString()
+                startingDateText.setText(startDate)
+                val numOfPeople = dataSnapshot.child("numOfPeople").value.toString()
+                numberPeopleText.setText(numOfPeople)
+                val uid = dataSnapshot.child("uid").value.toString()
+                val pid = dataSnapshot.child("pid").value.toString()
             }
-            override fun onCancelled (databaseError: DatabaseError) { }
-        })
-        firebaseReference.child("title").addValueEventListener (object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val title = dataSnapshot.value.toString()
-                if (title != "null")
-                    titleEdit.setText(title)
-            }
-            override fun onCancelled (databaseError: DatabaseError) { }
-        })
-        firebaseReference.child("numOfPeople").addValueEventListener (object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val people = dataSnapshot.value.toString()
-                if (people != "null")
-                    numberPeopleText.setText(people)
-            }
-            override fun onCancelled (databaseError: DatabaseError) { }
-        })
-        firebaseReference.child("startDate").addValueEventListener (object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val start_date = dataSnapshot.value.toString()
-                if (start_date != "null")
-                    startingDateText.setText(start_date)
-            }
-            override fun onCancelled (databaseError: DatabaseError) { }
-        })
-        firebaseReference.child("description").addValueEventListener (object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val description = dataSnapshot.value.toString()
-                if (description != "null")
-                    descriptionText.setText(description)
-            }
-            override fun onCancelled (databaseError: DatabaseError) { }
-        })
-        firebaseReference.child("endDate").addValueEventListener (object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val endDate = dataSnapshot.value.toString()
-                if (endDate != "null")
-                    endDateText.setText(endDate)
-            }
-            override fun onCancelled (databaseError: DatabaseError) { }
+
+            override fun onCancelled(databaseError: DatabaseError) {}
         })
 
         val buttonSave : Button = view.findViewById(R.id.save_button)
         buttonSave.setOnClickListener {
-            firebase = FirebaseDatabase.getInstance()
-            firebaseReference = firebase.reference.child("posts").child(pid)
-            firebaseReference.child("destination").setValue(destinationText.text.toString())
-            firebaseReference.child("startDate").setValue(startingDateText.text.toString())
-            firebaseReference.child("numOfPeople").setValue(numberPeopleText.text.toString())
-            firebaseReference.child("title").setValue(titleEdit.text.toString())
-            firebaseReference.child("description").setValue(descriptionText.text.toString())
-            firebaseReference.child("endDate").setValue(endDateText.text.toString())
-            findNavController().navigate(R.id.action_post_edit_to_saved_post_fragment)
+            if (checkFields()) {
+                val sdf = SimpleDateFormat(myFormat, Locale.GERMANY)
+                val startDate: Long = sdf.parse(startingDateText.text.toString())?.time!!
+                val endDate: Long = sdf.parse(endDateText.text.toString())?.time!!
+                val numberOfPerson =
+                    if (numberPeopleText.text.isNotEmpty()) numberPeopleText.text.toString()
+                        .toLong() else 0
+                firebase = FirebaseDatabase.getInstance()
+                firebaseReference = firebase.reference.child("posts").child(pid)
+                firebaseReference.child("destination").setValue(destinationText.text.toString())
+                firebaseReference.child("startDate").setValue(startDate)
+                firebaseReference.child("numOfPeople").setValue(numberOfPerson)
+                firebaseReference.child("title").setValue(titleEdit.text.toString())
+                firebaseReference.child("description").setValue(descriptionText.text.toString())
+                firebaseReference.child("endDate").setValue(endDate)
+                findNavController().navigate(R.id.action_post_edit_to_saved_post_fragment)
+            }
         }
 
         val buttonDelete : Button = view.findViewById(R.id.delete_button)
         buttonDelete.setOnClickListener {
-            //delete post stub
+            val userPost = UserPost(FirebaseAuth.getInstance().currentUser.uid, pid, 0,
+                "", "", 0, 0, 0, "", null)
+            userPost.delete()
             findNavController().navigate(R.id.action_post_edit_to_saved_post_fragment)
         }
         return view
@@ -182,5 +173,33 @@ class post_edit : Fragment() {
                         putString(ARG_PARAM2, param2)
                     }
                 }
+    }
+    private fun getDate(l: Long): String? {
+        try {
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+            val netDate = Date(l)
+            return sdf.format(netDate)
+        } catch (e: Exception) {
+            return e.toString()
+        }
+    }
+
+    private fun checkFields(): Boolean {
+        if(titleEdit.text.isEmpty() || destinationText.text.isEmpty() || startingDateText.text.isEmpty()
+            || endDateText.text.isEmpty() || descriptionText.text.isEmpty()) {
+
+            Toast.makeText(activity, "Please fill in all fields!", Toast.LENGTH_LONG).show()
+            return false
+        }
+        val sdf = SimpleDateFormat(myFormat, Locale.GERMANY)
+        val startDate: Long = sdf.parse(startingDateText.text.toString())?.time!!
+        val endDate: Long = sdf.parse(endDateText.text.toString())?.time!!
+
+        if(startDate > endDate) {
+            Toast.makeText(activity, "You messed up the dates!", Toast.LENGTH_LONG).show()
+            return false
+        }
+
+        return true
     }
 }
