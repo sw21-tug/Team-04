@@ -70,6 +70,7 @@ class conversation_fragment : Fragment() {
         sendMessageButton.setOnClickListener{
             val msg = Message(messageEditText.text.toString(), FirebaseAuth.getInstance().currentUser.uid,  if (FirebaseAuth.getInstance().currentUser?.displayName == "") "Anonymous"
             else FirebaseAuth.getInstance().currentUser?.displayName.toString() ,System.currentTimeMillis())
+            messageEditText.text = null
             firebaseref.child("posts").child(args.chatId).child("messages").push().setValue(msg)
         }
         return view
