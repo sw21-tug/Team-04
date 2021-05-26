@@ -13,6 +13,10 @@
             android:layout_height="51dp"
             android:text="@string/change_password_text"
             android:textColor="@color/white_on_orange"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeMaxTextSize="100sp"
+            app:autoSizeStepGranularity="2sp"
             app:layout_constraintStart_toStartOf="@+id/allow_notification"
             app:layout_constraintTop_toBottomOf="@+id/allow_notification" android:layout_marginTop="24dp"/>
     <Switch
@@ -31,12 +35,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/change_pass"
             app:layout_constraintTop_toBottomOf="@+id/change_pass"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeMaxTextSize="100sp"
+            app:autoSizeStepGranularity="2sp"
             app:layout_constraintVertical_bias="0.0" android:layout_marginTop="24dp"/>
     <Button
             android:id="@+id/change_username"
             android:text="@string/change_username"
             android:layout_width="193dp"
             android:layout_height="51dp"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeMaxTextSize="100sp"
+            app:autoSizeStepGranularity="2sp"
             android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/editTextChangeUsername"
             app:layout_constraintStart_toStartOf="@+id/editTextChangeUsername"/>
     <EditText
