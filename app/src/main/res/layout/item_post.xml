@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:layout_marginTop="8dp"
-    app:cardBackgroundColor="@color/white_on_green">
+    android:layout_marginTop="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -111,7 +110,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="0.5"
                 android:text="@string/comments_text"
-                android:textColor="@color/white_on_green" />
+                android:textColor="@color/white_on_orange" />
 
             <Button
                 android:id="@+id/join_group_chat"
@@ -121,7 +120,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="0.5"
                 android:text="@string/join_group_chat"
-                android:textColor="@color/white_on_green" />
+                android:textColor="@color/white_on_orange" />
         </LinearLayout>
 
     </LinearLayout>

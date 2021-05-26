@@ -12,7 +12,7 @@
             android:layout_width="193dp"
             android:layout_height="51dp"
             android:text="@string/change_password_text"
-            android:textColor="@color/white_on_green"
+            android:textColor="@color/white_on_orange"
             app:layout_constraintStart_toStartOf="@+id/allow_notification"
             app:layout_constraintTop_toBottomOf="@+id/allow_notification" android:layout_marginTop="24dp"/>
     <Switch
@@ -27,7 +27,7 @@
             android:layout_width="193dp"
             android:layout_height="48dp"
             android:text="@string/delete_account_text"
-            android:textColor="@color/white_on_green"
+            android:textColor="@color/white_on_orange"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/change_pass"
             app:layout_constraintTop_toBottomOf="@+id/change_pass"
