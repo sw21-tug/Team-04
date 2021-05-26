@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -28,8 +30,9 @@ class all_post_fragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var posts: MutableList<UserPost>
+    private lateinit var tempPost: MutableList<UserPost>
     private lateinit var adapter : PostsAdapter
-
+    private lateinit var recyclerView : RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -44,11 +47,12 @@ class all_post_fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_all_post_fragment, container, false)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         posts = mutableListOf()
+        tempPost = mutableListOf()
 
         if (container != null) {
-            adapter = PostsAdapter(container.context, posts)
+            adapter = PostsAdapter(container.context, tempPost)
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(container.context)
             posts.clear()
@@ -72,6 +76,7 @@ class all_post_fragment : Fragment() {
 
                         val userPost = UserPost(uid, pid, timePosted, title, destination, startDate, endDate, numOfPeople, description, null, null, null)
                         posts.add(userPost)
+                        tempPost.addAll(posts)
                     }
                     posts.reverse()
                     adapter.notifyDataSetChanged()
@@ -79,6 +84,39 @@ class all_post_fragment : Fragment() {
 
                 override fun onCancelled(databaseError: DatabaseError) {}
             })
+            var filter_button = view.findViewById<View>(R.id.filter_button) as Button
+            var text = view.findViewById<View>(R.id.search_text) as EditText
+
+            filter_button.setOnClickListener {
+                tempPost.clear()
+                val searchtext = text.text.toString()
+                if (searchtext.isNotEmpty())
+                {
+                    // TODO Datenbank abgleichen
+                    posts.forEach{
+                        if (it.Title.contains(searchtext)){
+                            tempPost.add(it)
+                        }
+                        else if(it.Description.contains(searchtext)) {
+                            tempPost.add(it)
+                        }
+                        else if(it.Destination.contains(searchtext)) {
+                            tempPost.add(it)
+                        }
+                        else if(it.UID.contains(searchtext)) {
+                            tempPost.add(it)
+                        }
+
+                    }
+                    recyclerView.adapter!!.notifyDataSetChanged()
+                }
+                else{
+                    tempPost.clear()
+                    tempPost.addAll(posts)
+                    recyclerView.adapter!!.notifyDataSetChanged()
+                }
+
+            }
         }
 
         return view
