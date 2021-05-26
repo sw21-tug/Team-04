@@ -123,11 +123,7 @@
     <string name="From">From</string>
     <string name="Group_Size">Group Size</string>
     <string name="to">To</string>
-
-
-
-
-
+    <string name="message_text">Message</string>
 
 
 </resources>
