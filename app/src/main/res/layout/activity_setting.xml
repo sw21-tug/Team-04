@@ -17,13 +17,13 @@
             app:autoSizeMinTextSize="12sp"
             app:autoSizeMaxTextSize="100sp"
             app:autoSizeStepGranularity="2sp"
-            app:layout_constraintStart_toStartOf="@+id/allow_notification"
-            app:layout_constraintTop_toBottomOf="@+id/allow_notification" android:layout_marginTop="24dp"/>
+            app:layout_constraintStart_toStartOf="@+id/switch_to_dark"
+            app:layout_constraintTop_toBottomOf="@+id/switch_to_dark" android:layout_marginTop="24dp"/>
     <Switch
-            android:id="@+id/allow_notification"
+            android:id="@+id/switch_to_dark"
             android:layout_width="348dp"
             android:layout_height="53dp"
-            android:text="@string/notify_when_activity_in_group_chat_text"
+            android:text="@string/dark_mode"
             app:layout_constraintStart_toStartOf="@+id/change_username"
             app:layout_constraintTop_toBottomOf="@+id/change_username" android:layout_marginTop="24dp"/>
     <Button
