@@ -46,7 +46,7 @@ class MyPostAdapter(val context: Context, val posts: List<UserPost>) :
                 view.findNavController().navigate(actionArguments)
             }
             itemView.join_group_chat.setOnClickListener {
-                val actionArguments = conversation_fragmentDirections.actionConversationFragmentToChatFragment()
+                val actionArguments = saved_post_fragmentDirections.actionSavedPostFragmentToConversationFragment(userPost.PID!!)
                 view.findNavController().navigate(actionArguments)
             }
             itemView.Button_delete_my_posts.setOnClickListener {

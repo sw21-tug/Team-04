@@ -6,10 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.auth.data.model.User
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -61,9 +65,10 @@ class conversation_fragment : Fragment() {
 
             override fun onCancelled(error: DatabaseError) {}
         })
+        val sendMessageButton = view.findViewById<FloatingActionButton>(R.id.sendMessageButton)
         sendMessageButton.setOnClickListener{
-            val up  =  firebaseref.child("posts").child(args.chatId) as UserPost
-            up.addMessage(messageEditText.text.toString())
+            val msg = Message(messageEditText.text.toString(), FirebaseAuth.getInstance().currentUser.uid, FirebaseAuth.getInstance().currentUser?.displayName.toString() ,System.currentTimeMillis())
+            firebaseref.child("posts").child(args.chatId).child("messages").push().setValue(msg)
         }
         return view
     }
