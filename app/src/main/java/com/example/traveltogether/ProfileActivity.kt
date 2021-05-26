@@ -8,11 +8,7 @@ import android.provider.MediaStore
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.PopupMenu
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.Glide
@@ -53,8 +49,8 @@ class ProfileActivity : AppCompatActivity() {
                 .into(profile_picture)
         }
         // set on-click listener
-        edit_picture_button.setOnClickListener {
-            val popup = PopupMenu(this, edit_picture_button)
+        profile_picture.setOnClickListener {
+            val popup = PopupMenu(this, profile_picture)
             popup.inflate(R.menu.test)
             popup.setOnMenuItemClickListener {
                 when (it.title) {
@@ -72,7 +68,7 @@ class ProfileActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val description = dataSnapshot.value.toString()
                 if (description != "null")
-                    descriptionText.text = description
+                    descriptionText.setText(description)
             }
             override fun onCancelled (databaseError: DatabaseError) {
                 //errors
@@ -96,26 +92,17 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun showEditTextDialog() {
-        edit_description.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            val inflater = layoutInflater
-            val dialogLayout = inflater.inflate(R.layout.edit_text_layout, null)
-            val editText = dialogLayout.findViewById<EditText>(R.id.et_editView)
-            with(builder) {
-                setTitle(getString(R.string.add_description))
-                setPositiveButton(getString(R.string.ok_text)) { dialog, which ->
-                    descriptionText.text = editText.text.toString()
-                    val firebasereal = FirebaseDatabase.getInstance()
-                    val firebaseref = firebasereal.getReference()
-                    firebaseref.child("users").child(FirebaseAuth.getInstance().currentUser.uid).child("Description").setValue(descriptionText.text.toString())
-                }
-                setNegativeButton(getString(R.string.cancel_text)) { dialog, which ->
-                    Log.d("Main", "negative button clicked")
-                }
-                setView(dialogLayout)
-                show()
-            }
-
+        val saveDescription = findViewById<Button>(R.id.save_description)
+        saveDescription.setOnClickListener {
+            val text : EditText = findViewById<EditText>(R.id.description_text)
+            val firebasereal = FirebaseDatabase.getInstance()
+            val firebaseref = firebasereal.getReference()
+            firebaseref.child("users").child(FirebaseAuth.getInstance().currentUser.uid).child("Description").setValue(text.text.toString())
+            Toast.makeText(
+                this,
+                "Saved Description",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
