@@ -50,7 +50,8 @@ class PostsAdapter(val context: Context, val posts: List<UserPost>) :
                 view.findNavController().navigate(actionArguments)
             }
             itemView.join_group_chat.setOnClickListener {
-                itemView.post_title.text = "join group chat button worked" //add go to fragment
+                val actionArguments = conversation_fragmentDirections.actionConversationFragmentToChatFragment()
+                view.findNavController().navigate(actionArguments)
             }
         }
     }

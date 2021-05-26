@@ -11,8 +11,6 @@ import java.util.jar.Attributes
 import com.google.firebase.database.ValueEventListener
 
 class UserPost (val UID: String, val PID: String?, var TimePosted : Long, var Title: String, var Destination: String, var StartDate: Long, var EndDate: Long,
-                var NumOfPeople: Long, var Description: String, var Comments: MutableList<Comment>?) {
-class UserPost (val UID: String, val PID: String?, var Title: String, var Destination: String, var StartDate: Long, var EndDate: Long,
                 var NumOfPeople: Long, var Description: String, var Comments: MutableList<Comment>?, var Messages: MutableList<Message>?, var UserID: MutableList<String>?) {
 
 
@@ -52,7 +50,7 @@ class UserPost (val UID: String, val PID: String?, var Title: String, var Destin
                     //numOfPeople = dataSnapshot.child("numOfPeople").value.toString()
                     uid = dataSnapshot.child("uid").value.toString()
                     pid = dataSnapshot.child("pid").value.toString()
-                    userPost = UserPost(uid, pid, timePosted, title, destination, startDate, endDate, numOfPeople, description, null)
+                    userPost = UserPost(uid, pid, timePosted, title, destination, startDate, endDate, numOfPeople, description, null, null, null)
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {}

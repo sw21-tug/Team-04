@@ -35,11 +35,13 @@ class AddComment {
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
         var list : MutableList<Comment> = mutableListOf()
+        var messages : MutableList<Message> = mutableListOf()
+        var ids : MutableList<String> = mutableListOf()
         firebaseRef.child("posts").push().
         setValue(UserPost(
             FirebaseAuth.getInstance().currentUser?.uid.toString(), "1", System.currentTimeMillis(),
             "Delete Test", "Malle", 1, 1,
-            3, "hallo", list))
+            3, "hallo", list, messages, ids))
         var data = Tasks.await(firebaseRef.child("posts").get())
 
 
@@ -63,7 +65,7 @@ class AddComment {
             dataNew.child("startDate").value as Long,
             dataNew.child("endDate").value as Long,
             dataNew.child("numOfPeople").value as Long,
-            dataNew.child("description").value.toString(), list)
+            dataNew.child("description").value.toString(), list, messages, ids)
     }
 
     @After
