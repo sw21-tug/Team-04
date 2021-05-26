@@ -78,7 +78,7 @@ class saved_post_fragment : Fragment() {
                                 endDate,
                                 numOfPeople,
                                 description,
-                                null
+                                null, null, null
                             )
                             posts.add(userPost)
                         }

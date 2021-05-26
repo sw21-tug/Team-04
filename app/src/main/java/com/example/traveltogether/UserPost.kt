@@ -7,10 +7,11 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
+import java.util.jar.Attributes
 import com.google.firebase.database.ValueEventListener
 
 class UserPost (val UID: String, val PID: String?, var TimePosted : Long, var Title: String, var Destination: String, var StartDate: Long, var EndDate: Long,
-                var NumOfPeople: Long, var Description: String, var Comments: MutableList<Comment>?) {
+                var NumOfPeople: Long, var Description: String, var Comments: MutableList<Comment>?, var Messages: MutableList<Message>?, var UserID: MutableList<String>?) {
 
 
     fun post() {
@@ -49,7 +50,7 @@ class UserPost (val UID: String, val PID: String?, var TimePosted : Long, var Ti
                     //numOfPeople = dataSnapshot.child("numOfPeople").value.toString()
                     uid = dataSnapshot.child("uid").value.toString()
                     pid = dataSnapshot.child("pid").value.toString()
-                    userPost = UserPost(uid, pid, timePosted, title, destination, startDate, endDate, numOfPeople, description, null)
+                    userPost = UserPost(uid, pid, timePosted, title, destination, startDate, endDate, numOfPeople, description, null, null, null)
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {}
@@ -77,5 +78,16 @@ class UserPost (val UID: String, val PID: String?, var TimePosted : Long, var Ti
         val com = Comment(comment, UID, System.currentTimeMillis())
         Comments?.add(com)
         firebase.child("posts").child(PID.toString()).child("comments").push().setValue(com)
+    }
+    fun addMessage (message : String){
+        val firebase = FirebaseDatabase.getInstance().reference
+        val msg = Message(message, UID, FirebaseAuth.getInstance().currentUser?.displayName.toString() ,System.currentTimeMillis())
+        Messages?.add(msg)
+        firebase.child("posts").child(PID.toString()).child("messages").push().setValue(msg)
+    }
+    //todo add to clicklistener in postadpater
+    fun addPostChat(PID: String){
+        val firebase = FirebaseDatabase.getInstance().reference
+        firebase.child("posts").child(PID).child("userIDs").child(FirebaseAuth.getInstance().currentUser.uid)
     }
 }

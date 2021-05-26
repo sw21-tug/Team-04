@@ -70,7 +70,7 @@ class all_post_fragment : Fragment() {
                         val uid = snapshot.child("uid").value.toString()
                         val pid = snapshot.key.toString()
 
-                        val userPost = UserPost(uid, pid, timePosted, title, destination, startDate, endDate, numOfPeople, description, null)
+                        val userPost = UserPost(uid, pid, timePosted, title, destination, startDate, endDate, numOfPeople, description, null, null, null)
                         posts.add(userPost)
                     }
                     posts.reverse()

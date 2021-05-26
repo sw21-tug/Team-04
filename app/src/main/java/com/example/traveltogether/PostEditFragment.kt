@@ -148,7 +148,7 @@ class post_edit : Fragment() {
         val buttonDelete : Button = view.findViewById(R.id.delete_button)
         buttonDelete.setOnClickListener {
             val userPost = UserPost(FirebaseAuth.getInstance().currentUser.uid, pid, 0,
-                "", "", 0, 0, 0, "", null)
+                "", "", 0, 0, 0, "", null, null, null)
             userPost.delete()
             findNavController().navigate(R.id.action_post_edit_to_saved_post_fragment)
         }
