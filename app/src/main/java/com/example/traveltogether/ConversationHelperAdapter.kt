@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class ConversationHelperAdapter(var context: Context, var arrayList: List<Message>, var fragment: Fragment) :
@@ -23,7 +25,7 @@ class ConversationHelperAdapter(var context: Context, var arrayList: List<Messag
         val viewHolderClass: ViewHolderClass = holder as ViewHolderClass
         viewHolderClass.messageTextView.text = arrayList[position].message
         viewHolderClass.nameTextView.text = arrayList[position].name
-        viewHolderClass.dateTextView.text = arrayList[position].time.toString()
+        viewHolderClass.dateTextView.text = getDate(arrayList[position].time)
     }
 
     override fun getItemCount(): Int{
@@ -39,6 +41,16 @@ class ConversationHelperAdapter(var context: Context, var arrayList: List<Messag
             messageTextView = itemView.findViewById(R.id.message_text_view)
             nameTextView = itemView.findViewById(R.id.name_text_view)
             dateTextView = itemView.findViewById(R.id.date_text_view)
+        }
+    }
+
+    private fun getDate(l: Long): String? {
+        try {
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+            val netDate = Date(l)
+            return sdf.format(netDate)
+        } catch (e: Exception) {
+            return e.toString()
         }
     }
 

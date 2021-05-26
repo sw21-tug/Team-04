@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_conversation_fragment.*
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
@@ -67,10 +68,13 @@ class conversation_fragment : Fragment() {
         })
         val sendMessageButton = view.findViewById<FloatingActionButton>(R.id.sendMessageButton)
         sendMessageButton.setOnClickListener{
-            val msg = Message(messageEditText.text.toString(), FirebaseAuth.getInstance().currentUser.uid, FirebaseAuth.getInstance().currentUser?.displayName.toString() ,System.currentTimeMillis())
+            val msg = Message(messageEditText.text.toString(), FirebaseAuth.getInstance().currentUser.uid,  if (FirebaseAuth.getInstance().currentUser?.displayName == "") "Anonymous"
+            else FirebaseAuth.getInstance().currentUser?.displayName.toString() ,System.currentTimeMillis())
             firebaseref.child("posts").child(args.chatId).child("messages").push().setValue(msg)
         }
         return view
     }
+
+
 
 }
