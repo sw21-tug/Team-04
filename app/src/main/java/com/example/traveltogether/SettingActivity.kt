@@ -4,19 +4,18 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.Switch
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask
 
 
 class SettingActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +29,10 @@ class SettingActivity : AppCompatActivity() {
         val change_pass_btn: Button = findViewById<View>(R.id.change_pass) as Button
         val delete_account_btn: Button = findViewById<View>(R.id.delete_account) as Button
         val allow_notif_switch: Switch = findViewById<View>(R.id.allow_notification) as Switch
+        val change_username: Button = findViewById<View>(R.id.change_username) as Button
+        val old_usrname: EditText = findViewById<View>(R.id.editTextChangeUsername) as EditText
 
+        old_usrname.setText(FirebaseAuth.getInstance().currentUser?.displayName)
 
         change_pass_btn.setOnClickListener {
             val intent = Intent(this, ChangePassActivity::class.java)
@@ -43,8 +45,28 @@ class SettingActivity : AppCompatActivity() {
 
         allow_notif_switch.setOnClickListener {
         }
+        change_username.setOnClickListener{
+            if (old_usrname.text.toString().isEmpty())
+                Toast.makeText(this, "Please fill in new username!", Toast.LENGTH_LONG).show()
+            else {
+                setUserProfileDisplayName(old_usrname.text.toString())
+            }
+        }
     }
+    private fun setUserProfileDisplayName(name: String) {
+        val user = FirebaseAuth.getInstance().currentUser
+        val request = UserProfileChangeRequest.Builder().setDisplayName(name).build()
+        user?.updateProfile(request)?.addOnSuccessListener {
+            Toast.makeText(this, getString(R.string.update_success_text), Toast.LENGTH_SHORT).show()
+        }?.addOnFailureListener {
+            Toast.makeText(
+                this,
+                "Failed to update Username",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
+    }
 
     fun areYouSurePopUp() {
 

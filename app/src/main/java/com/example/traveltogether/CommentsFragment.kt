@@ -1,6 +1,7 @@
 package com.example.traveltogether
 
 import android.os.Bundle
+import android.text.format.DateUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_comments.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,6 +35,8 @@ class CommentsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var post: UserPost? = null
     private var param2: String? = null
+    private var iterator: Int = 5
+    private var five: Int = 5
     private val args : CommentsFragmentArgs by navArgs()
 
     private lateinit var comments : MutableList<Comment>
@@ -64,29 +69,59 @@ class CommentsFragment : Fragment() {
             firebaseref.child("posts").child(pid).child("comments").addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     comments.clear()
-                    for (comment in snapshot.children) {
+                    for (comment in snapshot.children.reversed()) {
+                        if (comments.size >= 5)
+                            break
                         val com = Comment(
                             comment.child("comment").value.toString(),
                             comment.child("uid").value.toString(),
                             comment.child("time").value as Long)
-
                         comments.add(com)
-                        adapter.notifyDataSetChanged()
                     }
+                    comments.reverse()
+                    adapter.notifyDataSetChanged()
 
                 }
 
                 override fun onCancelled(error: DatabaseError) {}
             })
 
+            val show_more_button = view.findViewById<Button>(R.id.show_more)
+            show_more_button.setOnClickListener{
+                val firebaseref = FirebaseDatabase.getInstance().reference
+                firebaseref.child("posts").child(pid).child("comments").addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        comments.clear()
+                        for (comment in snapshot.children.reversed()) {
+                            if (comments.size >= iterator )
+                                break
+                            val com = Comment(
+                                comment.child("comment").value.toString(),
+                                comment.child("uid").value.toString(),
+                                comment.child("time").value as Long)
+
+                            comments.add(com)
+                            adapter.notifyDataSetChanged()
+                        }
+                        comments.reverse()
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {}
+                })
+                iterator += 5
+            }
+
             firebaseref.child("posts").child(pid).addValueEventListener(object  : ValueEventListener{
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    view.findViewById<TextView>(R.id.title_comment).text = dataSnapshot.child("title").value.toString()
-                    view.findViewById<TextView>(R.id.destination_comment).text  = dataSnapshot.child("destination").value.toString()
-                    view.findViewById<TextView>(R.id.description_comment).text  = dataSnapshot.child("description").value.toString()
-                    view.findViewById<TextView>(R.id.end_date_comment).text  = dataSnapshot.child("endDate").value.toString()
-                    view.findViewById<TextView>(R.id.start_date_comment).text = dataSnapshot.child("startDate").value.toString()
-                    view.findViewById<TextView>(R.id.number_people_comment).text  = dataSnapshot.child("numOfPeople").value.toString()
+                    if(dataSnapshot.exists()) {
+                        view.findViewById<TextView>(R.id.post_title).text = dataSnapshot.child("title").value.toString()
+                        view.findViewById<TextView>(R.id.destination).text  = dataSnapshot.child("destination").value.toString()
+                        view.findViewById<TextView>(R.id.description).text  = dataSnapshot.child("description").value.toString()
+                        view.findViewById<TextView>(R.id.end_date).text  = "To " + getDate(dataSnapshot.child("endDate").value as Long)
+                        view.findViewById<TextView>(R.id.start_date).text = "From " + getDate(dataSnapshot.child("startDate").value as Long)
+                        view.findViewById<TextView>(R.id.num_people).text  = dataSnapshot.child("numOfPeople").value.toString()
+                        view.findViewById<TextView>(R.id.time_of_post).text = DateUtils.getRelativeTimeSpanString(dataSnapshot.child("timePosted").value as Long)
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {}
@@ -129,6 +164,15 @@ class CommentsFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+    private fun getDate(l: Long): String? {
+        try {
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+            val netDate = Date(l)
+            return sdf.format(netDate)
+        } catch (e: Exception) {
+            return e.toString()
+        }
     }
 
 
