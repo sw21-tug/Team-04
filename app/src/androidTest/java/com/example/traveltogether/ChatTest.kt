@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -35,8 +36,8 @@ class ChatTest {
     private lateinit var userPost : UserPost
     @Before
     fun setup() {
-
-        loginUser = LoginUser("markus123@gmail.com", "Markus", "markus123", "")
+        FirebaseAuth.getInstance().signOut()
+        loginUser = LoginUser("test@gmail.com", "Name", "12345678", "")
         loginUser.signIn()
 
 
@@ -83,12 +84,18 @@ class ChatTest {
 
     @Test
     fun chatUITest () {
-        onView(withText("Hallo")).perform(click())
+        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withId(R.id.join_group_chat)).perform(click())
+
         onView(withId(R.id.sendMessageButton)).check(matches(isDisplayed()))
         onView(withId(R.id.messageEditText)).check(matches(isDisplayed()))
         onView(withId(R.id.conversationRecyclerView)).check(matches(isDisplayed()))
     }
 
+    @After
+    fun cleanup () {
+        userPost.delete()
+    }
 
     //TODO call chat groug segment
 
@@ -118,13 +125,15 @@ class ChatTest {
 
         val data_ = Tasks.await(firebaseRef.child("posts").child(pid).child("userIDs").get())
         for (id in data_.children) {
-            assert(id.value == message_string)
+            assert(id.value == FirebaseAuth.getInstance().currentUser.uid)
         }
     }
 
     @Test
     fun checkDisplayOfMessage() {
-        onView(withId(R.id.conversation_fragment)).perform(click())
+        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withId(R.id.join_group_chat)).perform(click())
+
         onView(withId(R.id.messageEditText)).perform(ViewActions.typeText(message_string))
         onView(withId(R.id.sendMessageButton)).perform(click())
 
