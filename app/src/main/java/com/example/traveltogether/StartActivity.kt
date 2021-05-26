@@ -1,18 +1,22 @@
 package com.example.traveltogether
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.startActivity
 import java.util.*
+
 
 class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadLocate()
+        setTheme()
 
         if (FirebaseAuth.getInstance().currentUser == null)
             startActivity<SignIn>()
@@ -36,6 +40,32 @@ class StartActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
         val language = sharedPreferences.getString("My_Lang", "")
         setLocate(language.toString())
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    fun setTheme() {
+        // Saving state of our app
+        // using SharedPreferences
+
+        // Saving state of our app
+        // using SharedPreferences
+        val sharedPreferences = getSharedPreferences(
+                "sharedPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val isDarkModeOn = sharedPreferences
+                .getBoolean(
+                        "isDarkModeOn", false)
+
+        // When user reopens the app
+        // after applying dark/light mode
+
+        // When user reopens the app
+        // after applying dark/light mode
+        if (isDarkModeOn) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
 }
