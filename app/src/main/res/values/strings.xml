@@ -32,6 +32,7 @@
     <string name="destination_comment">destination</string>
     <string name="description_comment">description</string>
     <string name="number_people_comment"># of people</string>
+    <string name="show_more">show more</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
@@ -113,4 +114,20 @@
     <string name="send_text">Send</string>
     <string name="enter_new_comment_text">Enter new comment…</string>
     <string name="conversation_fragment_name">Messages</string>
+    <string name="my_posts_text">My Posts</string>
+    <string name="change_username">Change Username</string>
+    <string name="user_name">User Name</string>
+
+    <string name="join_group_chat">Join Group Chat </string>
+
+    <string name="From">From</string>
+    <string name="Group_Size">Group Size</string>
+    <string name="to">To</string>
+
+
+
+
+
+
+
 </resources>

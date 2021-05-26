@@ -5,6 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_all_post_fragment.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +27,8 @@ class all_post_fragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var posts: MutableList<UserPost>
+    private lateinit var adapter : PostsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +43,45 @@ class all_post_fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_post_fragment, container, false)
+        val view : View = inflater.inflate(R.layout.fragment_all_post_fragment, container, false)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
+        posts = mutableListOf()
+
+        if (container != null) {
+            adapter = PostsAdapter(container.context, posts)
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(container.context)
+            posts.clear()
+
+            var firebase = FirebaseDatabase.getInstance()
+            var firebaseReference = firebase.reference.child("posts")
+
+            firebaseReference.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    posts.clear()
+                    for (snapshot in dataSnapshot.children) {
+                        val title = snapshot.child("title").value.toString()
+                        val timePosted = snapshot.child("timePosted").value as Long
+                        val destination = snapshot.child("destination").value.toString()
+                        val description = snapshot.child("description").value.toString()
+                        val endDate = snapshot.child("endDate").value as Long
+                        val startDate = snapshot.child("startDate").value as Long
+                        val numOfPeople = snapshot.child("numOfPeople").value as Long
+                        val uid = snapshot.child("uid").value.toString()
+                        val pid = snapshot.key.toString()
+
+                        val userPost = UserPost(uid, pid, timePosted, title, destination, startDate, endDate, numOfPeople, description, null, null, null)
+                        posts.add(userPost)
+                    }
+                    posts.reverse()
+                    adapter.notifyDataSetChanged()
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {}
+            })
+        }
+
+        return view
     }
 
     companion object {
