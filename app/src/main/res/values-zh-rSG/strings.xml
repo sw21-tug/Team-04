@@ -101,4 +101,6 @@
     <string name="From">從</string>
     <string name="Group_Size">小組人數:</string>
     <string name="to">至</string>
+    <string name="search">搜索...</string>
+    <string name="filter">篩選 </string>
 </resources>

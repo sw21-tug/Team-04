@@ -102,4 +102,6 @@
     <string name="change_username">Изменение имени пользователя</string>
     <string name="user_name">Имя пользователя</string>
     <string name="my_posts_text">мой пост</string>
+    <string name="search">Поиск…</string>
+    <string name="filter">фильтр </string>
 </resources>
