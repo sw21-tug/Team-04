@@ -69,4 +69,28 @@ class AddNewPostTest {
         onView(withHint(R.string.starting_date)).check(matches(isDisplayed()))
         onView(withHint(R.string.ending_date)).check(matches(isDisplayed()))
     }
+
+    @Test
+    fun clearInput() {
+        val testTitle = getRandomString(10)
+        val testLocation = getRandomString(5)
+        val testDescription = getRandomString(15)
+        val numberOfPeople = kotlin.random.Random.nextInt(0, 10).toString()
+
+        onView(withId(R.id.title_edit_post)).perform(typeText(testTitle))
+        onView(withId(R.id.destination_text_post)).perform(typeText(testLocation))
+        onView(withHint(R.string.ending_date)).perform(click())
+        onView(withText("OK")).perform(click())
+        onView(withId(R.id.number_people_post_text)).perform(typeText(numberOfPeople))
+        pressBack()
+        onView(withId(R.id.description_post_text)).perform(typeText(testDescription))
+        pressBack()
+        onView(withId(R.id.delete_button)).perform(click())
+
+        onView(withHint(R.string.title)).check(matches(isDisplayed()))
+        onView(withHint(R.string.destination)).check(matches(isDisplayed()))
+        onView(withHint(R.string.number_people)).check(matches(isDisplayed()))
+        onView(withHint(R.string.starting_date)).check(matches(isDisplayed()))
+        onView(withHint(R.string.ending_date)).check(matches(isDisplayed()))
+    }
 }

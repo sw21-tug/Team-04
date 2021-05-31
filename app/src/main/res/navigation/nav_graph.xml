@@ -47,11 +47,6 @@
             app:destination="@id/conversation_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/news_fragment"
-        android:name="com.example.traveltogether.news_fragment"
-        android:label="@string/news_title_text"
-        tools:layout="@layout/fragment_news_fragment" />
-    <fragment
         android:id="@+id/post_edit"
         android:name="com.example.traveltogether.post_edit"
         android:label="@string/edit_post_text"

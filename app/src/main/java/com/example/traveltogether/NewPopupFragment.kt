@@ -26,6 +26,7 @@ private const val ARG_PARAM2 = "param2"
 class new_popup_fragment : Fragment() {
 
     private lateinit var saveButton: Button
+    private lateinit var deleteButton: Button
     private lateinit var titlePost: EditText
     private lateinit var destinationPost: EditText
     private lateinit var numOfPersonsPost: EditText
@@ -63,6 +64,7 @@ class new_popup_fragment : Fragment() {
         startDatePost = view.findViewById(R.id.starting_date_post_text)
         endDatePost = view.findViewById(R.id.end_date_post_text)
         descriptionPost = view.findViewById(R.id.description_post_text)
+        deleteButton = view.findViewById(R.id.delete_button)
 
         saveButton.setOnClickListener {
             val userPost: UserPost
@@ -72,6 +74,10 @@ class new_popup_fragment : Fragment() {
                 clearFields()
                 Toast.makeText(activity, "Successfully added Post " + userPost.Title, Toast.LENGTH_LONG).show()
             }
+        }
+
+        deleteButton.setOnClickListener{
+            clearFields()
         }
 
         val startDateSetListener =

@@ -18,12 +18,10 @@
     <string name="change_language_text">改變語言</string>
     <string name="all_post_section_text">所有帖子科</string>
     <string name="chat_section_text">聊天區</string>
-    <string name="news_section_text">" 新聞欄目"</string>
     <string name="saved_text">已保存</string>
     <string name="all_text">全部</string>
     <string name="chat_text">聊天</string>
     <string name="new_text">新的</string>
-    <string name="news_text">消息</string>
     <string name="saved_post_section_text">保存的帖子部分</string>
     <string name="newest_popup_text">最新彈出窗口</string>
     <string name="settings_activity">設置活動</string>
@@ -31,7 +29,6 @@
     <string name="chat_title_text">聊天</string>
     <string name="new_title_text">新的</string>
     <string name="all_title_text">全部</string>
-    <string name="news_title_text">消息</string>
     <string name="messages_header">留言內容</string>
     <string name="sync_header">同步</string>
     <string name="signature_title">你的簽名</string>
@@ -55,6 +52,7 @@
     <string name="time_posted">時間發布</string>
     <string name="destination">目的地</string>
     <string name="delete">删除</string>
+    <string name="clear">清除</string>
     <string name="save">保存</string>
     <string name="post">发布</string>
     <string name="number_people">人数</string>

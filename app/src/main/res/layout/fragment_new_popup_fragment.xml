@@ -53,6 +53,7 @@
                 android:layout_alignParentRight="true"
                 android:text="@string/clear"
                 android:textColor="@color/white_on_orange" />
+
         </RelativeLayout>
 
         <RelativeLayout
