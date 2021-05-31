@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         val navController = findNavController(R.id.buttom_menu_fragment)
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.saved_post_fragment, R.id.all_post_fragment, R.id.chat_fragment, R.id.new_popup_fragment, R.id.news_fragment), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.saved_post_fragment, R.id.all_post_fragment, R.id.chat_fragment, R.id.new_popup_fragment), drawerLayout)
         bottomNavigationView.setupWithNavController(navController)
         setupActionBarWithNavController(navController,appBarConfiguration)
 

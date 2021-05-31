@@ -76,13 +76,6 @@ class LanguageRussianTest {
         onView(withId(R.id.new_popup_fragment)).check(matches(withContentDescription(R.string.new_text)))
         onView(withId(R.id.new_popup_fragment)).perform(click())
         onView(withId(R.id.new_popup_fragment)).check(matches(withContentDescription(R.string.new_text)))
-
-
-        // @string news_text
-        onView(withId(R.id.news_fragment)).check(matches(withContentDescription(R.string.news_text)))
-        onView(withId(R.id.news_fragment)).perform(click())
-        onView(withId(R.id.news_fragment)).check(matches(withContentDescription(R.string.news_text)))
-
     }
 
     @Test
