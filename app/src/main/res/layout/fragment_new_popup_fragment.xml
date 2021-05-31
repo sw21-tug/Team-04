@@ -52,7 +52,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="@string/clear"
-                android:textColor="@color/white_on_green" />
+                android:textColor="@color/white_on_orange" />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -172,48 +173,48 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
             app:layout_constraintVertical_bias="0.86">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-
-            app:cardBackgroundColor="@color/white_on_green">
-
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
                 android:layout_width="match_parent"
-                android:layout_height="238dp"
-                android:baselineAligned="false"
-                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/profile_description_title3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="27dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="0.5"
-                    android:text="@string/profile_description"
-                    android:textSize="20sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
 
-                <EditText
-                    android:id="@+id/description_post_text"
-                    android:layout_width="fill_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_weight="8"
-                    android:gravity="top"
-                    android:inputType="textMultiLine"
-                    android:nestedScrollingEnabled="false"
-                    android:singleLine="false" />
-            </LinearLayout>
+                >
 
-        </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="238dp"
+                    android:baselineAligned="false"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/profile_description_title3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="0.5"
+                        android:text="@string/profile_description"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/description_post_text"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_weight="8"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:nestedScrollingEnabled="false"
+                        android:singleLine="false" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
         </FrameLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -234,7 +235,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/save"
-                android:textColor="@color/white_on_green"
+                android:textColor="@color/white_on_orange"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

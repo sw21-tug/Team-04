@@ -3,7 +3,6 @@ package com.example.traveltogether
 import android.view.Gravity
 import android.view.View
 import android.widget.TextView
-import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.UiController
@@ -61,7 +60,7 @@ class ProfileDescriptionTest {
     @Test
     fun changeDescriptionTest() {
         setup()
-        onView(withId(id.edit_description)).perform(click())
+        onView(withId(id.save_description)).perform(click())
         onView(withId(id.et_editView)).perform(typeText(loginUser.description))
         onView(withText("OK")).perform(click())
 
@@ -72,7 +71,7 @@ class ProfileDescriptionTest {
     @Test
     fun descriptionAfterRejoinActivity() {
         setup()
-        onView(withId(id.edit_description)).perform(click())
+        onView(withId(id.save_description)).perform(click())
         onView(withId(id.et_editView)).perform(typeText(loginUser.description))
         onView(withText("OK")).perform(click())
 

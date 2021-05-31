@@ -1,5 +1,6 @@
 package com.example.traveltogether
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -51,6 +52,7 @@ class SignIn : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("CommitPrefEdits")
     private fun showChangeLang() {
         val listItems = arrayOf("English", "Русские", "中國人" )
         val mBuilder = AlertDialog.Builder(this@SignIn)
@@ -74,7 +76,7 @@ class SignIn : AppCompatActivity() {
         mDialog.show()
     }
 
-    fun setLocate(language: String) {
+    private fun setLocate(language: String) {
         val locale = Locale(language)
         Locale.setDefault(locale)
         val config = Configuration()

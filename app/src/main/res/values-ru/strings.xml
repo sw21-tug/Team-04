@@ -100,6 +100,15 @@
     <string name="change_username">Изменение имени пользователя</string>
     <string name="user_name">Имя пользователя</string>
     <string name="my_posts_text">мой пост</string>
+
+    <string name="save_description_text">сохранить описание</string>
+
+    <string name="dark_mode">темный режим</string>
+    <string name="clear">Чисто</string>
     <string name="search">Поиск…</string>
     <string name="filter">фильтр </string>
+    <string name="show_more">показать больше</string>
+    <string name="message_text">сообщение</string>
+
+
 </resources>

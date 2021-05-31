@@ -40,7 +40,7 @@ class ProfileUnitTest {
 
     @Test
     fun checkEditDescriptionButtonFunctionality() {
-        onView(withId(id.edit_description)).perform(click())
+        onView(withId(id.save_description)).perform(click())
     }
 
     @Test
@@ -50,7 +50,7 @@ class ProfileUnitTest {
 
     @Test
     fun checkDescription() {
-        onView(withId(id.edit_description)).perform(click())
+        onView(withId(id.save_description)).perform(click())
         onView(withId(id.et_editView)).perform(typeText("hallooo"))
     }
 }

@@ -5,12 +5,10 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.PopupMenu
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.Glide
@@ -34,6 +32,7 @@ class ProfileActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 100
     private val REQUEST_IMAGE_GALLERY = 101
     private lateinit var imageUri: Uri
+    lateinit var descriptionText : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,14 +41,16 @@ class ProfileActivity : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         editTextTextPersonName.text = FirebaseAuth.getInstance().currentUser?.displayName
 
+        descriptionText = findViewById(R.id.description_text)
+        descriptionText.movementMethod = ScrollingMovementMethod()
         if(user?.photoUrl != null) {
             Glide.with(this)
                 .load(user.photoUrl)
                 .into(profile_picture)
         }
         // set on-click listener
-        edit_picture_button.setOnClickListener {
-            val popup = PopupMenu(this, edit_picture_button)
+        profile_picture.setOnClickListener {
+            val popup = PopupMenu(this, profile_picture)
             popup.inflate(R.menu.test)
             popup.setOnMenuItemClickListener {
                 when (it.title) {
@@ -67,7 +68,7 @@ class ProfileActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val description = dataSnapshot.value.toString()
                 if (description != "null")
-                    description_text.text = description
+                    descriptionText.setText(description)
             }
             override fun onCancelled (databaseError: DatabaseError) {
                 //errors
@@ -91,26 +92,17 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun showEditTextDialog() {
-        edit_description.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            val inflater = layoutInflater
-            val dialogLayout = inflater.inflate(R.layout.edit_text_layout, null)
-            val editText = dialogLayout.findViewById<EditText>(R.id.et_editView)
-            with(builder) {
-                setTitle(getString(R.string.add_description))
-                setPositiveButton(getString(R.string.ok_text)) { dialog, which ->
-                    description_text.text = editText.text.toString()
-                    val firebasereal = FirebaseDatabase.getInstance()
-                    val firebaseref = firebasereal.getReference()
-                    firebaseref.child("users").child(FirebaseAuth.getInstance().currentUser.uid).child("Description").setValue(description_text.text)
-                }
-                setNegativeButton(getString(R.string.cancel_text)) { dialog, which ->
-                    Log.d("Main", "negative button clicked")
-                }
-                setView(dialogLayout)
-                show()
-            }
-
+        val saveDescription = findViewById<Button>(R.id.save_description)
+        saveDescription.setOnClickListener {
+            val text : EditText = findViewById<EditText>(R.id.description_text)
+            val firebasereal = FirebaseDatabase.getInstance()
+            val firebaseref = firebasereal.getReference()
+            firebaseref.child("users").child(FirebaseAuth.getInstance().currentUser.uid).child("Description").setValue(text.text.toString())
+            Toast.makeText(
+                this,
+                "Saved Description",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 

@@ -99,6 +99,14 @@
     <string name="From">從</string>
     <string name="Group_Size">小組人數:</string>
     <string name="to">至</string>
+    <string name="save_description_text">保存描述</string>
+
+    <string name="dark_mode">暗模式</string>
+    <string name="clear">清除</string>
     <string name="search">搜索...</string>
     <string name="filter">篩選 </string>
+    <string name="show_more">展示更多</string>
+    <string name="message_text">信息</string>
+
+
 </resources>
