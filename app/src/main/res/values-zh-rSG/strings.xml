@@ -55,6 +55,7 @@
     <string name="time_posted">時間發布</string>
     <string name="destination">目的地</string>
     <string name="delete">删除</string>
+    <string name="clear">清除</string>
     <string name="save">保存</string>
     <string name="post">发布</string>
     <string name="number_people">人数</string>

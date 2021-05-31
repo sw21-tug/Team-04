@@ -55,6 +55,7 @@
     <string name="time_posted">дата окончания</string>
     <string name="destination">назначения</string>
     <string name="delete">Удалить</string>
+    <string name="clear">Чисто</string>
     <string name="save">спасти</string>
     <string name="post">Почта</string>
     <string name="number_people">число людей</string>

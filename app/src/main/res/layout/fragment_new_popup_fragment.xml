@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="@string/delete"
+                android:text="@string/clear"
                 android:textColor="@color/white_on_green" />
         </RelativeLayout>
 
