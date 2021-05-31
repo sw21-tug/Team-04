@@ -3,6 +3,7 @@ package com.example.traveltogether
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.*
 import android.widget.CompoundButton
@@ -14,10 +15,12 @@ import com.google.firebase.auth.UserProfileChangeRequest
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask
+import java.util.*
 
 
 class SettingActivity : AppCompatActivity() {
 
+    private var triggerRecreate : Boolean = false
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +28,6 @@ class SettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting)
         val actionbar = supportActionBar
         actionbar!!.title = getString(R.string.settings_text)
-        actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
 
 
@@ -45,17 +47,16 @@ class SettingActivity : AppCompatActivity() {
         switch_theme.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
             // do something, the isChecked will be
             // true if the switch is in the On position
-
             if(isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 editor.putBoolean("isDarkModeOn", true)
                 editor.apply()
-            }
-
-            else {
+                switchLanguage()
+            } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 editor.putBoolean("isDarkModeOn", false)
                 editor.apply()
+                switchLanguage()
             }
 
         })
@@ -79,6 +80,27 @@ class SettingActivity : AppCompatActivity() {
             }
         }
     }
+
+    @SuppressLint("CommitPrefEdits")
+    private fun switchLanguage() {
+        val sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val language = sharedPreferences.getString("My_Lang", "en")!!
+        setLocate(language)
+        recreate()
+    }
+
+    private fun setLocate(language: String) {
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+
+        val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
+        editor.putString("My_Lang", language)
+        editor.apply()
+    }
+
     private fun setUserProfileDisplayName(name: String) {
         val user = FirebaseAuth.getInstance().currentUser
         val request = UserProfileChangeRequest.Builder().setDisplayName(name).build()
@@ -91,7 +113,6 @@ class SettingActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-
     }
 
     fun areYouSurePopUp() {
