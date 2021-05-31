@@ -3,13 +3,13 @@ package com.example.traveltogether
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
@@ -112,9 +112,9 @@ class post_edit : Fragment() {
                 val description = dataSnapshot.child("description").value.toString()
                 descriptionText.setText(description)
                 val endDate = dataSnapshot.child("endDate").value.toString()
-                endDateText.setText(endDate)
+                endDateText.setText(getDate(endDate.toLong()))
                 val startDate = dataSnapshot.child("startDate").value.toString()
-                startingDateText.setText(startDate)
+                startingDateText.setText(getDate(startDate.toLong()))
                 val numOfPeople = dataSnapshot.child("numOfPeople").value.toString()
                 numberPeopleText.setText(numOfPeople)
                 val uid = dataSnapshot.child("uid").value.toString()
@@ -174,6 +174,7 @@ class post_edit : Fragment() {
                     }
                 }
     }
+
     private fun getDate(l: Long): String? {
         try {
             val sdf = SimpleDateFormat("dd/MM/yyyy")
@@ -201,5 +202,15 @@ class post_edit : Fragment() {
         }
 
         return true
+    }
+
+    fun getDate(milliSeconds: Long, dateFormat: String?): String? {
+        // Create a DateFormatter object for displaying date in specified format.
+        val formatter = SimpleDateFormat(dateFormat)
+
+        // Create a calendar object that will convert the date and time value in milliseconds to date.
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = milliSeconds
+        return formatter.format(calendar.time)
     }
 }
