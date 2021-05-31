@@ -17,8 +17,4 @@
         android:id = "@+id/new_popup_fragment"
         android:title="@string/new_text"
         android:icon="@drawable/ic_popup" />
-    <item
-        android:id = "@+id/news_fragment"
-        android:title="@string/news_text"
-        android:icon="@drawable/ic_news" />
 </menu>
