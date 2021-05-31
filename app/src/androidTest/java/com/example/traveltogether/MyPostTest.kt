@@ -43,11 +43,13 @@ class MyPostTest {
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
         val list : MutableList<Comment> = mutableListOf()
+        var messages : MutableList<Message> = mutableListOf()
+        var ids : MutableList<String> = mutableListOf()
         firebaseRef.child("posts").push().
         setValue(UserPost(
             FirebaseAuth.getInstance().currentUser?.uid.toString(), "2", System.currentTimeMillis(),
                 postTitle, postDestination, postStartEndDate, postStartEndDate,
-                postNPeople, postDescription, list))
+                postNPeople, postDescription, list, messages, ids))
         val data = Tasks.await(firebaseRef.child("posts").get())
 
 
@@ -71,7 +73,7 @@ class MyPostTest {
             dataNew.child("startDate").value as Long,
             dataNew.child("endDate").value as Long,
             dataNew.child("numOfPeople").value as Long,
-            dataNew.child("description").value.toString(), list)
+            dataNew.child("description").value.toString(), list, messages, ids)
     }
 
 

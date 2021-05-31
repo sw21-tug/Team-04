@@ -153,7 +153,7 @@ class new_popup_fragment : Fragment() {
 
         return UserPost(FirebaseAuth.getInstance().currentUser?.uid.toString(), "",
             System.currentTimeMillis(), title, destination,
-            startDate, endDate, numberOfPerson, description, null)
+            startDate, endDate, numberOfPerson, description, null, null, null)
     }
 
     companion object {

@@ -127,5 +127,8 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="clear">clear</string>
 
+    <string name="search">Search...</string>
+    <string name="filter">Filter</string>
+    <string name="message_text">Message</string>
 
 </resources>

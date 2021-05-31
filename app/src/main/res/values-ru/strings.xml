@@ -107,4 +107,10 @@
 
     <string name="dark_mode">темный режим</string>
     <string name="clear">Чисто</string>
+    <string name="search">Поиск…</string>
+    <string name="filter">фильтр </string>
+    <string name="show_more">показать больше</string>
+    <string name="message_text">сообщение</string>
+
+
 </resources>
