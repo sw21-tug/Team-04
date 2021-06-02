@@ -2,6 +2,7 @@ package com.example.traveltogether
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -57,6 +58,8 @@ class group_chatting : Fragment() {
         conversationRecyclerView .layoutManager = linearLayoutManager
         conversationRecyclerView.adapter = helperAdapter
         val firebaseref = FirebaseDatabase.getInstance().reference
+
+        Log.d("args_", args.chatId)
         firebaseref.child("posts").child(args.chatId).child("messages").addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
