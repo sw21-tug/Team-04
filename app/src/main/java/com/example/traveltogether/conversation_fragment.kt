@@ -21,10 +21,10 @@ class conversation_fragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val name = "test1" //getString()
-        val name2 = "test2" //getString()
+        val chat_title = getString(R.string.group_chat_messages_title)
+        val planning_title = getString(R.string.group_chat_planing_title)
         getString(R.string.app_name)
-        conversationFragmentAdapter = ConversationFragmentAdapter(childFragmentManager, name, name2)
+        conversationFragmentAdapter = ConversationFragmentAdapter(childFragmentManager, chat_title, planning_title)
         viewPager = view.findViewById(R.id.pager)
         viewPager.adapter = conversationFragmentAdapter
     }

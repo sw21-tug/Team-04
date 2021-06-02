@@ -107,7 +107,10 @@
     <string name="search">Поиск…</string>
     <string name="filter">фильтр </string>
     <string name="show_more">показать больше</string>
-    <string name="message_text">сообщение</string>
+
+    <string name="group_chat_messages_title">планирование</string>
+
+    <string name="group_chat_planing_title">сообщение</string>
 
 
 </resources>
