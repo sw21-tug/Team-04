@@ -2,6 +2,7 @@ package com.example.traveltogether
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,33 +24,29 @@ class chat_fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val firebaseref = FirebaseDatabase.getInstance().reference
-        firebaseref.child("posts").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                groupNames.clear()
-                for ( post in snapshot.children) {
-                    for(uid in post.child("userIDs").children)
-                    {
-                        if(uid.value == FirebaseAuth.getInstance().currentUser.uid)
-                        {
-                            val title = post.child("title").value.toString()
-                            val pid = post.key.toString()
-                            val chatItem = Chat(pid,title)
-                            groupNames.add(chatItem)
-                            break;
-                        }
-                    }
-                }
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {}
-        })
-
         val view = inflater.inflate(R.layout.fragment_chat_fragment, container, false)
         recyclerView = view.findViewById(R.id.chatRecyclerView);
         val activity = activity as Context
         val helperAdapter = ChatHelperAdapter(activity, groupNames, this)
+        val firebaseref = FirebaseDatabase.getInstance().reference
+        firebaseref.child("posts").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                groupNames.clear()
+                for (post in snapshot.children) {
+                    for (uid in post.child("uid").children) {
+                        if (uid.value == FirebaseAuth.getInstance().currentUser.uid) {
+                            val title = post.child("title").value.toString()
+                            val pid = post.key.toString()
+                            val chatItem = Chat(pid, title)
+                            groupNames.add(chatItem)
+                            helperAdapter.notifyDataSetChanged()
+                            break;
+                        }
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
         val linearLayoutManager = LinearLayoutManager(activity)
         recyclerView .layoutManager = linearLayoutManager
         recyclerView.adapter = helperAdapter
