@@ -29,11 +29,12 @@ class FilterTest {
 
     @Test
     fun checkFilter(){
-        onView(withId(R.id.filter_title)).perform(typeText("hi"))
-        onView(withHint(R.id.filter_button_expand)).perform(click())
-        onView(withText("hi")).check(matches(isDisplayed()))
-        onView(withId(R.id.filter_title)).perform(typeText(""))
+
         onView(withId(R.id.filter_button_expand)).perform(click())
-        onView(withText("dfg")).check(matches(isDisplayed()))
+        onView(withId(R.id.filter_title)).perform(typeText("hi"))
+        onView(withId(R.id.filter_destination)).perform(typeText("graz"))
+        onView(withHint(R.string.starting_date)).perform(click())
+        onView(withText("OK")).perform(click())
+        onView(withText("hi")).check(matches(isDisplayed()))
     }
 }

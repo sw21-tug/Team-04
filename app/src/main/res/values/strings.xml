@@ -21,6 +21,7 @@
     <string name="time_posted">time posted</string>
     <string name="destination">destination</string>
     <string name="delete">delete</string>
+    <string name="clear">clear</string>
     <string name="save">save</string>
     <string name="post">post</string>
     <string name="number_people"># of people</string>
@@ -126,5 +127,7 @@
     <string name="search">Search...</string>
     <string name="filter">Filter</string>
     <string name="message_text">Message</string>
+    <string name="expand_filter">expand filter</string>
+    <string name="close_filter">close filter</string>
 
 </resources>

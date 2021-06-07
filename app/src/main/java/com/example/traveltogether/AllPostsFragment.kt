@@ -104,10 +104,10 @@ class all_post_fragment : Fragment() {
             filterExpandButton.setOnClickListener {
                 if(filterLayout.visibility == View.VISIBLE) {
                     filterLayout.visibility = View.GONE
-                    filterExpandButton.text = "expand filter"
+                    filterExpandButton.text = getString(R.string.expand_filter)
                 } else {
                     filterLayout.visibility = View.VISIBLE
-                    filterExpandButton.text = "close filter"
+                    filterExpandButton.text = getString(R.string.close_filter)
                 }
             }
 
