@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.item_my_post.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -46,6 +48,9 @@ class MyPostAdapter(val context: Context, val posts: List<UserPost>) :
                 view.findNavController().navigate(actionArguments)
             }
             itemView.join_group_chat.setOnClickListener {
+                val firebaseref = FirebaseDatabase.getInstance().reference
+                firebaseref.child("posts").child(userPost.PID.toString()).child("uid").push().setValue(FirebaseAuth.getInstance().currentUser.uid)
+
                 val actionArguments = saved_post_fragmentDirections.actionSavedPostFragmentToConversationFragment(userPost.PID!!)
                 view.findNavController().navigate(actionArguments)
             }
