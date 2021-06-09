@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Switch
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +40,7 @@ class PostsAdapter(val context: Context, val posts: List<UserPost>) :
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @SuppressLint("SetTextI18n", "ResourceType")
         fun bind(userPost: UserPost) {
+            val sw = itemView.bookmark as Switch
             itemView.post_title.text = userPost.Title
             itemView.destination.text = userPost.Destination
 
@@ -48,6 +50,29 @@ class PostsAdapter(val context: Context, val posts: List<UserPost>) :
             itemView.description.text = userPost.Description
             itemView.num_people.text =   context.getString(R.string.Group_Size) + ": "   + userPost.NumOfPeople.toString()
             itemView.time_of_post.text = DateUtils.getRelativeTimeSpanString(userPost.TimePosted)
+
+            var firebase = FirebaseDatabase.getInstance()
+            var firebaseReference = firebase.reference.child("posts")
+
+            firebaseReference.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    for (snapshot in dataSnapshot.children) {
+                        if(snapshot.key.toString() == userPost.PID)
+                        {
+                            for(saved in snapshot.child("saved").children)
+                            {
+                                if(saved.value == FirebaseAuth.getInstance().currentUser.uid)
+                                {
+                                    sw.isChecked = true
+                                    break
+                                }
+                            }
+                            break
+                        }
+                    }
+                }
+                override fun onCancelled(databaseError: DatabaseError) {}
+            })
 
             itemView.comment_button.setOnClickListener {
                 val actionArguments = all_post_fragmentDirections.actionAllPostFragmentToComment(
@@ -63,6 +88,61 @@ class PostsAdapter(val context: Context, val posts: List<UserPost>) :
                 val actionArguments = all_post_fragmentDirections.actionAllPostFragmentToConversationFragment(userPost.PID!!)
                 view.findNavController().navigate(actionArguments)
 
+            }
+            sw.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked)
+                {
+                    var firebase = FirebaseDatabase.getInstance()
+                    var firebaseReference = firebase.reference.child("posts")
+                    var found = false
+                    firebaseReference.addValueEventListener(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            for (snapshot in dataSnapshot.children) {
+                                if(snapshot.key.toString() == userPost.PID)
+                                {
+                                    for(saved in snapshot.child("saved").children)
+                                    {
+                                        if(saved.value == FirebaseAuth.getInstance().currentUser.uid)
+                                        {
+                                            found = true
+                                            break
+                                        }
+                                    }
+                                    break
+                                }
+                            }
+                            if (!found){
+                                firebaseReference.child(userPost.PID.toString()).child("saved").push().setValue(FirebaseAuth.getInstance().currentUser.uid)
+                            }
+                        }
+                        override fun onCancelled(databaseError: DatabaseError) {}
+                    })
+                }
+                else
+                {
+                    var firebase = FirebaseDatabase.getInstance()
+                    var firebaseReference = firebase.reference.child("posts")
+
+                    firebaseReference.addValueEventListener(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            for (snapshot in dataSnapshot.children) {
+                                if(snapshot.key.toString() == userPost.PID)
+                                {
+                                    for (saved in snapshot.child("saved").children)
+                                    {
+                                        if (saved.value == FirebaseAuth.getInstance().currentUser.uid) {
+                                            firebaseReference.child(userPost.PID.toString())
+                                                .child("saved").child(saved.key.toString())
+                                                .removeValue()
+                                        }
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                        override fun onCancelled(databaseError: DatabaseError) {}
+                    })
+                }
             }
         }
     }
