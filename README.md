@@ -64,6 +64,8 @@ and join others on their journeys.
 * TT-025 Group Chat Chatting
 * TT-005 Filtering Posts
 * TT-011 Design
+* TT-033 Group Chat Groups
+* TT-035 Planning UI
 
 ## Bugs
 * TT-028 Adding dates to posts and comments
