@@ -9,7 +9,7 @@
         android:id="@+id/all_post_fragment"
         android:name="com.example.traveltogether.all_post_fragment"
         android:label="@string/all_title_text"
-        tools:layout="@layout/fragment_my_post_fragment" >
+        tools:layout="@layout/fragment_all_post_fragment" >
         <action
             android:id="@+id/action_all_post_fragment_to_comment"
             app:destination="@id/comment" />
@@ -21,7 +21,7 @@
         android:id="@+id/my_posts_fragment"
         android:name="com.example.traveltogether.my_posts_fragment"
         android:label="@string/my_posts_text"
-        tools:layout="@layout/fragment_all_post_fragment">
+        tools:layout="@layout/fragment_my_post_fragment">
         <action
             android:id="@+id/action_my_posts_fragment_to_post_edit"
             app:destination="@id/post_edit" />
@@ -36,7 +36,7 @@
         android:id="@+id/saved_post_fragment"
         android:name="com.example.traveltogether.saved_post_fragment"
         android:label="@string/save_title_text"
-        tools:layout="@layout/fragment_all_post_fragment">
+        tools:layout="@layout/fragment_saved_post_fragment">
         <action
             android:id="@+id/action_saved_post_fragment_to_comment"
             app:destination="@id/comment" />

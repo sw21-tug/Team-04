@@ -3,16 +3,25 @@ package com.example.traveltogether
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.type.DateTime
+import java.security.Timestamp
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 
 private const val ARG_PARAM1 = "param1"
@@ -49,6 +58,7 @@ class new_popup_fragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -76,6 +86,23 @@ class new_popup_fragment : Fragment() {
             }
         }
 
+
+        numOfPersonsPost.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if(!numOfPersonsPost.text.isEmpty()) {
+                    val v = numOfPersonsPost.text.toString().toInt();
+                    if(v < 2)
+                        numOfPersonsPost.setText("2")
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
+
         deleteButton.setOnClickListener{
             clearFields()
         }
@@ -86,6 +113,12 @@ class new_popup_fragment : Fragment() {
                 calendar.set(Calendar.MONTH, monthOfYear)
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 val sdf = SimpleDateFormat(myFormat, Locale.GERMANY)
+                if(calendar.time.before(Date()))
+                {
+                    calendar.set(Calendar.YEAR, LocalDate.now().year)
+                    calendar.set(Calendar.MONTH, LocalDate.now().monthValue - 1)
+                    calendar.set(Calendar.DAY_OF_MONTH, LocalDateTime.now().dayOfMonth)
+                }
                 startDatePost.setText(sdf.format(calendar.time))
                 endDatePost.setText(sdf.format(calendar.time))
             }
