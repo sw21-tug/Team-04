@@ -58,7 +58,7 @@ class PostsAdapter(val context: Context, val posts: List<UserPost>) :
             itemView.join_group_chat.setOnClickListener {
                 //TODO add do chatfragment in database
                 val firebaseref = FirebaseDatabase.getInstance().reference
-                firebaseref.child("posts").child(userPost.PID.toString()).child("uid").push().setValue(FirebaseAuth.getInstance().currentUser.uid)
+                firebaseref.child("posts").child(userPost.PID.toString()).child("userIDs").push().setValue(FirebaseAuth.getInstance().currentUser.uid)
 
                 val actionArguments = all_post_fragmentDirections.actionAllPostFragmentToConversationFragment(userPost.PID!!)
                 view.findNavController().navigate(actionArguments)
