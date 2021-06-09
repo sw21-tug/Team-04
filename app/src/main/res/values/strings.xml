@@ -23,6 +23,7 @@
     <string name="delete">delete</string>
     <string name="clear">clear</string>
     <string name="save">save</string>
+    <string name="unsave">unsave</string>
     <string name="post">post</string>
     <string name="number_people"># of people</string>
 
