@@ -108,6 +108,8 @@
     <string name="filter">фильтр </string>
     <string name="show_more">показать больше</string>
     <string name="message_text">сообщение</string>
+    <string name="expand_filter">развернуть фильтр</string>
+    <string name="close_filter">закрыть фильтр</string>
 
 
 </resources>
