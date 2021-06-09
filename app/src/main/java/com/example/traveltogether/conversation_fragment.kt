@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,13 +45,33 @@ class conversation_fragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_conversation_fragment, container, false)
+        val leaveGroupChatButton = view.findViewById<Button>(R.id.leave_group_chat)
+        var firebaseref = FirebaseDatabase.getInstance().reference
+        leaveGroupChatButton.setOnClickListener{
+            firebaseref.child("posts").child(args.chatId).child("uid").addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (uid in snapshot.children) {
+                        if (uid.value == FirebaseAuth.getInstance().currentUser.uid) {
+                            firebaseref.child("posts").child(args.chatId).child("uid").child(uid.key.toString()).removeValue()
+                            break
+                        }
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {}
+            })
+
+            findNavController().navigate(R.id.action_conversation_fragment_to_chat_fragment)
+
+        }
+
+
         conversationRecyclerView = view.findViewById(R.id.conversationRecyclerView)
         val activity = activity as Context
         val helperAdapter: ConversationHelperAdapter = ConversationHelperAdapter(activity, messages, this)
         val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(activity)
         conversationRecyclerView .layoutManager = linearLayoutManager
         conversationRecyclerView.adapter = helperAdapter
-        val firebaseref = FirebaseDatabase.getInstance().reference
+        firebaseref = FirebaseDatabase.getInstance().reference
         firebaseref.child("posts").child(args.chatId).child("messages").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 messages.clear()
