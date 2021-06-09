@@ -126,9 +126,14 @@
 
     <string name="search">Search...</string>
     <string name="filter">Filter</string>
+
     <string name="group_chat_messages_title">Messages</string>
 
     <string name="group_chat_planing_title">Planning</string>
+
+    <string name="message_text">Message</string>
+    <string name="expand_filter">expand filter</string>
+    <string name="close_filter">close filter</string>
 
 
 </resources>

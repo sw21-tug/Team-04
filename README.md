@@ -54,3 +54,20 @@ and join others on their journeys.
 * TT-014 Post Edit
 * TT-013 Post Delete
 * TT-025 Translation
+* TT-021 Profile Save Pic
+* TT-018 Post Comments Display
+* TT-009 Group Chat UI
+* TT-002 Posts Display Main
+* TT-017 Display My Posts
+* TT-027 Display Comments Show
+* TT-026 Group Chat Functionality
+* TT-025 Group Chat Chatting
+* TT-005 Filtering Posts
+* TT-011 Design
+
+## Bugs
+* TT-028 Adding dates to posts and comments
+* TT-023 Profile change Username
+* TT-034 Editing Post Date Format
+* TT-029 News section
+* TT-030 Delete Button
