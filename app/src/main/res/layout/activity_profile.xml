@@ -38,7 +38,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/profile_description_title"
                 app:layout_constraintTop_toBottomOf="@+id/save_description"
-                android:singleLine="false" />
+                android:singleLine="false"/>
 
     <Button
         android:id="@+id/save_description"
