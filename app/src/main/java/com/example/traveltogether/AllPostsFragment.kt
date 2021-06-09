@@ -75,6 +75,7 @@ class all_post_fragment : Fragment() {
             firebaseReference.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     posts.clear()
+                    tempPost.clear()
                     for (snapshot in dataSnapshot.children) {
                         val title = snapshot.child("title").value.toString()
                         val timePosted = snapshot.child("timePosted").value as Long
@@ -88,10 +89,9 @@ class all_post_fragment : Fragment() {
 
                         val userPost = UserPost(uid, pid, timePosted, title, destination, startDate, endDate, numOfPeople, description, null, null, null)
                         posts.add(userPost)
-
                     }
                     tempPost.addAll(posts)
-                    tempPost.reverse()
+                    posts.reverse()
                     adapter.notifyDataSetChanged()
                 }
 

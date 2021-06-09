@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id = "@+id/my_posts_fragment"
+        android:title="@string/my_posts_text"
+        android:icon="@drawable/ic_profile" />
+    <item
         android:id = "@+id/saved_post_fragment"
         android:title="@string/saved_text"
         android:icon="@drawable/ic_save" />

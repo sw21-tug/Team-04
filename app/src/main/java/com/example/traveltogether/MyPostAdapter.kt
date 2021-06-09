@@ -42,7 +42,7 @@ class MyPostAdapter(val context: Context, val posts: List<UserPost>) :
             itemView.time_of_post.text = DateUtils.getRelativeTimeSpanString(userPost.TimePosted)
 
             itemView.comment_button.setOnClickListener {
-                val actionArguments = saved_post_fragmentDirections.actionSavedPostFragmentToComment(
+                val actionArguments = my_posts_fragmentDirections.actionMyPostsFragmentToComment(
                     userPost.PID!!
                 )
                 view.findNavController().navigate(actionArguments)
@@ -51,11 +51,11 @@ class MyPostAdapter(val context: Context, val posts: List<UserPost>) :
                 val firebaseref = FirebaseDatabase.getInstance().reference
                 firebaseref.child("posts").child(userPost.PID.toString()).child("userIDs").push().setValue(FirebaseAuth.getInstance().currentUser.uid)
 
-                val actionArguments = saved_post_fragmentDirections.actionSavedPostFragmentToConversationFragment(userPost.PID!!)
+                val actionArguments = my_posts_fragmentDirections.actionMyPostsFragmentToConversationFragment(userPost.PID!!)
                 view.findNavController().navigate(actionArguments)
             }
             itemView.Button_delete_my_posts.setOnClickListener {
-                val actionArguments = saved_post_fragmentDirections.actionSavedPostFragmentToPostEdit(userPost.PID!!)
+                val actionArguments = my_posts_fragmentDirections.actionMyPostsFragmentToPostEdit(userPost.PID!!)
                 view.findNavController().navigate(actionArguments)
             }
         }

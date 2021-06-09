@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Switch
+import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -16,17 +17,27 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.item_post.view.*
+import kotlinx.android.synthetic.main.item_post.view.comment_button
+import kotlinx.android.synthetic.main.item_post.view.description
+import kotlinx.android.synthetic.main.item_post.view.destination
+import kotlinx.android.synthetic.main.item_post.view.end_date
+import kotlinx.android.synthetic.main.item_post.view.join_group_chat
+import kotlinx.android.synthetic.main.item_post.view.num_people
+import kotlinx.android.synthetic.main.item_post.view.post_title
+import kotlinx.android.synthetic.main.item_post.view.start_date
+import kotlinx.android.synthetic.main.item_post.view.time_of_post
+import kotlinx.android.synthetic.main.item_save_post.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class PostsAdapter(val context: Context, val posts: List<UserPost>) :
-        RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
+class SavedPostsAdapter(val context: Context, val posts: List<UserPost>) :
+        RecyclerView.Adapter<SavedPostsAdapter.ViewHolder>() {
     private lateinit var view : View
     private lateinit var buttonComments : Button
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false)
+        view = LayoutInflater.from(context).inflate(R.layout.item_save_post, parent, false)
         return ViewHolder(view)
     }
 
@@ -50,7 +61,7 @@ class PostsAdapter(val context: Context, val posts: List<UserPost>) :
             itemView.time_of_post.text = DateUtils.getRelativeTimeSpanString(userPost.TimePosted)
 
             itemView.comment_button.setOnClickListener {
-                val actionArguments = all_post_fragmentDirections.actionAllPostFragmentToComment(
+                val actionArguments = saved_post_fragmentDirections.actionSavedPostFragmentToComment(
                     userPost.PID!!
                 )
                 view.findNavController().navigate(actionArguments)
@@ -58,40 +69,36 @@ class PostsAdapter(val context: Context, val posts: List<UserPost>) :
             itemView.join_group_chat.setOnClickListener {
                 //TODO add do chatfragment in database
                 val firebaseref = FirebaseDatabase.getInstance().reference
-                firebaseref.child("posts").child(userPost.PID.toString()).child("userIDs").push().setValue(FirebaseAuth.getInstance().currentUser.uid)
+                firebaseref.child("posts").child(userPost.PID.toString()).child("uid").push().setValue(FirebaseAuth.getInstance().currentUser.uid)
 
-                val actionArguments = all_post_fragmentDirections.actionAllPostFragmentToConversationFragment(userPost.PID!!)
+                val actionArguments = saved_post_fragmentDirections.actionSavedPostFragmentToConversationFragment(userPost.PID!!)
                 view.findNavController().navigate(actionArguments)
 
             }
-            itemView.save_post_button.setOnClickListener {
+            itemView.unsave_post_button.setOnClickListener{
                 var firebase = FirebaseDatabase.getInstance()
                 var firebaseReference = firebase.reference.child("posts")
-                var found = false
+
                 firebaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         for (snapshot in dataSnapshot.children) {
                             if(snapshot.key.toString() == userPost.PID)
                             {
-                                for(saved in snapshot.child("saved").children)
+                                for (saved in snapshot.child("saved").children)
                                 {
-                                    if(saved.value == FirebaseAuth.getInstance().currentUser.uid)
-                                    {
-                                        found = true
-                                        break
+                                    if (saved.value == FirebaseAuth.getInstance().currentUser.uid) {
+                                        firebaseReference.child(userPost.PID.toString())
+                                            .child("saved").child(saved.key.toString())
+                                            .removeValue()
                                     }
                                 }
                                 break
                             }
                         }
-                        if (!found){
-                            firebaseReference.child(userPost.PID.toString()).child("saved").push().setValue(FirebaseAuth.getInstance().currentUser.uid)
-                        }
                     }
                     override fun onCancelled(databaseError: DatabaseError) {}
                 })
             }
-
         }
     }
 
