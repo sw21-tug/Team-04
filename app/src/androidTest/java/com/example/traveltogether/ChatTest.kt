@@ -38,7 +38,7 @@ class ChatTest {
     @Before
     fun setup() {
         FirebaseAuth.getInstance().signOut()
-        loginUser = LoginUser("test@gmail.com", "Name", "12345678", "")
+        loginUser = LoginUser("test1@gmail.com", "Name", "12345678", "")
         loginUser.signIn()
 
 
@@ -86,6 +86,7 @@ class ChatTest {
     @Test
     fun chatUITest () {
         onView(withId(R.id.saved_post_fragment)).perform(click())
+
         onView(withId(R.id.join_group_chat)).perform(click())
 
         onView(withId(R.id.sendMessageButton)).check(matches(isDisplayed()))
@@ -106,7 +107,7 @@ class ChatTest {
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
         firebaseRef.child("posts").child(pid).child("messages").push()
-            .setValue(Message(message_string, FirebaseAuth.getInstance().currentUser.uid,  if (FirebaseAuth.getInstance().currentUser?.displayName == "") "Anonymous"
+            .setValue(Message(message_string, FirebaseAuth.getInstance().currentUser?.uid,  if (FirebaseAuth.getInstance().currentUser?.displayName == "") "Anonymous"
             else FirebaseAuth.getInstance().currentUser?.displayName.toString() , System.currentTimeMillis()))
 
         val data_ = Tasks.await(firebaseRef.child("posts").child(pid).child("messages").get())
@@ -144,16 +145,20 @@ class ChatTest {
     }
 
 
+    //TODO
     @Test
     fun leaveGroupChat() {
         onView(withId(R.id.saved_post_fragment)).perform(click())
         onView(withId(R.id.join_group_chat)).perform(click())
+
+        onView(withId(R.menu.conversation_menu)).perform(click())
 
         onView(withId(R.id.leave_group_chat)).perform(click())
         onView(withId(R.id.chat_fragment)).check(matches(isDisplayed()))
 
         onView(withText("Delete Test")).check(doesNotExist())
     }
+
 
 
 }

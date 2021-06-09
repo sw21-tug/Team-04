@@ -38,7 +38,7 @@ class DisplayAddPost {
     @Before
     fun checkLogin () {
 
-        loginUser = LoginUser("manar.allam@ymail.com", "Manar", "12345678", "")
+        loginUser = LoginUser("test1@gmail.com", "Name", "12345678", "")
         loginUser.signIn()
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
@@ -80,7 +80,7 @@ class DisplayAddPost {
     @After
     fun cleanup () {
         var activityRule = ActivityScenarioRule(MainActivity::class.java)
-        onView(withId(R.id.all_post_fragment)).perform(click())
+        onView(withId(R.id.my_posts_fragment)).perform(click())
         userPost.delete()
     }
 
@@ -88,7 +88,7 @@ class DisplayAddPost {
     fun checkIfPostIsDisplayed() {
 
 
-        onView(withId(R.id.all_post_fragment)).perform(click())
+        onView(withId(R.id.saved_post_fragment)).perform(click())
         Thread.sleep(2000)
         onView(withText(postTitle)).check(matches(isDisplayed()))
         onView(withText(postDestination)).check(matches(isDisplayed()))
@@ -102,14 +102,14 @@ class DisplayAddPost {
 
     @Test
     fun checkDisplay() {
-        onView(withId(R.id.all_post_fragment)).perform(click())
+        onView(withId(R.id.saved_post_fragment)).perform(click())
         onView(withText("Comments")).perform(click())
         onView(withText("Comments")).check(matches(isDisplayed()))
     }
 
     @Test
     fun checkIfPostJoinButtonClickable() {
-        onView(withId(R.id.all_post_fragment)).perform(click())
+        onView(withId(R.id.saved_post_fragment)).perform(click())
         onView(withText("Join Group Chat")).perform(click())
     }
 

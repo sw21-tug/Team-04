@@ -23,10 +23,11 @@ class AddNewPostTest {
 
     @Before
     fun setup() {
-        loginUser = LoginUser("markus123@gmail.com", "Markus", "markus123", "Hallo")
+        loginUser = LoginUser("test@gmail.com", "Name", "12345678", "")
         loginUser.signIn()
         onView(withId(R.id.new_popup_fragment)).perform(click())
     }
+
 
     @Test
     fun checkPopupFragment() {

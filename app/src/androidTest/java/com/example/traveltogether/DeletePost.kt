@@ -22,7 +22,7 @@ class DeletePost {
 
     @Before
     fun checkLogin () {
-        loginUser = LoginUser("test@gmail.com", "Name", "12345678", "")
+        loginUser = LoginUser("test1@gmail.com", "Name", "12345678", "")
         loginUser.signIn()
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference

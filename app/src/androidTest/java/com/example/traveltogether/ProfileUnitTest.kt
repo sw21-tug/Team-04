@@ -22,16 +22,7 @@ import org.junit.Rule
 class ProfileUnitTest {
     @get:Rule
     val activityRule = ActivityScenarioRule(ProfileActivity::class.java)
-    @Test
-    fun checkEditButtonDisplay() {
-        //onView(withId(id.edit_picture_button)).check(matches(isDisplayed()))
-       // onView(withId(id.edit_picture_button)).check(matches(withText(string.profile_edit_picture)))
-    }
 
-    @Test
-    fun checkEditButtonFunctionality() {
-        //onView(withId(id.edit_picture_button)).perform(click())
-    }
     @Test
     fun checkProfilePicture() {
         onView(withId(id.profile_picture)).check(matches(isDisplayed()))
