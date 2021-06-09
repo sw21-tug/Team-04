@@ -106,6 +106,7 @@
     <string name="filter">篩選 </string>
     <string name="show_more">展示更多</string>
     <string name="message_text">信息</string>
+    <string name="unsave">取消保存</string>
 
 
 </resources>
