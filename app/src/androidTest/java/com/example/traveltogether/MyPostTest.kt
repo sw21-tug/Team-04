@@ -85,13 +85,13 @@ class MyPostTest {
 
     @Test
     fun checkDisplayContainer() {
-        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withId(R.id.my_posts_fragment)).perform(click())
         onView(withId(R.id.recycler_view_my_post)).check(matches(isDisplayed()))
     }
 
     @Test
     fun checkIfPostIsDisplayed() {
-        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withId(R.id.my_posts_fragment)).perform(click())
         onView(withText(postTitle)).check(matches(isDisplayed()))
         onView(withText(postDestination)).check(matches(isDisplayed()))
         onView(withText(postDescription)).check(matches(isDisplayed()))
@@ -104,7 +104,7 @@ class MyPostTest {
 
     @Test
     fun checkIfPostEditButtonClickable() {
-        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withId(R.id.my_posts_fragment)).perform(click())
         onView(withText("Edit Post"))
                 .perform(click())
 
@@ -112,14 +112,14 @@ class MyPostTest {
 
     @Test
     fun checkIfPostCommentButtonClickable() {
-        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withId(R.id.my_posts_fragment)).perform(click())
         onView(withText("Comments"))
                 .perform(click())
     }
 
     @Test
     fun checkIfPostJoinButtonClickable() {
-        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withId(R.id.my_posts_fragment)).perform(click())
         onView(withText("Join Group Chat"))
                 .perform(click())
     }

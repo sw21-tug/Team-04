@@ -24,7 +24,7 @@ class EditPostTest {
     fun setup () {
         loginUser = LoginUser("test@gmail.com", "Name","12345678", "")
         loginUser.signIn()
-        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withId(R.id.my_posts_fragment)).perform(click())
         //onView(withId(R.id.edit_post_button)).check(matches(isDisplayed()))
         //onView(withId(R.id.edit_post_button)).perform(click())
     }

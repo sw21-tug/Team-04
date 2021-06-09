@@ -108,6 +108,7 @@
     <string name="filter">фильтр </string>
     <string name="show_more">показать больше</string>
     <string name="message_text">сообщение</string>
+    <string name="unsave">небезопасный</string>
 
 
 </resources>
