@@ -3,6 +3,7 @@ package com.example.traveltogether
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -142,6 +143,17 @@ class ChatTest {
 
     }
 
+
+    @Test
+    fun leaveGroupChat() {
+        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withId(R.id.join_group_chat)).perform(click())
+
+        onView(withId(R.id.leave_group_chat)).perform(click())
+        onView(withId(R.id.chat_fragment)).check(matches(isDisplayed()))
+
+        onView(withText("Delete Test")).check(doesNotExist())
+    }
 
 
 }
