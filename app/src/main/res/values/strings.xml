@@ -134,6 +134,8 @@
     <string name="message_text">Message</string>
     <string name="expand_filter">expand filter</string>
     <string name="close_filter">close filter</string>
+    <string name="leave_group_chat">leave group chat</string>
+    <string name="leave_chat">Leave Chat</string>
 
 
 </resources>

@@ -3,12 +3,12 @@ package com.example.traveltogether
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import android.widget.Button
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_group_chatting.*
+import android.view.View.inflate
+
 
 class conversation_fragment : Fragment() {
     private val args: conversation_fragmentArgs by navArgs()
@@ -79,11 +81,41 @@ class ConversationFragment(var frag_number: Int, var chatId: String) : Fragment(
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        setHasOptionsMenu(true)
+
         if(frag_number == 0) {
             return getGroupChattingView(inflater, container)
         } else {
             return inflater.inflate(R.layout.fragment_group_planning, container, false)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.conversation_menu, menu)
+        return
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.leave_group_chat) {
+            var firebaseref = FirebaseDatabase.getInstance().reference
+            val ref = firebaseref.child("posts").child(chatId).child("userIDs")
+            ref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (uid in snapshot.children) {
+                        if (uid.value == FirebaseAuth.getInstance().currentUser.uid) {
+                            firebaseref.child("posts").child(chatId).child("userIDs").child(uid.key.toString()).removeValue()
+                        }
+                    }
+                    ref.removeEventListener(this)
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
+            findNavController().navigate(R.id.action_conversation_fragment_to_chat_fragment)
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     private fun getGroupChattingView(
@@ -92,6 +124,8 @@ class ConversationFragment(var frag_number: Int, var chatId: String) : Fragment(
     ): View? {
         //inflater.inflate(R.layout.fragment_group_chatting, container, false)
         val view = inflater.inflate(R.layout.fragment_group_chatting, container, false)
+
+
         conversationRecyclerView = view.findViewById(R.id.conversationRecyclerView)
         val activity = activity as Context
         val helperAdapter: ConversationHelperAdapter =
