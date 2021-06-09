@@ -108,6 +108,8 @@
     <string name="message_text">信息</string>
     <string name="expand_filter">展开过滤器</string>
     <string name="close_filter">关闭过滤器</string>
+    <string name="leave_group_chat">離開群聊</string>
+
 
 
 </resources>
