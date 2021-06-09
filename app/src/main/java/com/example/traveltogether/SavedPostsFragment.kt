@@ -49,7 +49,7 @@ class saved_post_fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view : View = inflater.inflate(R.layout.fragment_all_post_fragment, container, false)
+        val view : View = inflater.inflate(R.layout.fragment_saved_post_fragment, container, false)
         recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         posts = mutableListOf()
         tempPost = mutableListOf()
