@@ -127,5 +127,7 @@
     <string name="search">Search...</string>
     <string name="filter">Filter</string>
     <string name="message_text">Message</string>
+    <string name="expand_filter">expand filter</string>
+    <string name="close_filter">close filter</string>
 
 </resources>
