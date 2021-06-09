@@ -32,7 +32,6 @@ class ProfileUnitTest {
     fun checkEditButtonFunctionality() {
         //onView(withId(id.edit_picture_button)).perform(click())
     }
-
     @Test
     fun checkProfilePicture() {
         onView(withId(id.profile_picture)).check(matches(isDisplayed()))

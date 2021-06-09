@@ -97,5 +97,35 @@
         <argument
             android:name="chatId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_conversation_fragment_to_group_planning"
+            app:destination="@id/group_planning" />
+        <action
+            android:id="@+id/action_conversation_fragment_to_group_chatting"
+            app:destination="@id/group_chatting" />
+    </fragment>
+    <fragment
+        android:id="@+id/group_chatting"
+        android:name="com.example.traveltogether.group_chatting"
+        android:label="fragment_group_chatting"
+        tools:layout="@layout/fragment_group_chatting" >
+        <action
+            android:id="@+id/action_group_chatting_to_conversation_fragment"
+            app:destination="@id/conversation_fragment" />
+        <argument
+            android:name="chatId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/group_planning"
+        android:name="com.example.traveltogether.group_planning"
+        android:label="fragment_group_planning"
+        tools:layout="@layout/fragment_group_planning" >
+        <action
+            android:id="@+id/action_group_planning_to_conversation_fragment"
+            app:destination="@id/conversation_fragment" />
+        <argument
+            android:name="chatId"
+            app:argType="string" />
     </fragment>
 </navigation>

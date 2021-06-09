@@ -107,8 +107,19 @@
     <string name="search">Поиск…</string>
     <string name="filter">фильтр </string>
     <string name="show_more">показать больше</string>
+
+
+    <string name="group_chat_messages_title">планирование</string>
+
+    <string name="group_chat_planing_title">сообщение</string>
+
     <string name="message_text">сообщение</string>
     <string name="unsave">небезопасный</string>
+    <string name="expand_filter">развернуть фильтр</string>
+    <string name="close_filter">закрыть фильтр</string>
+    <string name="leave_group_chat">покинуть групповой чат</string>
+
+    <string name="leave_chat">покинуть чат</string>
 
 
 </resources>

@@ -33,7 +33,7 @@ class chat_fragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 groupNames.clear()
                 for (post in snapshot.children) {
-                    for (uid in post.child("uid").children) {
+                    for (uid in post.child("userIDs").children) {
                         if (uid.value == FirebaseAuth.getInstance().currentUser.uid) {
                             val title = post.child("title").value.toString()
                             val pid = post.key.toString()

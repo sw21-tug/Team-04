@@ -2,63 +2,150 @@ package com.example.traveltogether
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
 import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.auth.data.model.User
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.fragment_conversation_fragment.*
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.util.*
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+import kotlinx.android.synthetic.main.fragment_group_chatting.*
+import android.view.View.inflate
 
 
 class conversation_fragment : Fragment() {
-
     private val args: conversation_fragmentArgs by navArgs()
-    lateinit var conversationRecyclerView: RecyclerView
-    var messages:  MutableList<Message> = mutableListOf()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
+    private lateinit var conversationFragmentAdapter: ConversationFragmentAdapter
+    private lateinit var viewPager: ViewPager
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_conversation_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_conversation_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val chat_title = getString(R.string.group_chat_messages_title)
+        val planning_title = getString(R.string.group_chat_planing_title)
+        getString(R.string.app_name)
+        conversationFragmentAdapter = ConversationFragmentAdapter(childFragmentManager, chat_title, planning_title, args.chatId)
+        viewPager = view.findViewById(R.id.pager)
+        viewPager.adapter = conversationFragmentAdapter
+    }
+
+}
+// Since this is an object collection, use a FragmentStatePagerAdapter,
+// and NOT a FragmentPagerAdapter.
+class ConversationFragmentAdapter(
+    fm: FragmentManager,
+    private val frag1Name: String,
+    private val frag2Name: String,
+    private val chatId: String
+) : FragmentStatePagerAdapter(fm) {
+
+
+
+    override fun getCount(): Int  = 2
+
+    override fun getItem(i: Int): Fragment {
+        return ConversationFragment(i, chatId)
+    }
+
+    override fun getPageTitle(position: Int): CharSequence {
+        return if(position == 0) {
+            frag1Name
+        } else {
+            frag2Name
+        }
+    }
+}
+
+class ConversationFragment(var frag_number: Int, var chatId: String) : Fragment() {
+    lateinit var conversationRecyclerView: RecyclerView
+    var messages:  MutableList<Message> = mutableListOf()
+
+
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        setHasOptionsMenu(true)
+
+        if(frag_number == 0) {
+            return getGroupChattingView(inflater, container)
+        } else {
+            return inflater.inflate(R.layout.fragment_group_planning, container, false)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.conversation_menu, menu)
+        return
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.leave_group_chat) {
+            var firebaseref = FirebaseDatabase.getInstance().reference
+            val ref = firebaseref.child("posts").child(chatId).child("userIDs")
+            ref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (uid in snapshot.children) {
+                        if (uid.value == FirebaseAuth.getInstance().currentUser.uid) {
+                            firebaseref.child("posts").child(chatId).child("userIDs").child(uid.key.toString()).removeValue()
+                        }
+                    }
+                    ref.removeEventListener(this)
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
+            findNavController().navigate(R.id.action_conversation_fragment_to_chat_fragment)
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun getGroupChattingView(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): View? {
+        //inflater.inflate(R.layout.fragment_group_chatting, container, false)
+        val view = inflater.inflate(R.layout.fragment_group_chatting, container, false)
+
+
         conversationRecyclerView = view.findViewById(R.id.conversationRecyclerView)
         val activity = activity as Context
-        val helperAdapter: ConversationHelperAdapter = ConversationHelperAdapter(activity, messages, this)
+        val helperAdapter: ConversationHelperAdapter =
+            ConversationHelperAdapter(activity, messages, this)
         val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(activity)
-        conversationRecyclerView .layoutManager = linearLayoutManager
+        conversationRecyclerView.layoutManager = linearLayoutManager
         conversationRecyclerView.adapter = helperAdapter
         val firebaseref = FirebaseDatabase.getInstance().reference
-        firebaseref.child("posts").child(args.chatId).child("messages").addValueEventListener(object : ValueEventListener {
+
+        Log.d("args_", chatId)
+        firebaseref.child("posts").child(chatId).child("messages").addValueEventListener(object :
+            ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 messages.clear()
-                for ( msg in snapshot.children) {
+                for (msg in snapshot.children) {
                     val name = msg.child("name").value.toString()
                     val uid = msg.child("uid").value.toString()
                     val time = msg.child("time").value as Long
                     val text = msg.child("message").value.toString()
-                    val msgItem = Message(text,uid,name,time)
+                    val msgItem = Message(text, uid, name, time)
                     messages.add(msgItem)
                 }
                 helperAdapter.notifyDataSetChanged()
@@ -67,15 +154,18 @@ class conversation_fragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {}
         })
         val sendMessageButton = view.findViewById<FloatingActionButton>(R.id.sendMessageButton)
-        sendMessageButton.setOnClickListener{
-            val msg = Message(messageEditText.text.toString(), FirebaseAuth.getInstance().currentUser.uid,  if (FirebaseAuth.getInstance().currentUser?.displayName == "") "Anonymous"
-            else FirebaseAuth.getInstance().currentUser?.displayName.toString() ,System.currentTimeMillis())
+        sendMessageButton.setOnClickListener {
+            val msg = Message(
+                messageEditText.text.toString(),
+                FirebaseAuth.getInstance().currentUser.uid,
+                if (FirebaseAuth.getInstance().currentUser?.displayName == "") "Anonymous"
+                else FirebaseAuth.getInstance().currentUser?.displayName.toString(),
+                System.currentTimeMillis()
+            )
             messageEditText.text = null
-            firebaseref.child("posts").child(args.chatId).child("messages").push().setValue(msg)
+            firebaseref.child("posts").child(chatId).child("messages").push().setValue(msg)
         }
         return view
     }
-
-
-
 }
+
