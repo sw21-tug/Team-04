@@ -1,5 +1,7 @@
 package com.example.traveltogether
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -7,7 +9,9 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
@@ -27,6 +31,7 @@ import org.jetbrains.anko.newTask
 import java.io.ByteArrayOutputStream
 
 
+
 class ProfileActivity : AppCompatActivity() {
 
     private val REQUEST_IMAGE_CAPTURE = 100
@@ -38,6 +43,10 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         showEditTextDialog()
+
+
+
+
         val user = FirebaseAuth.getInstance().currentUser
         editTextTextPersonName.text = FirebaseAuth.getInstance().currentUser?.displayName
 
@@ -79,6 +88,7 @@ class ProfileActivity : AppCompatActivity() {
         actionbar!!.title = getString(R.string.profile_name)
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
+        //closeKeyBoard()
 
     }
 
@@ -98,12 +108,16 @@ class ProfileActivity : AppCompatActivity() {
             val firebasereal = FirebaseDatabase.getInstance()
             val firebaseref = firebasereal.getReference()
             firebaseref.child("users").child(FirebaseAuth.getInstance().currentUser.uid).child("Description").setValue(text.text.toString())
+
             Toast.makeText(
                 this,
                 "Saved Description",
                 Toast.LENGTH_SHORT
             ).show()
+
         }
+
+
     }
 
     private fun takePictureIntent() {
@@ -178,6 +192,14 @@ class ProfileActivity : AppCompatActivity() {
             ).show()
         }
 
+    }
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if (currentFocus != null) {
+            val imm: InputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        }
+        return super.dispatchTouchEvent(ev)
     }
 }
 
