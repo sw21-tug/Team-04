@@ -50,4 +50,9 @@ class BottomMenuTest {
         onView(withId(R.id.chat_fragment)).perform(click())
         onView(withId(R.id.chat_fragment)).check(matches(isDisplayed()))
     }
+    @Test
+    fun checkMyPostsFragment() {
+        onView(withId(R.id.my_posts_fragment)).perform(click())
+        onView(withId(R.id.my_posts_fragment)).check(matches(isDisplayed()))
+    }
 }

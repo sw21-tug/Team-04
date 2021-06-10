@@ -65,7 +65,7 @@
         tools:layout="@layout/fragment_post_edit" >
         <action
             android:id="@+id/action_post_edit_to_saved_post_fragment"
-            app:destination="@id/saved_post_fragment" />
+            app:destination="@id/my_posts_fragment" />
         <argument
             android:name="PID"
             app:argType="string"

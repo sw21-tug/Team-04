@@ -34,7 +34,7 @@ class LoginSignUpTest {
 
     @Before
     fun setup() {
-        loginUser = LoginUser("markus123@gmail.com", "Markus", "markus123", "")
+        loginUser = LoginUser("test1@gmail.com", "Name", "12345678", "Hallo")
         loginUser.signIn()
     }
 
@@ -73,9 +73,9 @@ class LoginSignUpTest {
         val loginSignUpButton = withId(R.id.account_sign_in)
 
         onView(loginSignUpButton).perform(click())
-        onView(withId(R.id.email)).perform(typeText("markus123@gmail.com"))
+        onView(withId(R.id.email)).perform(typeText("test1@gmail.com"))
         onView(withId(R.id.button_next)).perform(click())
-        onView(withId(R.id.password)).perform(typeText("markus123"))
+        onView(withId(R.id.password)).perform(typeText("12345678"))
         onView(withId(R.id.button_done)).perform(click())
 
         assertNotNull(FirebaseAuth.getInstance().currentUser)

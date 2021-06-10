@@ -38,13 +38,13 @@ class DisplayAddPost {
     @Before
     fun checkLogin () {
 
-        loginUser = LoginUser("manar.allam@ymail.com", "Manar", "12345678", "")
+        loginUser = LoginUser("test1@gmail.com", "Name", "12345678", "")
         loginUser.signIn()
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
         val list : MutableList<Comment> = mutableListOf()
-        var messages : MutableList<Message> = mutableListOf()
-        var ids : MutableList<String> = mutableListOf()
+        val messages : MutableList<Message> = mutableListOf()
+        val ids : MutableList<String> = mutableListOf()
         firebaseRef.child("posts").push().
         setValue(UserPost(
             FirebaseAuth.getInstance().currentUser?.uid.toString(), "2", System.currentTimeMillis(),
@@ -79,37 +79,29 @@ class DisplayAddPost {
 
     @After
     fun cleanup () {
-        var activityRule = ActivityScenarioRule(MainActivity::class.java)
-        onView(withId(R.id.all_post_fragment)).perform(click())
+        onView(withId(R.id.my_posts_fragment)).perform(click())
         userPost.delete()
     }
 
     @Test
     fun checkIfPostIsDisplayed() {
 
-
-        onView(withId(R.id.all_post_fragment)).perform(click())
+        onView(withId(R.id.my_posts_fragment)).perform(click())
         Thread.sleep(2000)
         onView(withText(postTitle)).check(matches(isDisplayed()))
         onView(withText(postDestination)).check(matches(isDisplayed()))
         onView(withText(postDescription)).check(matches(isDisplayed()))
-        onView(withText("Group Size: $postNPeople")).check(matches(isDisplayed()))
+        onView(withText("Group size: $postNPeople")).check(matches(isDisplayed()))
 
         val date = getDate(postStartEndDate)
         onView(withText("From $date")).check(matches(isDisplayed()))
         onView(withText("To $date")).check(matches(isDisplayed()))
     }
 
-    @Test
-    fun checkDisplay() {
-        onView(withId(R.id.all_post_fragment)).perform(click())
-        onView(withText("Comments")).perform(click())
-        onView(withText("Comments")).check(matches(isDisplayed()))
-    }
 
     @Test
     fun checkIfPostJoinButtonClickable() {
-        onView(withId(R.id.all_post_fragment)).perform(click())
+        onView(withId(R.id.my_posts_fragment)).perform(click())
         onView(withText("Join Group Chat")).perform(click())
     }
 

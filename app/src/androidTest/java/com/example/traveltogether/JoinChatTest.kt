@@ -37,20 +37,20 @@ class JoinChatTest {
 
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
-        var list : MutableList<Comment> = mutableListOf()
-        var messages : MutableList<Message> = mutableListOf()
-        var ids : MutableList<String> = mutableListOf()
+        val list : MutableList<Comment> = mutableListOf()
+        val messages : MutableList<Message> = mutableListOf()
+        val ids : MutableList<String> = mutableListOf()
         firebaseRef.child("posts").push().
         setValue(UserPost(
                 FirebaseAuth.getInstance().currentUser?.uid.toString(), "1", System.currentTimeMillis(),
-                "Delete Test", "Malle", 1, 1,
+                "post", "Malle", 1, 1,
                 3, "hallo", list, messages, ids))
         var data = Tasks.await(firebaseRef.child("posts").get())
 
 
         for (item in data.children) {
             assert(item.hasChild("title"))
-            if (item.child("title").value.toString() == "Delete Test" &&
+            if (item.child("title").value.toString() == "post" &&
                     item.child("uid").value.toString() ==
                     FirebaseAuth.getInstance().currentUser?.uid
             ) {
@@ -75,17 +75,22 @@ class JoinChatTest {
         Espresso.onView(ViewMatchers.withId(R.id.chat_fragment)).perform(ViewActions.click())
     }
 
+    @After
+    fun cleanup () {
+        userPost.delete()
+    }
+
     @Test
     fun joinChatTest () {
 
+        Espresso.onView(ViewMatchers.withId(R.id.my_posts_fragment)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.join_group_chat)).perform(ViewActions.click())
+
         Espresso.onView(ViewMatchers.withId(R.id.chat_fragment)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withText("hi")).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Espresso.onView(ViewMatchers.withText("hi")).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withText("post")).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.onView(ViewMatchers.withText("post")).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.conversationRecyclerView)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
-
-
     }
-
 
 }
