@@ -34,7 +34,7 @@ class chat_fragment : Fragment() {
                 groupNames.clear()
                 for (post in snapshot.children) {
                     for (uid in post.child("userIDs").children) {
-                        if (uid.value == FirebaseAuth.getInstance().currentUser.uid) {
+                        if (uid.value == FirebaseAuth.getInstance().currentUser?.uid) {
                             val title = post.child("title").value.toString()
                             val pid = post.key.toString()
                             val chatItem = Chat(pid, title)

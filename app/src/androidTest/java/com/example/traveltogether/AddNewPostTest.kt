@@ -8,10 +8,10 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.junit.Test
+import com.google.firebase.database.FirebaseDatabase
+import org.junit.*
 import org.junit.runner.RunWith
-import org.junit.Before
-import org.junit.Rule
+
 
 @RunWith(AndroidJUnit4::class)
 class AddNewPostTest {
@@ -21,11 +21,23 @@ class AddNewPostTest {
 
     private lateinit var loginUser: LoginUser
 
+
     @Before
     fun setup() {
+
         loginUser = LoginUser("test1@gmail.com", "Name", "12345678", "Hallo")
+
         loginUser.signIn()
         onView(withId(R.id.new_popup_fragment)).perform(click())
+    }
+
+
+    @After
+    fun deleteDatabasePost()
+    {
+        var firebaseDb = FirebaseDatabase.getInstance()
+        var firebaseRef = firebaseDb.reference
+        firebaseRef.child("posts").removeValue()
     }
 
     @Test
@@ -69,6 +81,7 @@ class AddNewPostTest {
         onView(withHint(R.string.starting_date)).check(matches(isDisplayed()))
         onView(withHint(R.string.ending_date)).check(matches(isDisplayed()))
     }
+
 
     @Test
     fun clearInput() {

@@ -24,6 +24,7 @@ import org.junit.Rule
 class ProfileUnitTest {
     @get:Rule
     val activityRule = ActivityScenarioRule(ProfileActivity::class.java)
+
     @Test
     fun checkProfilePicture() {
         onView(withId(id.profile_picture)).check(matches(isDisplayed()))

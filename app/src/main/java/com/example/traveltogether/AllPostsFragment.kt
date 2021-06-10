@@ -100,6 +100,7 @@ class all_post_fragment : Fragment() {
 
             val filterExpandButton = view.findViewById<Button>(R.id.filter_button_expand)
             val filterLayout = view.findViewById<ConstraintLayout>(R.id.filterLayout)
+            val allPostLayout = view.findViewById<ConstraintLayout>(R.id.all_posts)
 
             filterExpandButton.setOnClickListener {
                 if(filterLayout.visibility == View.VISIBLE) {
@@ -268,4 +269,6 @@ class all_post_fragment : Fragment() {
                 }
             }
     }
+
+
 }

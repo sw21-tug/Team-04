@@ -124,6 +124,7 @@ class post_edit : Fragment() {
                 numberPeopleText.setText(numOfPeople)
                 val uid = dataSnapshot.child("uid").value.toString()
                 val pid = dataSnapshot.child("pid").value.toString()
+                firebaseReference.removeEventListener(this)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {}
