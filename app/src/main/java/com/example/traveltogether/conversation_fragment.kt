@@ -86,7 +86,7 @@ class ConversationFragment(var frag_number: Int, var chatId: String) : Fragment(
         if(frag_number == 0) {
             return getGroupChattingView(inflater, container)
         } else {
-            return inflater.inflate(R.layout.fragment_group_planning, container, false)
+            return getGroupChattingView(inflater, container)
         }
     }
 
