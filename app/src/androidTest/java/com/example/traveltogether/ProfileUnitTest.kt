@@ -39,11 +39,5 @@ class ProfileUnitTest {
     fun checkEditDescription() {
         onView(withId(id.description_text)).check(matches(isDisplayed()))
     }
-
-    @Test
-    fun checkDescription() {
-        onView(withId(id.description_text)).perform(typeText("hallooo"))
-        onView(withId(id.save_description)).perform(click())
-        onView(ViewMatchers.withText("hallooo")).check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
-    }
+    
 }
