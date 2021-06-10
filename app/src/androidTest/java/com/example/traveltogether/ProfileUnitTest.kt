@@ -3,7 +3,9 @@ package com.example.traveltogether
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -23,16 +25,6 @@ class ProfileUnitTest {
     @get:Rule
     val activityRule = ActivityScenarioRule(ProfileActivity::class.java)
     @Test
-    fun checkEditButtonDisplay() {
-        //onView(withId(id.edit_picture_button)).check(matches(isDisplayed()))
-       // onView(withId(id.edit_picture_button)).check(matches(withText(string.profile_edit_picture)))
-    }
-
-    @Test
-    fun checkEditButtonFunctionality() {
-        //onView(withId(id.edit_picture_button)).perform(click())
-    }
-    @Test
     fun checkProfilePicture() {
         onView(withId(id.profile_picture)).check(matches(isDisplayed()))
     }
@@ -49,7 +41,8 @@ class ProfileUnitTest {
 
     @Test
     fun checkDescription() {
+        onView(withId(id.description_text)).perform(typeText("hallooo"))
         onView(withId(id.save_description)).perform(click())
-        onView(withId(id.et_editView)).perform(typeText("hallooo"))
+        onView(ViewMatchers.withText("hallooo")).check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
     }
 }

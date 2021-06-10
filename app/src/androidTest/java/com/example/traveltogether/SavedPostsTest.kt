@@ -36,7 +36,7 @@ class SavedPostsTest {
     @Before
     fun setup() {
         FirebaseAuth.getInstance().signOut()
-        loginUser = LoginUser("test@gmail.com", "Name", "12345678", "")
+        loginUser = LoginUser("test1@gmail.com", "Name", "12345678", "")
         loginUser.signIn()
 
 
@@ -65,7 +65,7 @@ class SavedPostsTest {
         }
         assert(pid != "")
 
-        firebaseRef.child("posts").child(pid).child("saved").push().setValue(FirebaseAuth.getInstance().currentUser.uid)
+        firebaseRef.child("posts").child(pid).child("saved").push().setValue(FirebaseAuth.getInstance().currentUser?.uid)
         val dataNew = Tasks.await(firebaseRef.child("posts").child(pid).get())
 
         userPost = UserPost(dataNew.child("uid").value.toString(),
@@ -89,6 +89,9 @@ class SavedPostsTest {
 
     @Test
     fun checkDisplaySaved () {
+        onView(withId(R.id.all_post_fragment)).perform(ViewActions.click())
+        onView(withId(R.id.save_post_button)).perform(ViewActions.click())
+        Thread.sleep(1000)
         onView(withId(R.id.saved_post_fragment)).perform(ViewActions.click())
 
         onView(ViewMatchers.withText(post_name)).check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
