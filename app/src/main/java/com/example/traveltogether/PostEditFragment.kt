@@ -117,15 +117,14 @@ class post_edit : Fragment() {
                 val description = dataSnapshot.child("description").value.toString()
                 descriptionText.setText(description)
                 val endDate = dataSnapshot.child("endDate").value.toString()
-                if (endDate.isNotEmpty())
-                  endDateText.setText(getDate(endDate.toLong()))
+                endDateText.setText(getDate(endDate.toLong()))
                 val startDate = dataSnapshot.child("startDate").value.toString()
-                if(startDate.isNotEmpty())
-                    startingDateText.setText(getDate(startDate.toLong()))
+                startingDateText.setText(getDate(startDate.toLong()))
                 val numOfPeople = dataSnapshot.child("numOfPeople").value.toString()
                 numberPeopleText.setText(numOfPeople)
                 val uid = dataSnapshot.child("uid").value.toString()
                 val pid = dataSnapshot.child("pid").value.toString()
+                firebaseReference.removeEventListener(this)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {}

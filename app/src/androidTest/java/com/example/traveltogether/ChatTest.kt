@@ -85,10 +85,8 @@ class ChatTest {
 
     @Test
     fun chatUITest () {
-        onView(withId(R.id.saved_post_fragment)).perform(click())
-
+        onView(withId(R.id.my_posts_fragment)).perform(click())
         onView(withId(R.id.join_group_chat)).perform(click())
-
         onView(withId(R.id.sendMessageButton)).check(matches(isDisplayed()))
         onView(withId(R.id.messageEditText)).check(matches(isDisplayed()))
         onView(withId(R.id.conversationRecyclerView)).check(matches(isDisplayed()))
@@ -123,17 +121,17 @@ class ChatTest {
         firebaseDb = FirebaseDatabase.getInstance()
         firebaseRef = firebaseDb.reference
         firebaseRef.child("posts").child(pid).child("userIDs").push()
-            .setValue(FirebaseAuth.getInstance().currentUser.uid)
+            .setValue(FirebaseAuth.getInstance().currentUser?.uid)
 
         val data_ = Tasks.await(firebaseRef.child("posts").child(pid).child("userIDs").get())
         for (id in data_.children) {
-            assert(id.value == FirebaseAuth.getInstance().currentUser.uid)
+            assert(id.value == FirebaseAuth.getInstance().currentUser?.uid)
         }
     }
 
     @Test
     fun checkDisplayOfMessage() {
-        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withId(R.id.my_posts_fragment)).perform(click())
         onView(withId(R.id.join_group_chat)).perform(click())
 
         onView(withId(R.id.messageEditText)).perform(ViewActions.typeText(message_string))
@@ -148,7 +146,7 @@ class ChatTest {
     //TODO
     @Test
     fun leaveGroupChat() {
-        onView(withId(R.id.saved_post_fragment)).perform(click())
+        onView(withId(R.id.my_posts_fragment)).perform(click())
         onView(withId(R.id.join_group_chat)).perform(click())
 
         onView(withId(R.menu.conversation_menu)).perform(click())
