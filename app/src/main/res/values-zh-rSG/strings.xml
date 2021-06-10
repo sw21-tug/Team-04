@@ -18,12 +18,10 @@
     <string name="change_language_text">改變語言</string>
     <string name="all_post_section_text">所有帖子科</string>
     <string name="chat_section_text">聊天區</string>
-    <string name="news_section_text">" 新聞欄目"</string>
     <string name="saved_text">已保存</string>
     <string name="all_text">全部</string>
     <string name="chat_text">聊天</string>
     <string name="new_text">新的</string>
-    <string name="news_text">消息</string>
     <string name="saved_post_section_text">保存的帖子部分</string>
     <string name="newest_popup_text">最新彈出窗口</string>
     <string name="settings_activity">設置活動</string>
@@ -31,7 +29,6 @@
     <string name="chat_title_text">聊天</string>
     <string name="new_title_text">新的</string>
     <string name="all_title_text">全部</string>
-    <string name="news_title_text">消息</string>
     <string name="messages_header">留言內容</string>
     <string name="sync_header">同步</string>
     <string name="signature_title">你的簽名</string>
@@ -55,6 +52,7 @@
     <string name="time_posted">時間發布</string>
     <string name="destination">目的地</string>
     <string name="delete">删除</string>
+    <string name="clear">清除</string>
     <string name="save">保存</string>
     <string name="post">发布</string>
     <string name="number_people">人数</string>
@@ -81,4 +79,45 @@
     <string name="enter_new_password_text">输入新密码：</string>
     <string name="re_enter_the_same_password_text">重新输入相同的密码：</string>
     <string name="submit_text">提交</string>
+    <string name="conversation_fragment_name">信息</string>
+    <string name="enter_new_comment_text">输入新评论…</string>
+    <string name="comments_text">注释</string>
+    <string name="send_text">发送</string>
+    <string name="title_comment">标题</string>
+    <string name="starting_date_comment">开始日期</string>
+    <string name="ending_date_comment">結束日期</string>
+    <string name="time_posted_comment">時間發布</string>
+    <string name="destination_comment">目的地</string>
+    <string name="description_comment">描述</string>
+    <string name="number_people_comment">人数</string>
+    <string name="my_posts_text">我的帖子</string>
+    <string name="change_username">變更使用者名稱</string>
+    <string name="user_name">用戶名</string>
+
+    <string name="join_group_chat">加入群聊</string>
+
+    <string name="From">從</string>
+    <string name="Group_Size">小組人數:</string>
+    <string name="to">至</string>
+    <string name="save_description_text">保存描述</string>
+
+    <string name="dark_mode">暗模式</string>
+    <string name="search">搜索...</string>
+    <string name="filter">篩選 </string>
+    <string name="show_more">展示更多</string>
+
+    <string name="group_chat_messages_title">信息</string>
+
+    <string name="group_chat_planing_title">刨</string>
+
+    <string name="message_text">信息</string>
+
+    <string name="unsave">取消保存</string>
+    <string name="expand_filter">展开过滤器</string>
+    <string name="close_filter">关闭过滤器</string>
+    <string name="leave_group_chat">離開群聊</string>
+
+    <string name="leave_chat">離開聊天</string>
+
+
 </resources>

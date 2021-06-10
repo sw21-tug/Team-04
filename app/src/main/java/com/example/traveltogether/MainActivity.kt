@@ -1,9 +1,12 @@
 package com.example.traveltogether
 
+import android.content.Context
 import com.firebase.ui.auth.AuthUI
 import org.jetbrains.anko.intentFor
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -28,7 +31,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var navControllerSlide: NavController
+    lateinit var navControllerSlide: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         val navController = findNavController(R.id.buttom_menu_fragment)
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.saved_post_fragment, R.id.all_post_fragment, R.id.chat_fragment, R.id.new_popup_fragment, R.id.news_fragment), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.my_posts_fragment, R.id.saved_post_fragment, R.id.all_post_fragment, R.id.chat_fragment, R.id.new_popup_fragment), drawerLayout)
         bottomNavigationView.setupWithNavController(navController)
         setupActionBarWithNavController(navController,appBarConfiguration)
 
@@ -67,5 +70,20 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.buttom_menu_fragment)
         return navController.navigateUp(appBarConfiguration)
                 ||  super.onSupportNavigateUp()
+    }
+    private fun closeKeyBoard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if (currentFocus != null) {
+            val imm: InputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        }
+        return super.dispatchTouchEvent(ev)
     }
 }

@@ -21,9 +21,20 @@
     <string name="time_posted">time posted</string>
     <string name="destination">destination</string>
     <string name="delete">delete</string>
+    <string name="clear">clear</string>
     <string name="save">save</string>
+    <string name="unsave">unsave</string>
     <string name="post">post</string>
     <string name="number_people"># of people</string>
+
+    <string name="title_comment">title</string>
+    <string name="starting_date_comment">starting date</string>
+    <string name="ending_date_comment">ending date</string>
+    <string name="time_posted_comment">time posted</string>
+    <string name="destination_comment">destination</string>
+    <string name="description_comment">description</string>
+    <string name="number_people_comment"># of people</string>
+    <string name="show_more">show more</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
@@ -57,12 +68,10 @@
 
     <string name="all_post_section_text">All Post Section</string>
     <string name="chat_section_text">Chat Section</string>
-    <string name="news_section_text">News Section</string>
     <string name="saved_text">Saved</string>
     <string name="all_text">All</string>
     <string name="chat_text">Chat</string>
     <string name="new_text">New</string>
-    <string name="news_text">News</string>
     <string name="saved_post_section_text">Saved Post Section</string>
     <string name="newest_popup_text">Newest Popup</string>
     <string name="settings_activity">Settings Activity</string>
@@ -70,7 +79,6 @@
     <string name="chat_title_text">Chat</string>
     <string name="new_title_text">New</string>
     <string name="all_title_text">All</string>
-    <string name="news_title_text">News</string>
     <string name="change_password_text">change password</string>
     <string name="delete_account_text">Delete account</string>
     <string name="notify_when_activity_in_group_chat_text">Notify when activity in group chat</string>
@@ -100,4 +108,35 @@
     <string name="enter_new_password_text">Enter new password:</string>
     <string name="re_enter_the_same_password_text">Re-enter the same password:</string>
     <string name="submit_text">Submit</string>
+
+    <string name="comments_text">Comments</string>
+    <string name="send_text">Send</string>
+    <string name="enter_new_comment_text">Enter new comment…</string>
+    <string name="conversation_fragment_name">Messages</string>
+    <string name="my_posts_text">My Posts</string>
+    <string name="change_username">Change Username</string>
+    <string name="user_name">User Name</string>
+
+    <string name="join_group_chat">Join Group Chat </string>
+
+    <string name="From">From</string>
+    <string name="Group_Size">Group Size</string>
+    <string name="to">To</string>
+    <string name="save_description_text">save description</string>
+    <string name="dark_mode">Dark Mode</string>
+
+    <string name="search">Search...</string>
+    <string name="filter">Filter</string>
+
+    <string name="group_chat_messages_title">Messages</string>
+
+    <string name="group_chat_planing_title">Planning</string>
+
+    <string name="message_text">Message</string>
+    <string name="expand_filter">expand filter</string>
+    <string name="close_filter">close filter</string>
+    <string name="leave_group_chat">leave group chat</string>
+    <string name="leave_chat">Leave Chat</string>
+
+
 </resources>

@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id = "@+id/my_posts_fragment"
+        android:title="@string/my_posts_text"
+        android:icon="@drawable/ic_profile" />
+    <item
         android:id = "@+id/saved_post_fragment"
         android:title="@string/saved_text"
         android:icon="@drawable/ic_save" />
@@ -17,8 +21,4 @@
         android:id = "@+id/new_popup_fragment"
         android:title="@string/new_text"
         android:icon="@drawable/ic_popup" />
-    <item
-        android:id = "@+id/news_fragment"
-        android:title="@string/news_text"
-        android:icon="@drawable/ic_news" />
 </menu>

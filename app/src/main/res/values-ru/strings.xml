@@ -18,12 +18,10 @@
 
     <string name="all_post_section_text">Раздел Все сообщения</string>
     <string name="chat_section_text">Раздел чата</string>
-    <string name="news_section_text">Раздел новостей</string>
     <string name="saved_text">Сохранено</string>
     <string name="all_text">Все</string>
-    <string name="chat_text">Чат</string>
+    <string name="chat_text">Чат</string>v
     <string name="new_text">Новый</string>
-    <string name="news_text">Новости</string>
     <string name="saved_post_section_text">Раздел сохраненных сообщений</string>
     <string name="newest_popup_text">Новое всплывающее окно</string>
     <string name="settings_activity">Настройки Активность</string>
@@ -31,7 +29,6 @@
     <string name="chat_title_text">Чат</string>
     <string name="new_title_text">Новый</string>
     <string name="all_title_text">Все</string>
-    <string name="news_title_text">Новости</string>
     <string name="messages_header">Сообщения</string>
     <string name="sync_header">синхронизировать</string>
     <string name="signature_title">Ваша подпись</string>
@@ -52,9 +49,10 @@
 
     <string name="title">заглавие</string>
     <string name="starting_date">Дата начала</string>
-    <string name="time_posted">время опубликовано</string>
+    <string name="time_posted">дата окончания</string>
     <string name="destination">назначения</string>
     <string name="delete">Удалить</string>
+    <string name="clear">Чисто</string>
     <string name="save">спасти</string>
     <string name="post">Почта</string>
     <string name="number_people">число людей</string>
@@ -81,5 +79,47 @@
     <string name="re_enter_the_same_password_text">Повторно введите тот же пароль:</string>
     <string name="enter_new_password_text">Введите новый пароль:</string>
     <string name="enter_old_password_text">Введите старый пароль:</string>
+    <string name="comments_text">Комментарии</string>
+    <string name="send_text">послать</string>
+    <string name="enter_new_comment_text">Введите новый комментарий…</string>
+    <string name="title_comment">заглавие</string>
+    <string name="starting_date_comment">Дата начала</string>
+    <string name="ending_date_comment">дата окончания</string>
+    <string name="time_posted_comment">дата окончания</string>
+    <string name="destination_comment">назначения</string>
+    <string name="number_people_comment">число людей</string>
+    <string name="description_comment">описание</string>
+
+    <string name="join_group_chat">присоединиться к групповому чату</string>
+
+    <string name="From">Из</string>
+    <string name="Group_Size">размер группы:</string>
+    <string name="to">К</string>
+
+    <string name="conversation_fragment_name">Сообщение</string>
+    <string name="change_username">Изменение имени пользователя</string>
+    <string name="user_name">Имя пользователя</string>
+    <string name="my_posts_text">мой пост</string>
+
+    <string name="save_description_text">сохранить описание</string>
+
+    <string name="dark_mode">темный режим</string>
+    <string name="search">Поиск…</string>
+    <string name="filter">фильтр </string>
+    <string name="show_more">показать больше</string>
+
+
+    <string name="group_chat_messages_title">планирование</string>
+
+    <string name="group_chat_planing_title">сообщение</string>
+
+    <string name="message_text">сообщение</string>
+    <string name="unsave">небезопасный</string>
+    <string name="expand_filter">развернуть фильтр</string>
+    <string name="close_filter">закрыть фильтр</string>
+    <string name="leave_group_chat">покинуть групповой чат</string>
+
+    <string name="leave_chat">покинуть чат</string>
+
 
 </resources>

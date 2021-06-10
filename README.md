@@ -35,8 +35,8 @@ and join others on their journeys.
 * 19 May 2021 - Sprint 3
 
 * 26 May 2021 - Sprint 4
-* 02 May 2021 - Sprint 4
-* 09 May 2021 - Sprint 4 (2 Release, 23:59)
+* 02 June 2021 - Sprint 4
+* 09 June 2021 - Sprint 4 (2 Release, 23:59)
 
 ## Implemented Features
 
@@ -54,3 +54,32 @@ and join others on their journeys.
 * TT-014 Post Edit
 * TT-013 Post Delete
 * TT-025 Translation
+* TT-021 Profile Save Pic
+* TT-018 Post Comments Display
+* TT-009 Group Chat UI
+* TT-002 Posts Display Main
+* TT-017 Display My Posts
+* TT-027 Display Comments Show
+* TT-026 Group Chat Functionality
+* TT-025 Group Chat Chatting
+* TT-005 Filtering Posts
+* TT-011 Design
+* TT-033 Group Chat Groups
+* TT-035 Planning UI
+* TT-040 Leave Group Chat
+* TT-024 Post Bookmark
+* TT-036 Planning Functionality
+
+## Bugs
+* TT-028 Adding dates to posts and comments
+* TT-023 Profile change Username
+* TT-034 Editing Post Date Format
+* TT-029 News section
+* TT-030 Delete Button
+* TT-032 Filtering By Date
+* TT-039 Comments Post Black
+* TT-038 Filtering Keyboard
+* TT-037 Past Date
+* TT-041 Test Check Refactor
+* TT-042 Join Group Chat Saved
+* TT-043 Join Group Chat All
