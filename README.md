@@ -66,6 +66,9 @@ and join others on their journeys.
 * TT-011 Design
 * TT-033 Group Chat Groups
 * TT-035 Planning UI
+* TT-040 Leave Group Chat
+* TT-024 Post Bookmark
+* TT-036 Planning Functionality
 
 ## Bugs
 * TT-028 Adding dates to posts and comments
@@ -73,3 +76,10 @@ and join others on their journeys.
 * TT-034 Editing Post Date Format
 * TT-029 News section
 * TT-030 Delete Button
+* TT-032 Filtering By Date
+* TT-039 Comments Post Black
+* TT-038 Filtering Keyboard
+* TT-037 Past Date
+* TT-041 Test Check Refactor
+* TT-042 Join Group Chat Saved
+* TT-043 Join Group Chat All
