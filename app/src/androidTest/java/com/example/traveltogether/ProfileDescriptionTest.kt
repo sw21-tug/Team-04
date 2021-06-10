@@ -9,9 +9,11 @@ import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.DrawerMatchers
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -47,7 +49,7 @@ class ProfileDescriptionTest {
             .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
             .map(charPool::get)
             .joinToString("");
-        loginUser = LoginUser("markus123@gmail.com", "Markus", "markus123", randomString)
+        loginUser = LoginUser("test1@gmail.com", "Name", "12345678", "")
         loginUser.signIn()
     }
 
@@ -60,22 +62,21 @@ class ProfileDescriptionTest {
     @Test
     fun changeDescriptionTest() {
         setup()
-        onView(withId(id.save_description)).perform(click())
-        onView(withId(id.et_editView)).perform(typeText(loginUser.description))
-        onView(withText("OK")).perform(click())
-
-        val dataSnapshot = await(FirebaseDatabase.getInstance().reference.child("users").child(FirebaseAuth.getInstance().currentUser?.uid.toString()).child("Description").get())
-        Assert.assertEquals(loginUser.description, dataSnapshot.value.toString())
+        val oldText = getText(withId(R.id.description_text))
+        onView(ViewMatchers.withText(oldText)).check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
+        onView(withId(id.description_text)).perform(typeText(loginUser.description))
+        val newText = getText(withId(R.id.description_text))
+        onView(ViewMatchers.withText(newText)).check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
     }
 
     @Test
     fun descriptionAfterRejoinActivity() {
         setup()
-        onView(withId(id.save_description)).perform(click())
-        onView(withId(id.et_editView)).perform(typeText(loginUser.description))
-        onView(withText("OK")).perform(click())
-
         val oldText = getText(withId(R.id.description_text))
+        //onView(withId(id.description_text)).perform(click())
+        onView(withId(id.description_text)).perform(typeText(loginUser.description))
+
+
         pressBack()
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
         onView(withId(R.id.drawer_layout)).check(matches(DrawerMatchers.isOpen(Gravity.LEFT)))

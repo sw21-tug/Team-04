@@ -105,16 +105,14 @@ class MyPostTest {
     @Test
     fun checkIfPostEditButtonClickable() {
         onView(withId(R.id.my_posts_fragment)).perform(click())
-        onView(withText("Edit Post"))
-                .perform(click())
+        onView(withId(R.id.Button_delete_my_posts)).perform(click())
 
     }
 
     @Test
     fun checkIfPostCommentButtonClickable() {
         onView(withId(R.id.my_posts_fragment)).perform(click())
-        onView(withText("Comments"))
-                .perform(click())
+        onView(withText("Comments")).perform(click())
     }
 
     @Test
